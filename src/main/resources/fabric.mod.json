@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "winged",
+  "version": "${version}",
+  "name": "Winged Mod",
+  "description": "Permanently change the way your character looks by attaching a colorful wing to his body!",
+  "authors": [
+    "AdrianTodt"
+  ],
+  "contact": {
+    "homepage": "https://adriantodt.github.io/winged",
+    "issues": "https://github.com/AdrianTodt/Winged/issues",
+    "sources": "https://github.com/AdrianTodt/Winged"
+  },
+  "license": "Apache-2.0",
+  "icon": "assets/dragontech/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.adriantodt.winged.WingedKt::init"
+    ]
+  },
+  "mixins": [
+    "winged.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.7.1",
+    "fabric": "*",
+    "fabric-language-kotlin": "*",
+    "minecraft": "1.16.x"
+  }
+}
