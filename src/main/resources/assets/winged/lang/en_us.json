@@ -45,6 +45,8 @@
   "item.winged.wing_bat.description": "§7§o\"Where's Robin?\"§r",
   "item.winged.wing_bat_alt": "Alternative Bat Wing",
   "item.winged.wing_bat_alt.description": "§7§o\"Where's Robin?\"§r",
+  "item.winged.wing_brazil": "Brazil Wing",
+  "item.winged.wing_brazil.description": "§7§o\"Order and Progress\"§r",
   "tooltip.winged.any_wing_item": "§9Use to attach this wing§r",
   "tooltip.winged.wing_author": "§7§oWing by %1$s§r",
   "tooltip.winged.remove_wing_item": "§cUse to remove your own wing§r",

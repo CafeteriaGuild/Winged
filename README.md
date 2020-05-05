@@ -24,7 +24,10 @@
    - TNT Wings
    - Tiny Bird Wings
    - Brazil Wings
-   - Rainbow Wings
+   - Rainbow Wings, as well as the Colorful Elytra Wings.
 
 - Vex Wings by [The_Khuzdul1](https://www.planetminecraft.com/member/the_khuzdul1/).
   Originally from [this resource pack](https://www.planetminecraft.com/texture-pack/vex-elytra-vanilla-add-on/).
+
+- Creamy White Wings by [nightb0x](https://www.planetminecraft.com/member/nightbox/).
+  Originally from [this resource pack](https://www.planetminecraft.com/texture-pack/creamy-white-wings/).
