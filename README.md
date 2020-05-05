@@ -19,6 +19,12 @@
   
 - The following wings and item textures used with permission from [dbrighthd](https://www.curseforge.com/members/dbrighthd).
   Originally from [this resource pack](https://www.curseforge.com/minecraft/texture-packs/elytras).
-   - Redstone Wing
-   - Shulker Wing
-   - 
+   - Redstone Wings
+   - Shulker Wings
+   - TNT Wings
+   - Tiny Bird Wings
+   - Brazil Wings
+   - Rainbow Wings
+
+- Vex Wings by [The_Khuzdul1](https://www.planetminecraft.com/member/the_khuzdul1/).
+  Originally from [this resource pack](https://www.planetminecraft.com/texture-pack/vex-elytra-vanilla-add-on/).

@@ -12,6 +12,10 @@ val BAT_WING_ALT = Wing(identifier("textures/entity/bat_wing_alt.png"), "Doctor_
 val REDSTONE_WING = Wing(identifier("textures/entity/redstone_wing.png"), "dbrighthd")
 val SHULKER_WING = Wing(identifier("textures/entity/shulker_wing.png"), "dbrighthd")
 val TNT_WING = Wing(identifier("textures/entity/tnt_wing.png"), "dbrighthd")
+val TINY_BIRD_WING = Wing(identifier("textures/entity/tiny_bird_wing.png"), "dbrighthd")
+val BRAZIL_WING = Wing(identifier("textures/entity/brazil_wing.png"), "dbrighthd")
+val RAINBOW_WING = Wing(identifier("textures/entity/rainbow_wing.png"), "dbrighthd")
+val VEX_WING = Wing(identifier("textures/entity/vex_wing.png"), "The_Khuzdul1")
 
 val ITEM_WING_ELYTRA = WingItem(wingItemSettings(), mcIdentifier("elytra").wing(ELYTRA_WING))
 val ITEM_WING_FIRE_DRAGON = WingItem(wingItemSettings(), identifier("fire_dragon_wing").wing(FIRE_DRAGON_WING))
@@ -22,6 +26,10 @@ val ITEM_WING_BAT_ALT = WingItem(wingItemSettings(), identifier("bat_wing_alt").
 val ITEM_WING_REDSTONE = WingItem(wingItemSettings(), identifier("redstone_wing").wing(REDSTONE_WING))
 val ITEM_WING_SHULKER = WingItem(wingItemSettings(), identifier("shulker_wing").wing(SHULKER_WING))
 val ITEM_WING_TNT = WingItem(wingItemSettings(), identifier("tnt_wing").wing(TNT_WING))
+val ITEM_WING_TINY_BIRD = WingItem(wingItemSettings(), identifier("tiny_bird_wing").wing(TINY_BIRD_WING))
+val ITEM_WING_BRAZIL = WingItem(wingItemSettings(), identifier("brazil_wing").wing(BRAZIL_WING))
+val ITEM_WING_RAINBOW = WingItem(wingItemSettings(), identifier("rainbow_wing").wing(RAINBOW_WING))
+val ITEM_WING_VEX = WingItem(wingItemSettings(), identifier("vex_wing").wing(VEX_WING))
 
 fun initWings() {
     identifier("wing_elytra").item(ITEM_WING_ELYTRA)
@@ -33,4 +41,8 @@ fun initWings() {
     identifier("wing_redstone").item(ITEM_WING_REDSTONE)
     identifier("wing_shulker").item(ITEM_WING_SHULKER)
     identifier("wing_tnt").item(ITEM_WING_TNT)
+    identifier("wing_tiny_bird").item(ITEM_WING_TINY_BIRD)
+    identifier("wing_brazil").item(ITEM_WING_BRAZIL)
+    identifier("wing_rainbow").item(ITEM_WING_RAINBOW)
+    identifier("wing_vex").item(ITEM_WING_VEX)
 }
