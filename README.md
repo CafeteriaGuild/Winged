@@ -12,6 +12,9 @@
 
 - Alternative Phantom Wings by [Shosh99](https://www.reddit.com/user/Shosh99/).
   Originally from [this Reddit post](https://www.reddit.com/r/Minecraft/comments/8axcds/ive_made_phantom_texture_for_the_elytra/).
+  
+- Phantom Membrane Wings by [trailblazer101](https://www.curseforge.com/members/tr  ailblazer101/)
+  Originally from [this resource pack](https://www.curseforge.com/minecraft/texture-packs/phantom-elytra).
 
 - Alternative Bat Wings by Doctor_CZ.
   Originally from [this resource pack](https://www.curseforge.com/minecraft/texture-packs/bat-wings-skin-for-elytra).
@@ -24,6 +27,7 @@
    - TNT Wings
    - Tiny Bird Wings
    - Brazil Wings
+   - USA Wings
    - Rainbow Wings, as well as the Colorful Elytra Wings.
 
 - Vex Wings by [The_Khuzdul1](https://www.planetminecraft.com/member/the_khuzdul1/).
