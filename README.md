@@ -2,8 +2,12 @@
 
 ### Thanks to:
 
-- Elytra textures from [lemoncake__](https://www.reddit.com/user/lemoncake__/).
+- The following wing textures are from [lemoncake__](https://www.reddit.com/user/lemoncake__/).
   You can get Lemoncake's textures from [this imgur album](https://imgur.com/a/sI5cv).
+  - Fried Chicken Wings
+  - Greenwing Macaw Wings
+  - Eagle Wings
+  - SAO Fairy Wings
   
 - Chicken Wings item texture by [p1shel](https://www.curseforge.com/members/p1shel).
 
@@ -13,7 +17,7 @@
 - Alternative Phantom Wings by [Shosh99](https://www.reddit.com/user/Shosh99/).
   Originally from [this Reddit post](https://www.reddit.com/r/Minecraft/comments/8axcds/ive_made_phantom_texture_for_the_elytra/).
   
-- Phantom Membrane Wings by [trailblazer101](https://www.curseforge.com/members/tr  ailblazer101/)
+- Phantom Membrane Wings by [trailblazer101](https://www.curseforge.com/members/trailblazer101/).
   Originally from [this resource pack](https://www.curseforge.com/minecraft/texture-packs/phantom-elytra).
 
 - Alternative Bat Wings by Doctor_CZ.
@@ -35,3 +39,14 @@
 
 - Creamy White Wings by [nightb0x](https://www.planetminecraft.com/member/nightbox/).
   Originally from [this resource pack](https://www.planetminecraft.com/texture-pack/creamy-white-wings/).
+  
+- The following wings and item textures used with permission from [Ontvlambaar](https://www.planetminecraft.com/member/ontvlambaar/).
+  Originally from [this resource pack](https://www.planetminecraft.com/texture-pack/more-elytras-in-vanilla-minecraft-requires-optifine/).
+   - Earth Wings (Unofficial Minecon EARTH Wings)
+   - Mech Dragon Wings
+   
+Additionally, the following item textures were also used from [Ontvlambar's resource pack](https://www.planetminecraft.com/texture-pack/more-elytras-in-vanilla-minecraft-requires-optifine/):
+  - Lemoncake's Fried Chicken Wings
+  - Lemoncake's Greenwing Macaw Wings
+  - Lemoncake's Eagle Wings
+  - Lemoncake's SAO Fairy Wings
