@@ -1,8 +1,7 @@
 package net.adriantodt.winged.entityfeature;
 
-import net.adriantodt.winged.IsWinged;
-import net.adriantodt.winged.data.Wing;
-import net.adriantodt.winged.data.WingedPlayerData;
+import net.adriantodt.winged.WingedKt;
+import net.adriantodt.winged.data.WingedComponent;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.OverlayTexture;
@@ -18,26 +17,21 @@ import net.minecraft.entity.LivingEntity;
 
 @Environment(EnvType.CLIENT)
 public class WingedFeatureRenderer<T extends LivingEntity, M extends EntityModel<T>> extends FeatureRenderer<T, M> {
-   private final ElytraEntityModel<T> elytra = new ElytraEntityModel<>();
+    private final ElytraEntityModel<T> elytra = new ElytraEntityModel<>();
 
-   public WingedFeatureRenderer(FeatureRendererContext<T, M> featureRendererContext) {
-      super(featureRendererContext);
-   }
+    public WingedFeatureRenderer(FeatureRendererContext<T, M> featureRendererContext) {
+        super(featureRendererContext);
+    }
 
-   public void render(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, T livingEntity, float f, float g, float h, float j, float k, float l) {
-      if (livingEntity instanceof IsWinged) {
-         WingedPlayerData data = ((IsWinged) livingEntity).getWingedPlayerData();
-         Wing wing = data.getWing();
-         if (wing != null) {
-
+    public void render(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, T livingEntity, float f, float g, float h, float j, float k, float l) {
+        WingedKt.getWingedComponent().maybeGet(livingEntity).map(WingedComponent::getWing).ifPresent(wing -> {
             matrixStack.push();
             matrixStack.translate(0.0D, 0.0D, 0.125D);
             this.getContextModel().copyStateTo(this.elytra);
             this.elytra.setAngles(livingEntity, f, g, j, k, l);
-            VertexConsumer vertexConsumer = ItemRenderer.getArmorVertexConsumer(vertexConsumerProvider, this.elytra.getLayer(wing.getSkin()), false, wing.getEnchantmentGlint());
+            VertexConsumer vertexConsumer = ItemRenderer.getArmorVertexConsumer(vertexConsumerProvider, this.elytra.getLayer(wing.getSkin()), false, false);
             this.elytra.render(matrixStack, vertexConsumer, i, OverlayTexture.DEFAULT_UV, 1.0F, 1.0F, 1.0F, 1.0F);
             matrixStack.pop();
-         }
-      }
-   }
+        });
+    }
 }

@@ -10,8 +10,9 @@ crafts {
     8 blaze powder + feather |> phoenix feather
 }
 
-research: apparently killing yourself wipes the data. that's not good.
-
-use this: 'https://github.com/OnyxStudios/Cardinal-Components-API/#entities
+fixed! {
+    research: apparently killing yourself wipes the data. that's not good.
+    use this: 'https://github.com/OnyxStudios/Cardinal-Components-API/#entities
+}
 
 this cool: https://fabricmc.net/wiki/documentation:libraries

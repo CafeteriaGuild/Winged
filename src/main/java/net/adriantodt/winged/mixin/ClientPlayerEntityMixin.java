@@ -1,5 +1,7 @@
 package net.adriantodt.winged.mixin;
 
+import net.adriantodt.winged.WingedKt;
+import net.adriantodt.winged.data.WingedComponent;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
@@ -28,9 +30,9 @@ public abstract class ClientPlayerEntityMixin extends PlayerEntityMixin {
             method = "tickMovement"
     )
     public void tickMovement(CallbackInfo info) {
-        if (this.getWingedPlayerData().getWing() != null && this.checkFallFlying()) {
-            ClientPlayerEntity thisObj = (ClientPlayerEntity) ((Object) this);
-            this.networkHandler.sendPacket(new ClientCommandC2SPacket(thisObj, ClientCommandC2SPacket.Mode.START_FALL_FLYING));
+        if (WingedKt.getWingedComponent().maybeGet(this).map(WingedComponent::getWing).isPresent() && this.checkFallFlying()) {
+            //noinspection ConstantConditions
+            this.networkHandler.sendPacket(new ClientCommandC2SPacket((ClientPlayerEntity) ((Object) this), ClientCommandC2SPacket.Mode.START_FALL_FLYING));
         }
     }
 }

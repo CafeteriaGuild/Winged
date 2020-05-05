@@ -8,6 +8,8 @@ import net.minecraft.util.Identifier
 import net.minecraft.util.Rarity
 import net.minecraft.util.registry.Registry
 
+fun mcIdentifier(path: String) = Identifier("minecraft", path)
+
 fun identifier(path: String) = Identifier("winged", path)
 
 inline fun identifier(path: String, block: Identifier.() -> Unit) = identifier(path).run(block)
@@ -17,13 +19,13 @@ fun Identifier.item(item: Item) = apply {
 }
 
 fun Identifier.item(block: Block) = apply {
-    Registry.register(Registry.ITEM, this, BlockItem(block, Item.Settings().group(MAIN_GROUP)))
+    Registry.register(Registry.ITEM, this, BlockItem(block, Item.Settings().group(mainGroup)))
 }
 
 fun Identifier.wing(wing: Wing) = apply {
-    Registry.register(WING_REGISTRY, this, wing)
+    Registry.register(wingRegistry, this, wing)
 }
 
-fun itemSettings(): Item.Settings = Item.Settings().group(MAIN_GROUP)
+fun itemSettings(): Item.Settings = Item.Settings().group(mainGroup)
 
-fun wingItemSettings(): Item.Settings = Item.Settings().group(SHOWCASE_GROUP).rarity(Rarity.EPIC).maxCount(1)
+fun wingItemSettings(): Item.Settings = Item.Settings().group(showcaseGroup).rarity(Rarity.EPIC).maxCount(1)

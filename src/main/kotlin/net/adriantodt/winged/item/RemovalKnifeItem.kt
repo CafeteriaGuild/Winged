@@ -2,9 +2,8 @@ package net.adriantodt.winged.item
 
 import net.adriantodt.winged.BROKEN_CORE_OF_FLIGHT
 import net.adriantodt.winged.CEREMONIAL_KNIFE
-import net.adriantodt.winged.IsWinged
-import net.adriantodt.winged.REMOVE_WINGS
-import net.adriantodt.winged.data.WingedPlayerData
+import net.adriantodt.winged.removeWings
+import net.adriantodt.winged.wingedComponent
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
 import net.minecraft.client.item.TooltipContext
@@ -21,17 +20,15 @@ import net.minecraft.world.World
 class RemovalKnifeItem(settings: Settings) : Item(settings) {
     override fun use(world: World, user: PlayerEntity, hand: Hand): TypedActionResult<ItemStack> {
         val itemStack = user.getStackInHand(hand)
-        if (user !is IsWinged) {
-            return TypedActionResult.pass(itemStack)
-        }
-        if (user.wingedPlayerData.wing == null) {
+        val wingedComponent = wingedComponent.maybeGet(user).orElse(null) ?: return TypedActionResult.pass(itemStack)
+        if (wingedComponent.wing == null) {
             return TypedActionResult.fail(itemStack)
         }
-        user.wingedPlayerData = WingedPlayerData.NO_WING
+        wingedComponent.wing = null
         user.giveItemStack(ItemStack(BROKEN_CORE_OF_FLIGHT))
-        user.damage(REMOVE_WINGS, 12f)
+        user.damage(removeWings, 12f)
         user.playSound(SoundEvents.ENTITY_ITEM_BREAK, 1.0f, 1.0f)
-        return TypedActionResult.success(ItemStack(CEREMONIAL_KNIFE))
+        return TypedActionResult.success(if (user.isCreative) itemStack else ItemStack(CEREMONIAL_KNIFE))
     }
 
     override fun hasEnchantmentGlint(stack: ItemStack?) = true

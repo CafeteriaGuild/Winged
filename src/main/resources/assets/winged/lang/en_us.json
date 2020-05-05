@@ -37,7 +37,16 @@
   "item.winged.wing_elytra.description": "§7§o\"The vanilla experience™.\"§r",
   "item.winged.wing_fire_dragon": "Fire Dragon Wing",
   "item.winged.wing_fire_dragon.description": "§7§o\"As the developer intended.\"§r",
+  "item.winged.wing_phantom": "Phantom Wing",
+  "item.winged.wing_phantom.description": "§7§o\"Looks like the tables have turned.\"§r",
+  "item.winged.wing_phantom_alt": "Alternative Phantom Wing",
+  "item.winged.wing_phantom_alt.description": "§7§o\"Looks like the tables have turned.\"§r",
+  "item.winged.wing_bat": "Bat Wing",
+  "item.winged.wing_bat.description": "§7§o\"Where's Robin?\"§r",
+  "item.winged.wing_bat_alt": "Alternative Bat Wing",
+  "item.winged.wing_bat_alt.description": "§7§o\"Where's Robin?\"§r",
   "tooltip.winged.any_wing_item": "§9Use to attach this wing§r",
+  "tooltip.winged.wing_author": "§7§oWing by %1$s§r",
   "tooltip.winged.remove_wing_item": "§cUse to remove your own wing§r",
   "death.attack.removeWings": "%1$s removed their wings but couldn't withstand the pain"
 }
