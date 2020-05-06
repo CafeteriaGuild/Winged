@@ -41,6 +41,10 @@ dependencies {
     include "com.github.OnyxStudios.Cardinal-Components-API:cardinal-components-base:${project.cardinal_components_version}"
     include "com.github.OnyxStudios.Cardinal-Components-API:cardinal-components-entity:${project.cardinal_components_version}"
 
+    // Test environiment with some mods
+    modRuntime "me.shedaniel:RoughlyEnoughItems:4.3.2-unstable"
+    modRuntime "io.github.prospector:modmenu:1.11.4+build.9"
+
     // PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
     // You may need to force-disable transitiveness on them.
 }

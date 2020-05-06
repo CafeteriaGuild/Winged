@@ -5,15 +5,20 @@
   "name": "Winged Mod",
   "description": "Permanently change the way your character looks by attaching a colorful wing to his body!",
   "authors": [
-    "AdrianTodt"
+    {
+      "name": "AdrianTodt",
+      "contact": {
+        "homepage": "https://twitter.com/AdrianTodt"
+      }
+    }
   ],
   "contact": {
-    "homepage": "https://adriantodt.github.io/winged",
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/winged",
     "issues": "https://github.com/AdrianTodt/Winged/issues",
     "sources": "https://github.com/AdrianTodt/Winged"
   },
   "license": "Apache-2.0",
-  "icon": "assets/dragontech/icon.png",
+  "icon": "assets/winged/textures/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
@@ -27,6 +32,8 @@
     "fabricloader": ">=0.7.1",
     "fabric": "*",
     "fabric-language-kotlin": "*",
+    "cardinal-components-base": "*",
+    "cardinal-components-entity": "*",
     "minecraft": "1.16.x"
   }
 }
