@@ -25,7 +25,7 @@ class RemovalKnifeItem(settings: Settings) : Item(settings) {
             return TypedActionResult.fail(itemStack)
         }
         wingedComponent.wing = null
-        user.giveItemStack(ItemStack(BROKEN_CORE_OF_FLIGHT))
+        if (!user.isCreative) user.giveItemStack(ItemStack(BROKEN_CORE_OF_FLIGHT))
         user.damage(removeWings, 12f)
         user.playSound(SoundEvents.ENTITY_ITEM_BREAK, 1.0f, 1.0f)
         return TypedActionResult.success(if (user.isCreative) itemStack else ItemStack(CEREMONIAL_KNIFE))

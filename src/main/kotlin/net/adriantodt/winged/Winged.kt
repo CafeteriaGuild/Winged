@@ -33,7 +33,6 @@ val removeWings = RemoveWingsDamageSource()
 
 @Suppress("unused")
 fun init() {
-    //TrackedDataHandlerRegistry.register(WingedPlayerData.DataHandler)
     EntityComponents.setRespawnCopyStrategy(wingedComponent, RespawnCopyStrategy.ALWAYS_COPY)
     initItems()
     initWings()

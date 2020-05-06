@@ -33,6 +33,7 @@
    - Brazil Wings
    - USA Wings
    - Rainbow Wings, as well as the Colorful Elytra Wings.
+   - Xmas Tree Wings
 
 - Vex Wings by [The_Khuzdul1](https://www.planetminecraft.com/member/the_khuzdul1/).
   Originally from [this resource pack](https://www.planetminecraft.com/texture-pack/vex-elytra-vanilla-add-on/).
@@ -42,11 +43,9 @@
   
 - The following wings and item textures used with permission from [Ontvlambaar](https://www.planetminecraft.com/member/ontvlambaar/).
   Originally from [this resource pack](https://www.planetminecraft.com/texture-pack/more-elytras-in-vanilla-minecraft-requires-optifine/).
+  Extra Credits to Novaskin users, logicalotus.
    - Earth Wings (Unofficial Minecon EARTH Wings)
    - Mech Dragon Wings
+   - Xmas Star Wings
    
-Additionally, the following item textures were also used from [Ontvlambar's resource pack](https://www.planetminecraft.com/texture-pack/more-elytras-in-vanilla-minecraft-requires-optifine/):
-  - Lemoncake's Fried Chicken Wings
-  - Lemoncake's Greenwing Macaw Wings
-  - Lemoncake's Eagle Wings
-  - Lemoncake's SAO Fairy Wings
+Additionally, item textures for Lemoncake's wing textures were also used from [Ontvlambar's resource pack](https://www.planetminecraft.com/texture-pack/more-elytras-in-vanilla-minecraft-requires-optifine/):

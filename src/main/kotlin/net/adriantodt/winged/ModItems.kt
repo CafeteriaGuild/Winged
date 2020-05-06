@@ -9,6 +9,7 @@ import net.minecraft.util.Rarity
 val CORE_OF_FLIGHT = LoreItem(itemSettings().rarity(Rarity.RARE).maxCount(1), 2, true)
 val BROKEN_CORE_OF_FLIGHT = LoreItem(itemSettings().maxCount(1).rarity(Rarity.UNCOMMON), 2)
 val BLACK_FEATHER = LoreItem(itemSettings().rarity(Rarity.UNCOMMON), 2)
+val ATTENDEE_TICKET = LoreItem(itemSettings().rarity(Rarity.UNCOMMON), 2)
 val DEMONIC_FLESH = LoreItem(itemSettings().rarity(Rarity.UNCOMMON), 2)
 val FRIED_CHICKEN = LoreItem(
     itemSettings().rarity(Rarity.UNCOMMON).food(
@@ -25,6 +26,7 @@ val DIPPED_CEREMONIAL_KNIFE = RemovalKnifeItem(itemSettings().rarity(Rarity.RARE
 fun initItems() {
     identifier("core_of_flight").item(CORE_OF_FLIGHT)
     identifier("broken_core_of_flight").item(BROKEN_CORE_OF_FLIGHT)
+    identifier("attendee_ticket").item(ATTENDEE_TICKET)
     identifier("black_feather").item(BLACK_FEATHER)
     identifier("demonic_flesh").item(DEMONIC_FLESH)
     identifier("fried_chicken").item(FRIED_CHICKEN)
