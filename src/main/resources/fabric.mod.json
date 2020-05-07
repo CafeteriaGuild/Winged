@@ -23,6 +23,9 @@
   "entrypoints": {
     "main": [
       "net.adriantodt.winged.WingedKt::init"
+    ],
+    "modmenu": [
+      "net.adriantodt.winged.integration.ModMenuIntegration"
     ]
   },
   "mixins": [

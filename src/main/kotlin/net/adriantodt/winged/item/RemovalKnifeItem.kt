@@ -1,9 +1,6 @@
 package net.adriantodt.winged.item
 
-import net.adriantodt.winged.BROKEN_CORE_OF_FLIGHT
-import net.adriantodt.winged.CEREMONIAL_KNIFE
-import net.adriantodt.winged.removeWings
-import net.adriantodt.winged.wingedComponent
+import net.adriantodt.winged.*
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
 import net.minecraft.client.item.TooltipContext
@@ -26,7 +23,10 @@ class RemovalKnifeItem(settings: Settings) : Item(settings) {
         }
         wingedComponent.wing = null
         if (!user.isCreative) user.giveItemStack(ItemStack(BROKEN_CORE_OF_FLIGHT))
-        user.damage(removeWings, 12f)
+        val dmg = wingedConfig.config.removeWingsDamage
+        if (dmg > 0) {
+            user.damage(removeWings, dmg)
+        }
         user.playSound(SoundEvents.ENTITY_ITEM_BREAK, 1.0f, 1.0f)
         return TypedActionResult.success(if (user.isCreative) itemStack else ItemStack(CEREMONIAL_KNIFE))
     }

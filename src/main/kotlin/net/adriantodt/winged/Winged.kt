@@ -1,5 +1,7 @@
 package net.adriantodt.winged
 
+import me.sargunvohra.mcmods.autoconfig1u.AutoConfig
+import me.sargunvohra.mcmods.autoconfig1u.serializer.JanksonConfigSerializer
 import nerdhub.cardinal.components.api.ComponentRegistry
 import nerdhub.cardinal.components.api.ComponentType
 import nerdhub.cardinal.components.api.event.EntityComponentCallback
@@ -22,6 +24,8 @@ val mainGroup: ItemGroup = FabricItemGroupBuilder.create(identifier("main"))
 val showcaseGroup: ItemGroup = FabricItemGroupBuilder.create(identifier("showcase"))
     .icon { ItemStack(ITEM_WING_ELYTRA) }
     .build()
+
+val wingedConfig = AutoConfig.register(WingedConfig::class.java, ::JanksonConfigSerializer)
 
 val wingRegistry = DefaultedRegistry<Wing>("minecraft:elytra")
 
