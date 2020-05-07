@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SCS",
+    "SIS",
+    "S S"
+  ],
+  "key": {
+    "C": {
+      "item": "winged:core_of_flight"
+    },
+    "S": {
+      "item": "minecraft:scute"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "result": {
+    "item": "winged:wing_turtle_cape"
+  }
+}

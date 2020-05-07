@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WCW",
+    "WAW",
+    "W W"
+  ],
+  "key": {
+    "C": {
+      "item": "winged:core_of_flight"
+    },
+    "W": {
+      "item": "minecraft:brown_wool"
+    },
+    "A": {
+      "tag": "minecraft:golden_apples"
+    }
+  },
+  "result": {
+    "item": "winged:wing_mojang_cape_alt"
+  }
+}

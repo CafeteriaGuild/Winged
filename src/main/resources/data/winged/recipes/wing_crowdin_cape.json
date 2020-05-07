@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BCB",
+    "PGP",
+    "P P"
+  ],
+  "key": {
+    "C": {
+      "item": "winged:core_of_flight"
+    },
+    "B": {
+      "item": "minecraft:book"
+    },
+    "P": {
+      "item": "minecraft:paper"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "result": {
+    "item": "winged:wing_crowdin_cape"
+  }
+}

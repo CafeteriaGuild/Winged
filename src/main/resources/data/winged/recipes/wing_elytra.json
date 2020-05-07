@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ICI",
+    "IEI",
+    "I I"
+  ],
+  "key": {
+    "C": {
+      "item": "winged:core_of_flight"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "E": {
+      "item": "minecraft:elytra"
+    }
+  },
+  "result": {
+    "item": "winged:wing_elytra"
+  }
+}

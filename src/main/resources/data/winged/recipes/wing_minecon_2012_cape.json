@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WCW",
+    "WAW",
+    "W W"
+  ],
+  "key": {
+    "C": {
+      "item": "winged:core_of_flight"
+    },
+    "W": {
+      "item": "minecraft:blue_wool"
+    },
+    "A": {
+      "item": "winged:attendee_ticket"
+    }
+  },
+  "result": {
+    "item": "winged:wing_minecon_2012_cape"
+  }
+}
