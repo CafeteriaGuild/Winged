@@ -40,6 +40,7 @@ fun init() {
     EntityComponents.setRespawnCopyStrategy(wingedComponent, RespawnCopyStrategy.ALWAYS_COPY)
     initItems()
     initWings()
+    initBoosters()
     initLootTables()
 }
 

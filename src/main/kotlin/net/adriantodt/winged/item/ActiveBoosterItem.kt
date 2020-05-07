@@ -22,8 +22,8 @@ class ActiveBoosterItem(
     private val instantVelocity: Double = 0.1,
     private val maxVelocity: Double = 1.5,
     private val speedFactor: Double = 0.5,
-    private val ticksPerDamage: Int = 20,
-    inactive: () -> Item
+    val ticksPerDamage: Int = 20,
+    inactive: () -> BoosterItem
 ) : Item(settings) {
     private val inactiveBooster by lazy(inactive)
 
@@ -83,9 +83,15 @@ class ActiveBoosterItem(
     }
 
     @Environment(EnvType.CLIENT)
-    override fun appendTooltip(stack: ItemStack?, world: World?, tooltip: MutableList<Text?>, ctx: TooltipContext?) {
+    override fun appendTooltip(stack: ItemStack, world: World?, tooltip: MutableList<Text>, ctx: TooltipContext) {
         tooltip += TranslatableText("$translationKey.description")
         tooltip += TranslatableText("tooltip.winged.deactivate_booster")
         tooltip += TranslatableText("tooltip.winged.autodeactivate_booster")
+        if (ctx.isAdvanced) {
+            tooltip += TranslatableText(
+                "tooltip.winged.time_left",
+                ((maxDamage - 1 - stack.damage) * ticksPerDamage + (stack.tag?.getInt("TicksLeft") ?: 0)) / 20.0
+            )
+        }
     }
 }

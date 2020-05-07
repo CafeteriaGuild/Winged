@@ -214,5 +214,6 @@
   "tooltip.winged.activate_booster": "§eUse while airborne to activate§r",
   "tooltip.winged.deactivate_booster": "§eUse while airborne to deactivate§r",
   "tooltip.winged.autodeactivate_booster": "§6§o(Deactivates on landing)§r",
+  "tooltip.winged.time_left": "%.2f §aseconds of flight left§r",
   "death.attack.removeWings": "%1$s removed their wings but couldn't withstand the pain"
 }
