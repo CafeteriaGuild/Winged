@@ -1,5 +1,6 @@
 package net.adriantodt.winged.item
 
+import net.adriantodt.winged.EMPTY_BOOSTER
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
 import net.minecraft.client.item.TooltipContext
@@ -54,12 +55,14 @@ class ActiveBoosterItem(
                     boostTheLivingShitOfThisMotherFucker(entity)
                     return
                 }
-                if (stack.damage < stack.maxDamage - 1) {
+                if (stack.damage < stack.maxDamage) {
                     stack.damage++
                     stack.orCreateTag.putInt("TicksLeft", ticksPerDamage)
                     boostTheLivingShitOfThisMotherFucker(entity)
                     return
                 }
+                entity.inventory.setStack(slot, ItemStack(EMPTY_BOOSTER))
+                return
             }
             entity.inventory.setStack(slot, ItemStack(inactiveBooster).apply {
                 damage = stack.damage
@@ -90,7 +93,7 @@ class ActiveBoosterItem(
         if (ctx.isAdvanced) {
             tooltip += TranslatableText(
                 "tooltip.winged.time_left",
-                ((maxDamage - 1 - stack.damage) * ticksPerDamage + (stack.tag?.getInt("TicksLeft") ?: 0)) / 20.0
+                ((maxDamage - stack.damage) * ticksPerDamage + (stack.tag?.getInt("TicksLeft") ?: 0)) / 20.0
             )
         }
     }

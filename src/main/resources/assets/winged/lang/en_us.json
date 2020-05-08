@@ -196,6 +196,15 @@
   "item.winged.wing_xmas_tree.description": "§7§o\"Merry Christmas!\"§r",
   "item.winged.wing_xmas_star": "Christmas Star Wing",
   "item.winged.wing_xmas_star.description": "§7§o\"Merry Christmas!\"§r",
+  "item.winged.fuel_pellet_standard": "Standard Fuel Pellet",
+  "item.winged.fuel_pellet_standard.description": "§7§o\"Fuel for empty boosters.\"§r",
+  "item.winged.fuel_pellet_fast": "Short-burst Fuel Pellet",
+  "item.winged.fuel_pellet_fast.description": "§7§o\"Fuel for empty boosters.\"§r",
+  "item.winged.fuel_pellet_slow": "Long-duration Fuel Pellet",
+  "item.winged.fuel_pellet_slow.description": "§7§o\"Fuel for empty boosters.\"§r",
+  "item.winged.booster_empty": "Empty Booster",
+  "item.winged.booster_empty.lore1": "§7§o\"I should load this up§r",
+  "item.winged.booster_empty.lore2": "§7§owith some fuel.\"§r",
   "item.winged.booster_standard": "Standard Booster",
   "item.winged.booster_standard.description": "§7§o\"The Firework Rocket Killer.\"§r",
   "item.winged.booster_standard_active": "Standard Booster (Active)",
@@ -215,5 +224,7 @@
   "tooltip.winged.deactivate_booster": "§eUse while airborne to deactivate§r",
   "tooltip.winged.autodeactivate_booster": "§6§o(Deactivates on landing)§r",
   "tooltip.winged.time_left": "%.2f §aseconds of flight left§r",
+  "tooltip.winged.craft_booster1": "§eUse while crouching to craft§r",
+  "tooltip.winged.craft_booster2": "§ea §r%s§e in the inventory§r",
   "death.attack.removeWings": "%1$s removed their wings but couldn't withstand the pain"
 }

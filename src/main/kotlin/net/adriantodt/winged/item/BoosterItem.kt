@@ -19,7 +19,7 @@ class BoosterItem(settings: Settings, active: () -> ActiveBoosterItem) : Item(se
     override fun use(world: World?, user: PlayerEntity, hand: Hand): TypedActionResult<ItemStack> {
         val stack = user.getStackInHand(hand)
 
-        if (user.isFallFlying && stack.damage < stack.maxDamage - 1 || (stack.tag?.getInt("TicksLeft") ?: 0) > 0) {
+        if (user.isFallFlying) {
             return TypedActionResult.success(ItemStack(activeBooster).apply {
                 damage = stack.damage
                 stack.tag?.getInt("TicksLeft")?.let { stack.orCreateTag.putInt("TicksLeft", it) }
@@ -34,7 +34,7 @@ class BoosterItem(settings: Settings, active: () -> ActiveBoosterItem) : Item(se
         tooltip += TranslatableText("tooltip.winged.activate_booster")
         if (ctx.isAdvanced) {
             tooltip += TranslatableText("tooltip.winged.time_left",
-                ((maxDamage - 1 - stack.damage) * activeBooster.ticksPerDamage + (stack.tag?.getInt("TicksLeft")
+                ((maxDamage - stack.damage) * activeBooster.ticksPerDamage + (stack.tag?.getInt("TicksLeft")
                     ?: 0)) / 20.0
             )
         }

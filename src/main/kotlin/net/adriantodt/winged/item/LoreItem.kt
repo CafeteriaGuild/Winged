@@ -10,7 +10,7 @@ import net.minecraft.text.TranslatableText
 import net.minecraft.world.World
 
 
-class LoreItem(settings: Settings, private val amount: Int = 1, private val glint: Boolean = false) : Item(settings) {
+class LoreItem(settings: Settings, private val amount: Int = 2, private val glint: Boolean = false) : Item(settings) {
     override fun hasEnchantmentGlint(stack: ItemStack?): Boolean {
         return glint || super.hasEnchantmentGlint(stack)
     }

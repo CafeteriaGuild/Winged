@@ -11,7 +11,8 @@
     "CapeFeatureRendererMixin",
     "ClientPlayerEntityMixin",
     "LivingEntityRendererMixin",
-    "PlayerEntityRendererMixin"
+    "PlayerEntityRendererMixin",
+    "PlayerInventoryMixin"
   ],
   "injectors": {
     "defaultRequire": 1
