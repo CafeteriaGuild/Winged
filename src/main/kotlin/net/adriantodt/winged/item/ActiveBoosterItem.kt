@@ -1,6 +1,7 @@
 package net.adriantodt.winged.item
 
 import net.adriantodt.winged.EMPTY_BOOSTER
+import net.adriantodt.winged.WingedPlayerInventory
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
 import net.minecraft.client.item.TooltipContext
@@ -38,6 +39,7 @@ class ActiveBoosterItem(
 
     override fun inventoryTick(stack: ItemStack, world: World, entity: Entity, slot: Int, selected: Boolean) {
         if (entity is PlayerEntity) {
+            val inv = entity.inventory as WingedPlayerInventory
             if (entity.isFallFlying) {
                 val ticksLeft = stack.tag?.getInt("TicksLeft") ?: 0
                 if (world.isClient && ticksLeft % 5 == 1) {
@@ -61,10 +63,10 @@ class ActiveBoosterItem(
                     boostTheLivingShitOfThisMotherFucker(entity)
                     return
                 }
-                entity.inventory.setStack(slot, ItemStack(EMPTY_BOOSTER))
+                inv.findAndReplace(stack, ItemStack(EMPTY_BOOSTER))
                 return
             }
-            entity.inventory.setStack(slot, ItemStack(inactiveBooster).apply {
+            inv.findAndReplace(stack, ItemStack(inactiveBooster).apply {
                 damage = stack.damage
                 stack.tag?.getInt("TicksLeft")?.let { stack.orCreateTag.putInt("TicksLeft", it) }
             })
