@@ -1,5 +1,6 @@
 package net.adriantodt.winged.item
 
+import net.adriantodt.winged.WingedPlayerInventory
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
 import net.minecraft.client.item.TooltipContext
@@ -20,6 +21,7 @@ class BoosterItem(settings: Settings, active: () -> ActiveBoosterItem) : Item(se
         val stack = user.getStackInHand(hand)
 
         if (user.isFallFlying) {
+            (user.inventory as WingedPlayerInventory).ensureOnlyActiveBooster(null)
             return TypedActionResult.success(ItemStack(activeBooster).apply {
                 damage = stack.damage
                 stack.tag?.getInt("TicksLeft")?.let { stack.orCreateTag.putInt("TicksLeft", it) }

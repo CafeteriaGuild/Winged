@@ -1,7 +1,9 @@
 package net.adriantodt.winged.mixin;
 
 import net.adriantodt.winged.WingedPlayerInventory;
+import net.adriantodt.winged.item.ActiveBoosterItem;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.collection.DefaultedList;
@@ -132,5 +134,23 @@ public abstract class PlayerInventoryMixin implements WingedPlayerInventory {
             }
         }
         return false;
+    }
+
+    @Override
+    public void ensureOnlyActiveBooster(ItemStack ignore) {
+        for (int i = 0; i < this.offHand.size(); i++) {
+            ItemStack itemStack = this.offHand.get(i);
+            Item item = itemStack.getItem();
+            if (!Objects.equals(itemStack, ignore) && item instanceof ActiveBoosterItem) {
+                this.offHand.set(i, ((ActiveBoosterItem) item).deactivateBooster(itemStack));
+            }
+        }
+        for (int i = 0; i < this.main.size(); i++) {
+            ItemStack itemStack = this.main.get(i);
+            Item item = itemStack.getItem();
+            if (!Objects.equals(itemStack, ignore) && item instanceof ActiveBoosterItem) {
+                this.main.set(i, ((ActiveBoosterItem) item).deactivateBooster(itemStack));
+            }
+        }
     }
 }

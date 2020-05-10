@@ -1,9 +1,6 @@
 package net.adriantodt.winged
 
-import net.adriantodt.winged.item.ActiveBoosterItem
-import net.adriantodt.winged.item.BoosterItem
-import net.adriantodt.winged.item.FuelPelletItem
-import net.adriantodt.winged.item.LoreItem
+import net.adriantodt.winged.item.*
 import net.minecraft.item.Item
 
 val EMPTY_BOOSTER = LoreItem(itemSettings())
@@ -40,6 +37,7 @@ val SHORT_BURST_BOOSTER_ACTIVE: ActiveBoosterItem = ActiveBoosterItem(
     0.2, 2.5, 0.6, 2,
     fun() = SHORT_BURST_BOOSTER
 )
+val FORWARD_LAUNCHER = ForwardLauncherItem(itemSettings().maxDamage(128))
 
 fun initBoosters() {
     identifier("fuel_pellet_standard").item(STANDARD_FUEL_PELLET)
@@ -52,4 +50,5 @@ fun initBoosters() {
     identifier("booster_fast_active").item(SHORT_BURST_BOOSTER_ACTIVE)
     identifier("booster_slow").item(LONG_DURATION_BOOSTER)
     identifier("booster_slow_active").item(LONG_DURATION_BOOSTER_ACTIVE)
+    identifier("forward_launcher").item(FORWARD_LAUNCHER)
 }

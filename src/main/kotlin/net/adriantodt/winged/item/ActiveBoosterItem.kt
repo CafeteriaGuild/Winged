@@ -2,11 +2,11 @@ package net.adriantodt.winged.item
 
 import net.adriantodt.winged.EMPTY_BOOSTER
 import net.adriantodt.winged.WingedPlayerInventory
+import net.adriantodt.winged.boostTheLivingShitOfThisMotherFucker
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
 import net.minecraft.client.item.TooltipContext
 import net.minecraft.entity.Entity
-import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
@@ -15,7 +15,6 @@ import net.minecraft.text.Text
 import net.minecraft.text.TranslatableText
 import net.minecraft.util.Hand
 import net.minecraft.util.TypedActionResult
-import net.minecraft.util.math.Vec3d
 import net.minecraft.world.World
 
 
@@ -30,11 +29,7 @@ class ActiveBoosterItem(
     private val inactiveBooster by lazy(inactive)
 
     override fun use(world: World?, user: PlayerEntity, hand: Hand): TypedActionResult<ItemStack> {
-        val stack = user.getStackInHand(hand)
-        return TypedActionResult.success(ItemStack(inactiveBooster).apply {
-            damage = stack.damage
-            stack.tag?.getInt("TicksLeft")?.let { stack.orCreateTag.putInt("TicksLeft", it) }
-        })
+        return TypedActionResult.success(deactivateBooster(user.getStackInHand(hand)))
     }
 
     override fun inventoryTick(stack: ItemStack, world: World, entity: Entity, slot: Int, selected: Boolean) {
@@ -51,40 +46,30 @@ class ActiveBoosterItem(
                         entity.random.nextGaussian() * 0.05
                     )
                 }
-
-                if (ticksLeft > 0) {
-                    stack.orCreateTag.putInt("TicksLeft", ticksLeft - 1)
-                    boostTheLivingShitOfThisMotherFucker(entity)
-                    return
+                when {
+                    entity.isCreative -> {
+                        entity.boostTheLivingShitOfThisMotherFucker(maxVelocity, instantVelocity, speedFactor)
+                        inv.ensureOnlyActiveBooster(stack)
+                    }
+                    ticksLeft > 0 -> {
+                        stack.orCreateTag.putInt("TicksLeft", ticksLeft - 1)
+                        entity.boostTheLivingShitOfThisMotherFucker(maxVelocity, instantVelocity, speedFactor)
+                        inv.ensureOnlyActiveBooster(stack)
+                    }
+                    stack.damage < stack.maxDamage -> {
+                        stack.damage++
+                        stack.orCreateTag.putInt("TicksLeft", ticksPerDamage)
+                        entity.boostTheLivingShitOfThisMotherFucker(maxVelocity, instantVelocity, speedFactor)
+                        inv.ensureOnlyActiveBooster(stack)
+                    }
+                    else -> {
+                        inv.findAndReplace(stack, ItemStack(EMPTY_BOOSTER))
+                    }
                 }
-                if (stack.damage < stack.maxDamage) {
-                    stack.damage++
-                    stack.orCreateTag.putInt("TicksLeft", ticksPerDamage)
-                    boostTheLivingShitOfThisMotherFucker(entity)
-                    return
-                }
-                inv.findAndReplace(stack, ItemStack(EMPTY_BOOSTER))
                 return
             }
-            inv.findAndReplace(stack, ItemStack(inactiveBooster).apply {
-                damage = stack.damage
-                stack.tag?.getInt("TicksLeft")?.let { stack.orCreateTag.putInt("TicksLeft", it) }
-            })
+            inv.findAndReplace(stack, deactivateBooster(stack))
         }
-    }
-
-    private fun boostTheLivingShitOfThisMotherFucker(livingEntity: LivingEntity) {
-        //val maxVelocity = 0.8
-        //val instantVelocity = 0.1
-        //val speedFactor = 0.5
-        val rotation = livingEntity.rotationVector
-        val velocity: Vec3d = livingEntity.velocity
-
-        livingEntity.velocity = velocity.add(
-            rotation.x * instantVelocity + (rotation.x * maxVelocity - velocity.x) * speedFactor,
-            rotation.y * instantVelocity + (rotation.y * maxVelocity - velocity.y) * speedFactor,
-            rotation.z * instantVelocity + (rotation.z * maxVelocity - velocity.z) * speedFactor
-        )
     }
 
     @Environment(EnvType.CLIENT)
@@ -97,6 +82,13 @@ class ActiveBoosterItem(
                 "tooltip.winged.time_left",
                 ((maxDamage - stack.damage) * ticksPerDamage + (stack.tag?.getInt("TicksLeft") ?: 0)) / 20.0
             )
+        }
+    }
+
+    fun deactivateBooster(stack: ItemStack): ItemStack {
+        return ItemStack(inactiveBooster).apply {
+            damage = stack.damage
+            stack.tag?.getInt("TicksLeft")?.let { stack.orCreateTag.putInt("TicksLeft", it) }
         }
     }
 }

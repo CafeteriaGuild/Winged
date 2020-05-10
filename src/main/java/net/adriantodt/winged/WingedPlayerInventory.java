@@ -11,4 +11,6 @@ public interface WingedPlayerInventory {
     boolean takeOneAndReplace(ItemConvertible take, ItemConvertible replace);
 
     boolean findAndReplace(ItemStack find, ItemStack replace);
+
+    void ensureOnlyActiveBooster(ItemStack ignore);
 }
