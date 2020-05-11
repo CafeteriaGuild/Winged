@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ACA",
+    "WIW",
+    "N N"
+  ],
+  "key": {
+    "C": {
+      "item": "winged:core_of_flight"
+    },
+    "W": {
+      "item": "minecraft:purple_wool"
+    },
+    "A": {
+      "tag": "minecraft:golden_apples"
+    },
+    "N": {
+      "item": "minecraft:nether_star"
+    },
+    "I": {
+      "item": "winged:irreality_crystal"
+    }
+  },
+  "result": {
+    "item": "winged:wing_millionth_cape"
+  }
+}
