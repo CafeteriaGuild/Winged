@@ -24,6 +24,7 @@ private val drowned = mcIdentifier("entities/drowned")
 private val enderman = mcIdentifier("entities/enderman")
 private val endermite = mcIdentifier("entities/endermite")
 private val bat = mcIdentifier("entities/bat")
+private val vex = mcIdentifier("entities/vex")
 
 private val configMap = mapOf(
     abandonedMineshaft to WingedConfig.LootTablesConfig::abandonedMineshaft,
@@ -103,6 +104,14 @@ fun initLootTables() {
             addPool {
                 withRolls(ConstantLootTableRange.create(1))
                 withEntry(ItemEntry.builder(ITEM_BAT_WING))
+                withCondition(RandomChanceWithLootingLootCondition.builder(0.1f, 0.04f))
+                withCondition(KilledByPlayerLootCondition.builder())
+            }
+        }
+        lootTables(vex) {
+            addPool {
+                withRolls(ConstantLootTableRange.create(1))
+                withEntry(ItemEntry.builder(VEX_ESSENCE))
                 withCondition(RandomChanceWithLootingLootCondition.builder(0.1f, 0.04f))
                 withCondition(KilledByPlayerLootCondition.builder())
             }
