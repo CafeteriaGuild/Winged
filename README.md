@@ -55,7 +55,7 @@
    - Mech Dragon Wings
    - Xmas Star Wings
 
-Additionally, item textures for Lemoncake's wing textures were also used from [Ontvlambar's resource pack](https://www.planetminecraft.com/texture-pack/more-elytras-in-vanilla-minecraft-requires-optifine/):
+- Additionally, item textures for Lemoncake's wing textures were also used from [Ontvlambar's resource pack](https://www.planetminecraft.com/texture-pack/more-elytras-in-vanilla-minecraft-requires-optifine/):
   - Fried Chicken Wings
   - Greenwing Macaw Wings
   - Eagle Wings
