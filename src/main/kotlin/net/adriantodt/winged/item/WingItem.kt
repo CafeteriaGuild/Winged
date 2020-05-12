@@ -1,14 +1,14 @@
 package net.adriantodt.winged.item
 
-import net.adriantodt.winged.wingRegistry
-import net.adriantodt.winged.wingedComponent
+import net.adriantodt.winged.Winged.playerComponentType
+import net.adriantodt.winged.Winged.wingRegistry
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
 import net.minecraft.client.item.TooltipContext
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
-import net.minecraft.sound.SoundEvents
+import net.minecraft.sound.SoundEvents.ITEM_ARMOR_EQUIP_ELYTRA
 import net.minecraft.text.Text
 import net.minecraft.text.TranslatableText
 import net.minecraft.util.Hand
@@ -22,13 +22,14 @@ class WingItem(settings: Settings, private val wingId: Identifier) : Item(settin
 
     override fun use(world: World, user: PlayerEntity, hand: Hand): TypedActionResult<ItemStack> {
         val itemStack = user.getStackInHand(hand)
-        val wingedComponent = wingedComponent.maybeGet(user).orElse(null) ?: return TypedActionResult.pass(itemStack)
+        val wingedComponent =
+            playerComponentType.maybeGet(user).orElse(null) ?: return TypedActionResult.pass(itemStack)
         if (wingedComponent.wing != null) {
             return TypedActionResult.fail(itemStack)
         }
         wingedComponent.wing = wing
         itemStack.count = 0
-        user.playSound(SoundEvents.ITEM_ARMOR_EQUIP_ELYTRA, 1.0f, 1.0f)
+        user.playSound(ITEM_ARMOR_EQUIP_ELYTRA, 1.0f, 1.0f)
         return TypedActionResult.success(itemStack)
     }
 

@@ -1,7 +1,7 @@
 package net.adriantodt.winged.entityfeature;
 
-import net.adriantodt.winged.WingedKt;
-import net.adriantodt.winged.data.WingedComponent;
+import net.adriantodt.winged.Winged;
+import net.adriantodt.winged.components.PlayerComponent;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.OverlayTexture;
@@ -23,12 +23,12 @@ public class WingedFeatureRenderer<T extends LivingEntity, M extends EntityModel
         super(featureRendererContext);
     }
 
-    public void render(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, T livingEntity, float f, float g, float h, float j, float k, float l) {
-        WingedKt.getWingedComponent().maybeGet(livingEntity).map(WingedComponent::getWing).ifPresent(wing -> {
+    public void render(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, T entity, float f, float g, float h, float j, float k, float l) {
+        Winged.INSTANCE.getPlayerComponentType().maybeGet(entity).map(PlayerComponent::getWing).ifPresent(wing -> {
             matrixStack.push();
             matrixStack.translate(0.0D, 0.0D, 0.125D);
             this.getContextModel().copyStateTo(this.elytra);
-            this.elytra.setAngles(livingEntity, f, g, j, k, l);
+            this.elytra.setAngles(entity, f, g, j, k, l);
             VertexConsumer vertexConsumer = ItemRenderer.getArmorVertexConsumer(vertexConsumerProvider, this.elytra.getLayer(wing.getSkin()), false, false);
             this.elytra.render(matrixStack, vertexConsumer, i, OverlayTexture.DEFAULT_UV, 1.0F, 1.0F, 1.0F, 1.0F);
             matrixStack.pop();

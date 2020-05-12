@@ -1,7 +1,6 @@
 package net.adriantodt.winged.mixin;
 
-import net.adriantodt.winged.WingedKt;
-import net.adriantodt.winged.data.WingedComponent;
+import net.adriantodt.winged.Winged;
 import net.minecraft.entity.player.PlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -27,7 +26,7 @@ public abstract class PlayerEntityMixin extends LivingEntityMixin {
             cancellable = true
     )
     public void checkFallFlying(CallbackInfoReturnable<Boolean> info) {
-        if (WingedKt.getWingedComponent().maybeGet(this).map(WingedComponent::getWing).isPresent()) {
+        if (Winged.INSTANCE.getPlayerComponentType().get(this).getWing() != null) {
             this.startFallFlying();
             info.setReturnValue(true);
         }

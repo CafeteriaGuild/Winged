@@ -1,8 +1,6 @@
 package net.adriantodt.winged.mixin;
 
-import nerdhub.cardinal.components.api.component.ComponentProvider;
-import net.adriantodt.winged.WingedKt;
-import net.adriantodt.winged.data.WingedComponent;
+import net.adriantodt.winged.Winged;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
@@ -26,8 +24,7 @@ public abstract class CapeFeatureRendererMixin {
             cancellable = true
     )
     public void render(MatrixStack m, VertexConsumerProvider v, int i, AbstractClientPlayerEntity player, float f, float g, float h, float j, float k, float l, CallbackInfo info) {
-        ComponentProvider componentPlayer = ComponentProvider.fromEntity(player);
-        if (WingedKt.getWingedComponent().maybeGet(componentPlayer).map(WingedComponent::getWing).isPresent())
+        if (Winged.INSTANCE.getPlayerComponentType().get(player).getWing() != null)
             info.cancel();
     }
 }

@@ -7,40 +7,49 @@ import nerdhub.cardinal.components.api.ComponentType
 import nerdhub.cardinal.components.api.event.EntityComponentCallback
 import nerdhub.cardinal.components.api.util.EntityComponents
 import nerdhub.cardinal.components.api.util.RespawnCopyStrategy
-import net.adriantodt.winged.data.DefaultWingedComponent
+import net.adriantodt.winged.components.PlayerComponent
+import net.adriantodt.winged.components.impl.DefaultPlayerComponent
 import net.adriantodt.winged.data.Wing
-import net.adriantodt.winged.data.WingedComponent
+import net.adriantodt.winged.data.WingedConfig
+import net.adriantodt.winged.data.WingedDataObject
+import net.adriantodt.winged.data.impl.WingedDataObjectImpl
+import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.ItemGroup
 import net.minecraft.item.ItemStack
 import net.minecraft.util.registry.DefaultedRegistry
 
+@Suppress("MemberVisibilityCanBePrivate")
+object Winged : ModInitializer {
+    val data: WingedDataObject get() = WingedDataObjectImpl(configHolder.config)
 
-val mainGroup: ItemGroup = FabricItemGroupBuilder.create(identifier("main"))
-    .icon { ItemStack(CORE_OF_FLIGHT) }
-    .build()
+    val wingRegistry = DefaultedRegistry<Wing>("minecraft:elytra")
 
-val showcaseGroup: ItemGroup = FabricItemGroupBuilder.create(identifier("showcase"))
-    .icon { ItemStack(ITEM_WING_ELYTRA) }
-    .build()
+    val playerComponentType: ComponentType<PlayerComponent> = ComponentRegistry.INSTANCE
+        .registerIfAbsent(identifier("player_data"), PlayerComponent::class.java)
+        .attach(EntityComponentCallback.event(PlayerEntity::class.java), ::DefaultPlayerComponent)
 
-val wingedConfig = AutoConfig.register(WingedConfig::class.java, ::JanksonConfigSerializer)
+    val configHolder = AutoConfig.register(WingedConfig::class.java, ::JanksonConfigSerializer)
 
-val wingRegistry = DefaultedRegistry<Wing>("minecraft:elytra")
+    fun init() {
+        EntityComponents.setRespawnCopyStrategy(playerComponentType, RespawnCopyStrategy.ALWAYS_COPY)
+    }
 
-val wingedComponent: ComponentType<WingedComponent> =
-    ComponentRegistry.INSTANCE.registerIfAbsent(identifier("player_data"), WingedComponent::class.java)
-        .attach(EntityComponentCallback.event(PlayerEntity::class.java), ::DefaultWingedComponent)
+    val mainGroup: ItemGroup = FabricItemGroupBuilder.create(identifier("main"))
+        .icon { ItemStack(WingedLoreItems.coreOfFlight) }
+        .build()
 
-val removeWings = RemoveWingsDamageSource()
+    val showcaseGroup: ItemGroup = FabricItemGroupBuilder.create(identifier("showcase"))
+        .icon { ItemStack(WingItems.elytra) }
+        .build()
 
-@Suppress("unused")
-fun init() {
-    EntityComponents.setRespawnCopyStrategy(wingedComponent, RespawnCopyStrategy.ALWAYS_COPY)
-    initItems()
-    initWings()
-    initBoosters()
-    initLootTables()
+    override fun onInitialize() {
+        init()
+        WingedLoreItems.register()
+        WingedUtilityItems.register()
+        WingItems.register()
+        WingedLootTables.register(configHolder.config)
+
+    }
 }
-

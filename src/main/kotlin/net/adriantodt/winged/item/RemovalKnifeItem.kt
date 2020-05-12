@@ -1,6 +1,9 @@
 package net.adriantodt.winged.item
 
-import net.adriantodt.winged.*
+import net.adriantodt.winged.Winged
+import net.adriantodt.winged.WingedLoreItems.brokenCoreOfFlight
+import net.adriantodt.winged.WingedUtilityItems.ceremonialKnife
+import net.adriantodt.winged.damagesource.RemoveWingsDamageSource
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
 import net.minecraft.client.item.TooltipContext
@@ -17,24 +20,24 @@ import net.minecraft.world.World
 class RemovalKnifeItem(settings: Settings) : Item(settings) {
     override fun use(world: World, user: PlayerEntity, hand: Hand): TypedActionResult<ItemStack> {
         val itemStack = user.getStackInHand(hand)
-        val wingedComponent = wingedComponent.maybeGet(user).orElse(null) ?: return TypedActionResult.pass(itemStack)
-        if (wingedComponent.wing == null) {
+        val playerComponent = Winged.playerComponentType[user]
+        if (playerComponent.wing == null) {
             return TypedActionResult.fail(itemStack)
         }
-        wingedComponent.wing = null
-        if (!user.isCreative) user.giveItemStack(ItemStack(BROKEN_CORE_OF_FLIGHT))
-        val dmg = wingedConfig.config.removeWingsDamage
+        playerComponent.wing = null
+        if (!user.isCreative) user.giveItemStack(ItemStack(brokenCoreOfFlight))
+        val dmg = Winged.data.removeWingsDamage
         if (dmg > 0) {
-            user.damage(removeWings, dmg)
+            user.damage(RemoveWingsDamageSource, dmg)
         }
         user.playSound(SoundEvents.ENTITY_ITEM_BREAK, 1.0f, 1.0f)
-        return TypedActionResult.success(if (user.isCreative) itemStack else ItemStack(CEREMONIAL_KNIFE))
+        return TypedActionResult.success(if (user.isCreative) itemStack else ItemStack(ceremonialKnife))
     }
 
     override fun hasEnchantmentGlint(stack: ItemStack?) = true
 
     @Environment(EnvType.CLIENT)
-    override fun appendTooltip(stack: ItemStack?, world: World?, tooltip: MutableList<Text?>, ctx: TooltipContext?) {
+    override fun appendTooltip(stack: ItemStack, world: World?, tooltip: MutableList<Text>, ctx: TooltipContext) {
         tooltip += TranslatableText("$translationKey.lore1")
         tooltip += TranslatableText("tooltip.winged.remove_wing_item")
     }

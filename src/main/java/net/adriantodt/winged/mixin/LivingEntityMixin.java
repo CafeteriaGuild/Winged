@@ -1,7 +1,6 @@
 package net.adriantodt.winged.mixin;
 
-import net.adriantodt.winged.WingedKt;
-import net.adriantodt.winged.data.WingedComponent;
+import net.adriantodt.winged.Winged;
 import net.minecraft.entity.LivingEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -19,7 +18,7 @@ public abstract class LivingEntityMixin extends EntityMixin {
         boolean bl = this.getFlag(7);
 
         if (bl && !this.isOnGround() && !this.hasVehicle()) {
-            return WingedKt.getWingedComponent().maybeGet(this).map(WingedComponent::getWing).isPresent() || value;
+            return Winged.INSTANCE.getPlayerComponentType().get(this).getWing() != null || value;
         }
         return value;
     }

@@ -1,12 +1,13 @@
 package net.adriantodt.winged
 
-import net.adriantodt.winged.data.Wing
+import net.adriantodt.winged.data.WingedDataObject
+import net.adriantodt.winged.item.LoreItem
 import net.minecraft.block.Block
 import net.minecraft.entity.LivingEntity
 import net.minecraft.item.BlockItem
+import net.minecraft.item.FoodComponent
 import net.minecraft.item.Item
 import net.minecraft.util.Identifier
-import net.minecraft.util.Rarity
 import net.minecraft.util.registry.Registry
 
 fun mcIdentifier(path: String) = Identifier("minecraft", path)
@@ -20,22 +21,22 @@ fun Identifier.item(item: Item) = apply {
 }
 
 fun Identifier.item(block: Block) = apply {
-    Registry.register(Registry.ITEM, this, BlockItem(block, Item.Settings().group(mainGroup)))
+    Registry.register(Registry.ITEM, this, BlockItem(block, Item.Settings().group(Winged.mainGroup)))
 }
 
-fun Identifier.wing(wing: Wing) = apply {
-    Registry.register(wingRegistry, this, wing)
+fun itemSettings(): Item.Settings = Item.Settings().group(Winged.mainGroup)
+
+fun Item.Settings.food(block: FoodComponent.Builder.() -> Unit) = apply {
+    food(FoodComponent.Builder().also(block).build())
 }
 
-fun itemSettings(): Item.Settings = Item.Settings().group(mainGroup)
+fun Item.Settings.loreItem(amount: Int = 2, glint: Boolean = false) = LoreItem(this, amount, glint)
 
-fun wingItemSettings(): Item.Settings = Item.Settings().group(showcaseGroup).rarity(Rarity.EPIC).maxCount(1)
+fun LivingEntity.boost(config: WingedDataObject.BoosterVelocity) {
+    boost(config.maxVelocity, config.instantVelocity, config.speedFactor)
+}
 
-fun LivingEntity.boostTheLivingShitOfThisMotherFucker(
-    maxVelocity: Double = 1.5,
-    instantVelocity: Double = 0.1,
-    speedFactor: Double = 0.5
-) {
+fun LivingEntity.boost(maxVelocity: Double = 1.5, instantVelocity: Double = 0.1, speedFactor: Double = 0.5) {
     val rotation = rotationVector
     val velocity = velocity
 

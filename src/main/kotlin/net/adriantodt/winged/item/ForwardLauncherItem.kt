@@ -1,7 +1,8 @@
 package net.adriantodt.winged.item
 
-import net.adriantodt.winged.EMPTY_BOOSTER
-import net.adriantodt.winged.boostTheLivingShitOfThisMotherFucker
+import net.adriantodt.winged.WingedUtilityItems.emptyBooster
+import net.adriantodt.winged.boost
+import net.adriantodt.winged.data.WingedDataObject.BoosterVelocity
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
 import net.minecraft.client.item.TooltipContext
@@ -9,7 +10,7 @@ import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
 import net.minecraft.sound.SoundCategory.PLAYERS
-import net.minecraft.sound.SoundEvents
+import net.minecraft.sound.SoundEvents.BLOCK_PISTON_EXTEND
 import net.minecraft.sound.SoundEvents.ENTITY_ITEM_BREAK
 import net.minecraft.text.Text
 import net.minecraft.text.TranslatableText
@@ -18,20 +19,19 @@ import net.minecraft.util.TypedActionResult
 import net.minecraft.world.World
 
 
-class ForwardLauncherItem(settings: Settings) : Item(settings) {
+class ForwardLauncherItem(settings: Settings, private val data: BoosterVelocity) : Item(settings) {
     override fun use(world: World, user: PlayerEntity, hand: Hand): TypedActionResult<ItemStack> {
         val stack = user.getStackInHand(hand)
-
         if (user.isOnGround) {
-            world.playSound(user, user.blockPos, SoundEvents.BLOCK_PISTON_EXTEND, PLAYERS, 0.8f, 1.2f)
-            user.boostTheLivingShitOfThisMotherFucker(1.5, 0.1, 0.5)
+            world.playSound(user, user.blockPos, BLOCK_PISTON_EXTEND, PLAYERS, 0.8f, 1.2f)
+            user.boost(data)
             user.isOnGround = false
             user.checkFallFlying()
             if (!user.isCreative) {
                 stack.damage += 1
                 if (stack.damage == maxDamage) {
                     world.playSound(user, user.blockPos, ENTITY_ITEM_BREAK, PLAYERS, 0.8f, 1.2f)
-                    return TypedActionResult.success(ItemStack(EMPTY_BOOSTER))
+                    return TypedActionResult.success(ItemStack(emptyBooster))
                 }
             }
             return TypedActionResult.success(stack)

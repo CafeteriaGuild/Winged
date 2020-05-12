@@ -1,8 +1,9 @@
 package net.adriantodt.winged.item
 
-import net.adriantodt.winged.EMPTY_BOOSTER
 import net.adriantodt.winged.WingedPlayerInventory
-import net.adriantodt.winged.boostTheLivingShitOfThisMotherFucker
+import net.adriantodt.winged.WingedUtilityItems.emptyBooster
+import net.adriantodt.winged.boost
+import net.adriantodt.winged.data.WingedDataObject
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
 import net.minecraft.client.item.TooltipContext
@@ -18,18 +19,9 @@ import net.minecraft.util.TypedActionResult
 import net.minecraft.world.World
 
 
-class ActiveBoosterItem(
-    settings: Settings,
-    private val instantVelocity: Double = 0.1,
-    private val maxVelocity: Double = 1.5,
-    private val speedFactor: Double = 0.5,
-    val ticksPerDamage: Int = 20,
-    inactive: () -> BoosterItem
-) : Item(settings) {
-    private val inactiveBooster by lazy(inactive)
-
+class ActiveBoosterItem(settings: Settings, private val data: WingedDataObject.BoosterData) : Item(settings) {
     override fun use(world: World?, user: PlayerEntity, hand: Hand): TypedActionResult<ItemStack> {
-        return TypedActionResult.success(deactivateBooster(user.getStackInHand(hand)))
+        return TypedActionResult.success(data.toBooster(user.getStackInHand(hand)))
     }
 
     override fun inventoryTick(stack: ItemStack, world: World, entity: Entity, slot: Int, selected: Boolean) {
@@ -48,27 +40,27 @@ class ActiveBoosterItem(
                 }
                 when {
                     entity.isCreative -> {
-                        entity.boostTheLivingShitOfThisMotherFucker(maxVelocity, instantVelocity, speedFactor)
+                        entity.boost(data)
                         inv.ensureOnlyActiveBooster(stack)
                     }
                     ticksLeft > 0 -> {
                         stack.orCreateTag.putInt("TicksLeft", ticksLeft - 1)
-                        entity.boostTheLivingShitOfThisMotherFucker(maxVelocity, instantVelocity, speedFactor)
+                        entity.boost(data)
                         inv.ensureOnlyActiveBooster(stack)
                     }
                     stack.damage < stack.maxDamage -> {
                         stack.damage++
-                        stack.orCreateTag.putInt("TicksLeft", ticksPerDamage)
-                        entity.boostTheLivingShitOfThisMotherFucker(maxVelocity, instantVelocity, speedFactor)
+                        stack.orCreateTag.putInt("TicksLeft", data.ticksPerDamage)
+                        entity.boost(data)
                         inv.ensureOnlyActiveBooster(stack)
                     }
                     else -> {
-                        inv.findAndReplace(stack, ItemStack(EMPTY_BOOSTER))
+                        inv.findAndReplace(stack, ItemStack(emptyBooster))
                     }
                 }
                 return
             }
-            inv.findAndReplace(stack, deactivateBooster(stack))
+            inv.findAndReplace(stack, data.toBooster(stack))
         }
     }
 
@@ -78,17 +70,9 @@ class ActiveBoosterItem(
         tooltip += TranslatableText("tooltip.winged.deactivate_booster")
         tooltip += TranslatableText("tooltip.winged.autodeactivate_booster")
         if (ctx.isAdvanced) {
-            tooltip += TranslatableText(
-                "tooltip.winged.time_left",
-                ((maxDamage - stack.damage) * ticksPerDamage + (stack.tag?.getInt("TicksLeft") ?: 0)) / 20.0
-            )
+            tooltip += TranslatableText("tooltip.winged.time_left", data.secondsLeft(stack))
         }
     }
 
-    fun deactivateBooster(stack: ItemStack): ItemStack {
-        return ItemStack(inactiveBooster).apply {
-            damage = stack.damage
-            stack.tag?.getInt("TicksLeft")?.let { stack.orCreateTag.putInt("TicksLeft", it) }
-        }
-    }
+    fun deactivateBooster(itemStack: ItemStack) = data.toBooster(itemStack)
 }

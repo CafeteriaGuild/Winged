@@ -22,7 +22,16 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.adriantodt.winged.WingedKt::init"
+      {
+        "adapter": "kotlin",
+        "value": "net.adriantodt.winged.Winged"
+      }
+    ],
+    "client": [
+      {
+        "adapter": "kotlin",
+        "value": "net.adriantodt.winged.WingedClient"
+      }
     ],
     "modmenu": [
       "net.adriantodt.winged.integration.ModMenuIntegration"

@@ -1,6 +1,7 @@
 package net.adriantodt.winged.item
 
 import net.adriantodt.winged.WingedPlayerInventory
+import net.adriantodt.winged.data.WingedDataObject
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
 import net.minecraft.client.item.TooltipContext
@@ -14,18 +15,13 @@ import net.minecraft.util.TypedActionResult
 import net.minecraft.world.World
 
 
-class BoosterItem(settings: Settings, active: () -> ActiveBoosterItem) : Item(settings) {
-    private val activeBooster by lazy(active)
-
+class BoosterItem(settings: Settings, private val data: WingedDataObject.BoosterData) : Item(settings) {
     override fun use(world: World?, user: PlayerEntity, hand: Hand): TypedActionResult<ItemStack> {
         val stack = user.getStackInHand(hand)
 
         if (user.isFallFlying) {
             (user.inventory as WingedPlayerInventory).ensureOnlyActiveBooster(null)
-            return TypedActionResult.success(ItemStack(activeBooster).apply {
-                damage = stack.damage
-                stack.tag?.getInt("TicksLeft")?.let { stack.orCreateTag.putInt("TicksLeft", it) }
-            })
+            return TypedActionResult.success(data.toActiveBooster(stack))
         }
         return TypedActionResult.fail(stack)
     }
@@ -35,10 +31,7 @@ class BoosterItem(settings: Settings, active: () -> ActiveBoosterItem) : Item(se
         tooltip += TranslatableText("$translationKey.description")
         tooltip += TranslatableText("tooltip.winged.activate_booster")
         if (ctx.isAdvanced) {
-            tooltip += TranslatableText("tooltip.winged.time_left",
-                ((maxDamage - stack.damage) * activeBooster.ticksPerDamage + (stack.tag?.getInt("TicksLeft")
-                    ?: 0)) / 20.0
-            )
+            tooltip += TranslatableText("tooltip.winged.time_left", data.secondsLeft(stack))
         }
     }
 }

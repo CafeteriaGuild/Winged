@@ -1,8 +1,8 @@
-package net.adriantodt.winged
+package net.adriantodt.winged.damagesource
 
 import net.minecraft.entity.damage.DamageSource
 
-class RemoveWingsDamageSource : DamageSource("removeWings") {
+object RemoveWingsDamageSource : DamageSource("removeWings") {
     init {
         setBypassesArmor()
         setUnblockable()
