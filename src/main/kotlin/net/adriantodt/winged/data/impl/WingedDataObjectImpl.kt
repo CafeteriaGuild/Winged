@@ -15,9 +15,9 @@ import net.adriantodt.winged.item.BoosterItem
 
 class WingedDataObjectImpl(config: WingedConfig) : WingedDataObject {
     override val launcherVelocity = object : BoosterVelocity {
-        override var instantVelocity = config.boosters.forwardLauncher.instantVelocity
-        override var maxVelocity: Double = config.boosters.forwardLauncher.maxVelocity
-        override var speedFactor = config.boosters.forwardLauncher.speedFactor
+        override var constantVelocity = config.boosters.forwardLauncher.constantVelocity
+        override var interpolatingVelocity: Double = config.boosters.forwardLauncher.interpolatingVelocity
+        override var frictionFactor = config.boosters.forwardLauncher.frictionFactor
     }
 
     override var removeWingsDamage = config.removeWingsDamage
@@ -47,26 +47,10 @@ class WingedDataObjectImpl(config: WingedConfig) : WingedDataObject {
         override val boosterItem by lazy(lazyBooster)
         override val activeBoosterItem by lazy(lazyActiveBooster)
 
-        override var ticksPerDamage: Int = when (type) {
-            STANDARD -> config.boosters.standardBooster.ticksPerDamage
-            FAST -> config.boosters.fastBooster.ticksPerDamage
-            SLOW -> config.boosters.slowBooster.ticksPerDamage
-        }
-        override var instantVelocity: Double = when (type) {
-            STANDARD -> config.boosters.standardBooster.instantVelocity
-            FAST -> config.boosters.fastBooster.instantVelocity
-            SLOW -> config.boosters.slowBooster.instantVelocity
-        }
-        override var maxVelocity: Double = when (type) {
-            STANDARD -> config.boosters.standardBooster.maxVelocity
-            FAST -> config.boosters.fastBooster.maxVelocity
-            SLOW -> config.boosters.slowBooster.maxVelocity
-        }
-        override var speedFactor: Double = when (type) {
-            STANDARD -> config.boosters.standardBooster.speedFactor
-            FAST -> config.boosters.fastBooster.speedFactor
-            SLOW -> config.boosters.slowBooster.speedFactor
-        }
+        override var ticksPerDamage: Int = type.fromConfig(config.boosters).ticksPerDamage
+        override var constantVelocity: Double = type.fromConfig(config.boosters).constantVelocity
+        override var interpolatingVelocity: Double = type.fromConfig(config.boosters).interpolatingVelocity
+        override var frictionFactor: Double = type.fromConfig(config.boosters).frictionFactor
     }
 
     private class LazyFuelPelletData(

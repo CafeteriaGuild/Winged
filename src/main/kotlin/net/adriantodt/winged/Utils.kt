@@ -8,6 +8,7 @@ import net.minecraft.item.BlockItem
 import net.minecraft.item.FoodComponent
 import net.minecraft.item.Item
 import net.minecraft.util.Identifier
+import net.minecraft.util.math.Vec3d
 import net.minecraft.util.registry.Registry
 
 fun mcIdentifier(path: String) = Identifier("minecraft", path)
@@ -33,7 +34,7 @@ fun Item.Settings.food(block: FoodComponent.Builder.() -> Unit) = apply {
 fun Item.Settings.loreItem(amount: Int = 2, glint: Boolean = false) = LoreItem(this, amount, glint)
 
 fun LivingEntity.boost(config: WingedDataObject.BoosterVelocity) {
-    boost(config.maxVelocity, config.instantVelocity, config.speedFactor)
+    boost(config.interpolatingVelocity, config.constantVelocity, config.frictionFactor)
 }
 
 fun LivingEntity.boost(maxVelocity: Double = 1.5, instantVelocity: Double = 0.1, speedFactor: Double = 0.5) {
@@ -46,3 +47,7 @@ fun LivingEntity.boost(maxVelocity: Double = 1.5, instantVelocity: Double = 0.1,
         rotation.z * instantVelocity + (rotation.z * maxVelocity - velocity.z) * speedFactor
     )
 }
+
+operator fun Vec3d.times(other: Double): Vec3d = multiply(other)
+
+operator fun Vec3d.plus(other: Vec3d): Vec3d = add(other)

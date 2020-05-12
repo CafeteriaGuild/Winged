@@ -1,7 +1,7 @@
 package net.adriantodt.winged.entityfeature;
 
 import net.adriantodt.winged.Winged;
-import net.adriantodt.winged.components.PlayerComponent;
+import net.adriantodt.winged.data.components.PlayerComponent;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.OverlayTexture;

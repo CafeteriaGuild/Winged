@@ -1,9 +1,9 @@
-package net.adriantodt.winged.components.impl
+package net.adriantodt.winged.data.components.impl
 
 import nerdhub.cardinal.components.api.ComponentType
 import net.adriantodt.winged.Winged
-import net.adriantodt.winged.components.PlayerComponent
 import net.adriantodt.winged.data.Wing
+import net.adriantodt.winged.data.components.PlayerComponent
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.util.Identifier

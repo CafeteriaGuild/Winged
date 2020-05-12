@@ -2,6 +2,9 @@ package net.adriantodt.winged.data
 
 import net.adriantodt.winged.item.ActiveBoosterItem
 import net.adriantodt.winged.item.BoosterItem
+import net.adriantodt.winged.plus
+import net.adriantodt.winged.times
+import net.minecraft.entity.LivingEntity
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
 
@@ -11,13 +14,38 @@ interface WingedDataObject {
     }
 
     enum class BoosterType {
-        STANDARD, FAST, SLOW
+        STANDARD {
+            override fun fromConfig(config: WingedConfig.BoostersConfig) = config.standardBooster
+        },
+        FAST {
+            override fun fromConfig(config: WingedConfig.BoostersConfig) = config.fastBooster
+        },
+        SLOW {
+            override fun fromConfig(config: WingedConfig.BoostersConfig) = config.slowBooster
+        };
+
+        abstract fun fromConfig(config: WingedConfig.BoostersConfig): WingedConfig.BoosterValues
     }
 
     interface BoosterVelocity {
-        var instantVelocity: Double
-        var maxVelocity: Double
-        var speedFactor: Double
+        // Positive, greater than zero. Default 0.1
+        // Velocity being constantly applied, independent of drift factor.
+        var constantVelocity: Double
+
+        // Positive, greater than zero. Default 1.5
+        // Velocity which is interpolated according to the drift factor.
+        var interpolatingVelocity: Double
+
+        // Between 0.0 and 1.0, Default 0.5
+        // Increases flying driftness and slows velocity gain.
+        var frictionFactor: Double
+
+        fun applyBoost(entity: LivingEntity) {
+            val r = entity.rotationVector
+            val v = entity.velocity
+            val driftFactor = 1.0 - frictionFactor
+            entity.velocity = v * driftFactor + r * (constantVelocity + interpolatingVelocity * frictionFactor)
+        }
     }
 
     interface BoosterData : BoosterVelocity {

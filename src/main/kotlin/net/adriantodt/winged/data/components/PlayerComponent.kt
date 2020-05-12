@@ -1,4 +1,4 @@
-package net.adriantodt.winged.components
+package net.adriantodt.winged.data.components
 
 import nerdhub.cardinal.components.api.component.Component
 import nerdhub.cardinal.components.api.component.extension.CopyableComponent

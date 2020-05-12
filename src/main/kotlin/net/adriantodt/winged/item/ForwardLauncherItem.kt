@@ -1,7 +1,6 @@
 package net.adriantodt.winged.item
 
 import net.adriantodt.winged.WingedUtilityItems.emptyBooster
-import net.adriantodt.winged.boost
 import net.adriantodt.winged.data.WingedDataObject.BoosterVelocity
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
@@ -24,7 +23,7 @@ class ForwardLauncherItem(settings: Settings, private val data: BoosterVelocity)
         val stack = user.getStackInHand(hand)
         if (user.isOnGround) {
             world.playSound(user, user.blockPos, BLOCK_PISTON_EXTEND, PLAYERS, 0.8f, 1.2f)
-            user.boost(data)
+            data.applyBoost(user)
             user.isOnGround = false
             user.checkFallFlying()
             if (!user.isCreative) {

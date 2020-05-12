@@ -26,9 +26,6 @@ public abstract class PlayerInventoryMixin implements WingedPlayerInventory {
     @Shadow
     public abstract int getEmptySlot();
 
-    @Shadow
-    protected abstract boolean areItemsEqual(ItemStack stack1, ItemStack stack2);
-
     @Override
     public boolean hasAtLeast(ItemConvertible item, int count) {
         if (count == 0) return true;

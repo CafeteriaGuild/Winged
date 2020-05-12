@@ -8,7 +8,7 @@ import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
 
 @Environment(EnvType.CLIENT)
-internal class ModMenuIntegration : ModMenuApi {
+class ModMenuIntegration : ModMenuApi {
     override fun getModId() = "winged"
 
     override fun getModConfigScreenFactory() = ConfigScreenFactory {

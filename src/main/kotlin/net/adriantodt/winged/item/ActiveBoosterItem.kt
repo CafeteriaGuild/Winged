@@ -2,7 +2,6 @@ package net.adriantodt.winged.item
 
 import net.adriantodt.winged.WingedPlayerInventory
 import net.adriantodt.winged.WingedUtilityItems.emptyBooster
-import net.adriantodt.winged.boost
 import net.adriantodt.winged.data.WingedDataObject
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
@@ -24,34 +23,34 @@ class ActiveBoosterItem(settings: Settings, private val data: WingedDataObject.B
         return TypedActionResult.success(data.toBooster(user.getStackInHand(hand)))
     }
 
-    override fun inventoryTick(stack: ItemStack, world: World, entity: Entity, slot: Int, selected: Boolean) {
-        if (entity is PlayerEntity) {
-            val inv = entity.inventory as WingedPlayerInventory
-            if (entity.isFallFlying) {
+    override fun inventoryTick(stack: ItemStack, world: World, user: Entity, slot: Int, selected: Boolean) {
+        if (user is PlayerEntity) {
+            val inv = user.inventory as WingedPlayerInventory
+            if (user.isFallFlying) {
                 val ticksLeft = stack.tag?.getInt("TicksLeft") ?: 0
                 if (world.isClient && ticksLeft % 5 == 1) {
                     world.addParticle(
                         ParticleTypes.FIREWORK,
-                        entity.x, entity.y - 0.3, entity.z,
-                        entity.random.nextGaussian() * 0.05,
-                        -entity.velocity.y * 0.5,
-                        entity.random.nextGaussian() * 0.05
+                        user.x, user.y - 0.3, user.z,
+                        user.random.nextGaussian() * 0.05,
+                        -user.velocity.y * 0.5,
+                        user.random.nextGaussian() * 0.05
                     )
                 }
                 when {
-                    entity.isCreative -> {
-                        entity.boost(data)
+                    user.isCreative -> {
+                        data.applyBoost(user)
                         inv.ensureOnlyActiveBooster(stack)
                     }
                     ticksLeft > 0 -> {
                         stack.orCreateTag.putInt("TicksLeft", ticksLeft - 1)
-                        entity.boost(data)
+                        data.applyBoost(user)
                         inv.ensureOnlyActiveBooster(stack)
                     }
                     stack.damage < stack.maxDamage -> {
                         stack.damage++
                         stack.orCreateTag.putInt("TicksLeft", data.ticksPerDamage)
-                        entity.boost(data)
+                        data.applyBoost(user)
                         inv.ensureOnlyActiveBooster(stack)
                     }
                     else -> {

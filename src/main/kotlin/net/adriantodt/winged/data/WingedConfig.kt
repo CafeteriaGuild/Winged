@@ -80,20 +80,20 @@ class WingedConfig : ConfigData {
 
     class ForwardLauncherValues(
         @ConfigEntry.Gui.Tooltip
-        var instantVelocity: Double = 0.9,
+        var constantVelocity: Double = 0.9,
         @ConfigEntry.Gui.Tooltip
-        var maxVelocity: Double = 0.1,
+        var interpolatingVelocity: Double = 0.1,
         @ConfigEntry.Gui.Tooltip
-        var speedFactor: Double = 0.4
+        var frictionFactor: Double = 0.4
     )
 
     class BoosterValues(
         @ConfigEntry.Gui.Tooltip
-        var instantVelocity: Double = 0.1,
+        var constantVelocity: Double = 0.1,
         @ConfigEntry.Gui.Tooltip
-        var maxVelocity: Double = 1.5,
+        var interpolatingVelocity: Double = 1.5,
         @ConfigEntry.Gui.Tooltip
-        var speedFactor: Double = 0.5,
+        var frictionFactor: Double = 0.5,
         @ConfigEntry.Gui.Tooltip
         var ticksPerDamage: Int = 4
     )
