@@ -1,12 +1,11 @@
 package net.adriantodt.winged
 
-import net.adriantodt.winged.data.WingedDataObject
 import net.adriantodt.winged.item.LoreItem
 import net.minecraft.block.Block
-import net.minecraft.entity.LivingEntity
 import net.minecraft.item.BlockItem
 import net.minecraft.item.FoodComponent
 import net.minecraft.item.Item
+import net.minecraft.item.ItemStack
 import net.minecraft.util.Identifier
 import net.minecraft.util.math.Vec3d
 import net.minecraft.util.registry.Registry
@@ -33,19 +32,10 @@ fun Item.Settings.food(block: FoodComponent.Builder.() -> Unit) = apply {
 
 fun Item.Settings.loreItem(amount: Int = 2, glint: Boolean = false) = LoreItem(this, amount, glint)
 
-fun LivingEntity.boost(config: WingedDataObject.BoosterVelocity) {
-    boost(config.interpolatingVelocity, config.constantVelocity, config.frictionFactor)
-}
-
-fun LivingEntity.boost(maxVelocity: Double = 1.5, instantVelocity: Double = 0.1, speedFactor: Double = 0.5) {
-    val rotation = rotationVector
-    val velocity = velocity
-
-    this.velocity = velocity.add(
-        rotation.x * instantVelocity + (rotation.x * maxVelocity - velocity.x) * speedFactor,
-        rotation.y * instantVelocity + (rotation.y * maxVelocity - velocity.y) * speedFactor,
-        rotation.z * instantVelocity + (rotation.z * maxVelocity - velocity.z) * speedFactor
-    )
+fun secondsLeft(stack: ItemStack, ticksPerDamage: Int): Double {
+    val damageTicksLeft = (stack.maxDamage - stack.damage) * ticksPerDamage
+    val tagTicksLeft = stack.tag?.getInt("TicksLeft") ?: 0
+    return (damageTicksLeft + tagTicksLeft) / 20.0
 }
 
 operator fun Vec3d.times(other: Double): Vec3d = multiply(other)

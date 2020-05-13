@@ -14,6 +14,7 @@ object WingedPacketHandler {
     fun sendServerConfig(player: ServerPlayerEntity) {
         val tag = CompoundTag()
         tag.putFloat("removeWingsDamage", configHolder.config.removeWingsDamage)
+        tag.putInt("heartOfTheSkyItemTicksPerDamage", Winged.data.heartOfTheSkyItemTicksPerDamage)
         tag.putDouble("launcherConstantVelocity", configHolder.config.boosters.forwardLauncher.constantVelocity)
         tag.putDouble(
             "launcherInterpolatingVelocity",
@@ -49,6 +50,7 @@ object WingedPacketHandler {
     fun updateConfigs(tag: CompoundTag) {
         Winged.logger.info("Syncing local configs from the server!")
         Winged.data.removeWingsDamage = tag.getFloat("removeWingsDamage")
+        Winged.data.heartOfTheSkyItemTicksPerDamage = tag.getInt("heartOfTheSkyItemTicksPerDamage")
         Winged.data.launcherVelocity.constantVelocity = tag.getDouble("launcherConstantVelocity")
         Winged.data.launcherVelocity.interpolatingVelocity = tag.getDouble("launcherInterpolatingVelocity")
         Winged.data.launcherVelocity.frictionFactor = tag.getDouble("launcherFrictionFactor")

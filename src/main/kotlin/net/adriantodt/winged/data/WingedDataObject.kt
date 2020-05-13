@@ -80,6 +80,7 @@ interface WingedDataObject {
 
     val launcherVelocity: BoosterVelocity
     var removeWingsDamage: Float
+    var heartOfTheSkyItemTicksPerDamage: Int
     fun booster(type: BoosterType): BoosterData
     fun fuelPellet(type: BoosterType): FuelPelletData
 }

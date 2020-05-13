@@ -1,5 +1,7 @@
 package net.adriantodt.winged
 
+import io.github.ladysnake.pal.AbilitySource
+import io.github.ladysnake.pal.Pal
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig
 import me.sargunvohra.mcmods.autoconfig1u.ConfigHolder
 import me.sargunvohra.mcmods.autoconfig1u.serializer.JanksonConfigSerializer
@@ -23,6 +25,7 @@ import net.minecraft.util.registry.DefaultedRegistry
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 
+
 @Suppress("MemberVisibilityCanBePrivate")
 object Winged : ModInitializer {
     val logger: Logger = LogManager.getLogger(Winged.javaClass)
@@ -37,6 +40,8 @@ object Winged : ModInitializer {
     val playerComponentType: ComponentType<PlayerComponent> = ComponentRegistry.INSTANCE
         .registerIfAbsent(identifier("player_data"), PlayerComponent::class.java)
         .attach(EntityComponentCallback.event(PlayerEntity::class.java), ::DefaultPlayerComponent)
+
+    val heartOfTheSkyAbilitySource: AbilitySource = Pal.getAbilitySource(identifier("heart_of_the_sky"))
 
     fun init() {
         EntityComponents.setRespawnCopyStrategy(playerComponentType, RespawnCopyStrategy.ALWAYS_COPY)

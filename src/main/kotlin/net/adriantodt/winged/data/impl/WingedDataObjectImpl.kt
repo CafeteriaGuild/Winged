@@ -25,6 +25,7 @@ class WingedDataObjectImpl(config: WingedConfig) : WingedDataObject {
     }
 
     override var removeWingsDamage = config.removeWingsDamage
+    override var heartOfTheSkyItemTicksPerDamage = config.heartOfTheSkyItemTicksPerDamage
 
     override fun booster(type: BoosterType): BoosterData = boosterMap[type] ?: error("Impossible.")
     override fun fuelPellet(type: BoosterType): FuelPelletData = fuelPelletMap[type] ?: error("Impossible.")

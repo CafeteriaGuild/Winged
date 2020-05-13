@@ -22,6 +22,10 @@ repositories {
         name = "Jitpack"
         url = "https://jitpack.io"
     }
+    maven {
+        name = "Ladysnake Libs"
+        url = 'https://dl.bintray.com/ladysnake/libs'
+    }
 }
 
 dependencies {
@@ -43,6 +47,10 @@ dependencies {
     include "com.github.OnyxStudios.Cardinal-Components-API:cardinal-components-base:${project.cardinal_components_version}"
     include "com.github.OnyxStudios.Cardinal-Components-API:cardinal-components-entity:${project.cardinal_components_version}"
     //include "com.github.OnyxStudios.Cardinal-Components-API:cardinal-components-level:${project.cardinal_components_version}"
+
+    //DEPENDENCY: Player Ability Lib
+    modImplementation "io.github.ladysnake:PlayerAbilityLib:${pal_version}"
+    include "io.github.ladysnake:PlayerAbilityLib:${pal_version}"
 
     // Config and ModMenu Compat
     modApi "me.sargunvohra.mcmods:autoconfig1u:2.1.0"

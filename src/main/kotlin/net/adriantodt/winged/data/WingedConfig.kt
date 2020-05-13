@@ -10,6 +10,9 @@ class WingedConfig : ConfigData {
     @ConfigEntry.Gui.Tooltip
     var removeWingsDamage = 12f
 
+    @ConfigEntry.Gui.Tooltip
+    var heartOfTheSkyItemTicksPerDamage = 40
+
     @ConfigEntry.Category("lootTables")
     @ConfigEntry.Gui.TransitiveObject
     var lootTables = LootTablesConfig()
