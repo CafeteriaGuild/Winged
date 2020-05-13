@@ -1,6 +1,7 @@
 package net.adriantodt.winged
 
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig
+import me.sargunvohra.mcmods.autoconfig1u.ConfigHolder
 import me.sargunvohra.mcmods.autoconfig1u.serializer.JanksonConfigSerializer
 import nerdhub.cardinal.components.api.ComponentRegistry
 import nerdhub.cardinal.components.api.ComponentType
@@ -19,18 +20,23 @@ import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.ItemGroup
 import net.minecraft.item.ItemStack
 import net.minecraft.util.registry.DefaultedRegistry
+import org.apache.logging.log4j.LogManager
+import org.apache.logging.log4j.Logger
 
 @Suppress("MemberVisibilityCanBePrivate")
 object Winged : ModInitializer {
-    val data: WingedDataObject get() = WingedDataObjectImpl(configHolder.config)
+    val logger: Logger = LogManager.getLogger(Winged.javaClass)
+
+    val configHolder: ConfigHolder<WingedConfig> =
+        AutoConfig.register(WingedConfig::class.java, ::JanksonConfigSerializer)
+
+    val data: WingedDataObject = WingedDataObjectImpl(configHolder.config)
 
     val wingRegistry = DefaultedRegistry<Wing>("minecraft:elytra")
 
     val playerComponentType: ComponentType<PlayerComponent> = ComponentRegistry.INSTANCE
         .registerIfAbsent(identifier("player_data"), PlayerComponent::class.java)
         .attach(EntityComponentCallback.event(PlayerEntity::class.java), ::DefaultPlayerComponent)
-
-    val configHolder = AutoConfig.register(WingedConfig::class.java, ::JanksonConfigSerializer)
 
     fun init() {
         EntityComponents.setRespawnCopyStrategy(playerComponentType, RespawnCopyStrategy.ALWAYS_COPY)

@@ -18,11 +18,15 @@ class WingedDataObjectImpl(config: WingedConfig) : WingedDataObject {
         override var constantVelocity = config.boosters.forwardLauncher.constantVelocity
         override var interpolatingVelocity: Double = config.boosters.forwardLauncher.interpolatingVelocity
         override var frictionFactor = config.boosters.forwardLauncher.frictionFactor
+
+        override fun toString(): String {
+            return "(constantVelocity=$constantVelocity, interpolatingVelocity=$interpolatingVelocity, frictionFactor=$frictionFactor)"
+        }
     }
 
     override var removeWingsDamage = config.removeWingsDamage
 
-    override fun booster(type: BoosterType): BoosterData = baseBoosterMap[type] ?: error("Impossible.")
+    override fun booster(type: BoosterType): BoosterData = boosterMap[type] ?: error("Impossible.")
     override fun fuelPellet(type: BoosterType): FuelPelletData = fuelPelletMap[type] ?: error("Impossible.")
 
     // private stuff here
@@ -32,7 +36,7 @@ class WingedDataObjectImpl(config: WingedConfig) : WingedDataObject {
         SLOW to LazyFuelPelletData(2, 0, 1, fun() = slowBooster)
     )
 
-    private val baseBoosterMap = mapOf(
+    private val boosterMap = mapOf(
         STANDARD to LazyBoosterData(config, STANDARD, fun() = standardBooster, fun() = standardBoosterActive),
         SLOW to LazyBoosterData(config, SLOW, fun() = slowBooster, fun() = slowBoosterActive),
         FAST to LazyBoosterData(config, FAST, fun() = fastBooster, fun() = fastBoosterActive)
@@ -51,6 +55,10 @@ class WingedDataObjectImpl(config: WingedConfig) : WingedDataObject {
         override var constantVelocity: Double = type.fromConfig(config.boosters).constantVelocity
         override var interpolatingVelocity: Double = type.fromConfig(config.boosters).interpolatingVelocity
         override var frictionFactor: Double = type.fromConfig(config.boosters).frictionFactor
+
+        override fun toString(): String {
+            return "(ticksPerDamage=$ticksPerDamage, constantVelocity=$constantVelocity, interpolatingVelocity=$interpolatingVelocity, frictionFactor=$frictionFactor)"
+        }
     }
 
     private class LazyFuelPelletData(
@@ -60,5 +68,14 @@ class WingedDataObjectImpl(config: WingedConfig) : WingedDataObject {
         block: () -> BoosterItem
     ) : FuelPelletData {
         override val resultItem by lazy(block)
+
+        override fun toString(): String {
+            return "(standardPellets=$standardPellets, fastPellets=$fastPellets, slowPellets=$slowPellets)"
+        }
     }
+
+    override fun toString(): String {
+        return "(launcherVelocity=$launcherVelocity, removeWingsDamage=$removeWingsDamage, fuelPellets=$fuelPelletMap, boosters=$boosterMap)"
+    }
+
 }
