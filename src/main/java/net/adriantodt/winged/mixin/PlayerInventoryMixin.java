@@ -41,21 +41,19 @@ public abstract class PlayerInventoryMixin implements WingedPlayerInventory {
     public PlayerEntity player;
 
     @Override
-    public boolean hasAtLeast(ItemConvertible item, int count) {
-        if (count == 0) return true;
+    public int count(ItemConvertible item) {
+        int count = 0;
         for (ItemStack itemStack : this.main) {
             if (itemStack.getItem() == item.asItem()) {
-                count -= itemStack.getCount();
-                if (count <= 0) return true;
+                count += itemStack.getCount();
             }
         }
         for (ItemStack itemStack : this.offHand) {
             if (itemStack.getItem() == item.asItem()) {
-                count -= itemStack.getCount();
-                if (count <= 0) return true;
+                count += itemStack.getCount();
             }
         }
-        return count <= 0;
+        return count;
     }
 
     @Override
@@ -66,13 +64,12 @@ public abstract class PlayerInventoryMixin implements WingedPlayerInventory {
             if (itemStack.getItem() == item.asItem()) {
                 if (itemStack.getCount() <= count) {
                     count -= itemStack.getCount();
-                    this.main.set(0, ItemStack.EMPTY);
-                }
-                itemStack.decrement(count);
-            }
+                    this.main.set(i, ItemStack.EMPTY);
 
-            if (count <= 0) {
-                return;
+                } else {
+                    itemStack.decrement(count);
+                    return;
+                }
             }
         }
         for (int i = 0; i < this.offHand.size(); i++) {
@@ -80,13 +77,12 @@ public abstract class PlayerInventoryMixin implements WingedPlayerInventory {
             if (itemStack.getItem() == item.asItem()) {
                 if (itemStack.getCount() <= count) {
                     count -= itemStack.getCount();
-                    this.offHand.set(0, ItemStack.EMPTY);
-                }
-                itemStack.decrement(count);
-            }
+                    this.main.set(i, ItemStack.EMPTY);
 
-            if (count <= 0) {
-                return;
+                } else {
+                    itemStack.decrement(count);
+                    return;
+                }
             }
         }
     }

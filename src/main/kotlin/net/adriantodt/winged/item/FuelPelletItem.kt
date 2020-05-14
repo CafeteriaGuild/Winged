@@ -23,9 +23,9 @@ class FuelPelletItem(settings: Settings, private val data: WingedDataObject.Fuel
         if (user.isSneaking && user.inventory is WingedPlayerInventory) {
             val inv = user.inventory as WingedPlayerInventory
             if (
-                inv.hasAtLeast(standardFuelPellet, data.standardPellets) &&
-                inv.hasAtLeast(fastFuelPellet, data.fastPellets) &&
-                inv.hasAtLeast(slowFuelPellet, data.slowPellets) &&
+                inv.count(standardFuelPellet) >= data.standardPellets &&
+                inv.count(fastFuelPellet) >= data.fastPellets &&
+                inv.count(slowFuelPellet) >= data.slowPellets &&
                 inv.takeOneAndReplace(emptyBooster, data.resultItem)
             ) {
                 inv.takeFromInventory(standardFuelPellet, data.standardPellets)

@@ -4,7 +4,7 @@ import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
 
 public interface WingedPlayerInventory {
-    boolean hasAtLeast(ItemConvertible item, int count);
+    int count(ItemConvertible item);
 
     void takeFromInventory(ItemConvertible item, int count);
 
