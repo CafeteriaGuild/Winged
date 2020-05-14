@@ -49,8 +49,8 @@ dependencies {
     //include "com.github.OnyxStudios.Cardinal-Components-API:cardinal-components-level:${project.cardinal_components_version}"
 
     //DEPENDENCY: Player Ability Lib
-    modImplementation "io.github.ladysnake:PlayerAbilityLib:${pal_version}"
-    include "io.github.ladysnake:PlayerAbilityLib:${pal_version}"
+    modImplementation "io.github.ladysnake:PlayerAbilityLib:${project.pal_version}"
+    include "io.github.ladysnake:PlayerAbilityLib:${project.pal_version}"
 
     // Config and ModMenu Compat
     modApi "me.sargunvohra.mcmods:autoconfig1u:2.1.0"
