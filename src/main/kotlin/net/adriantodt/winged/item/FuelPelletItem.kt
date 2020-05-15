@@ -5,7 +5,7 @@ import net.adriantodt.winged.WingedUtilityItems.emptyBooster
 import net.adriantodt.winged.WingedUtilityItems.fastFuelPellet
 import net.adriantodt.winged.WingedUtilityItems.slowFuelPellet
 import net.adriantodt.winged.WingedUtilityItems.standardFuelPellet
-import net.adriantodt.winged.data.WingedDataObject
+import net.adriantodt.winged.data.WingedData
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
 import net.minecraft.client.item.TooltipContext
@@ -18,7 +18,7 @@ import net.minecraft.util.Hand
 import net.minecraft.util.TypedActionResult
 import net.minecraft.world.World
 
-class FuelPelletItem(settings: Settings, private val data: WingedDataObject.FuelPelletData) : Item(settings) {
+class FuelPelletItem(settings: Settings, private val data: WingedData.FuelPelletData) : Item(settings) {
     override fun use(world: World, user: PlayerEntity, hand: Hand): TypedActionResult<ItemStack> {
         if (user.isSneaking && user.inventory is WingedPlayerInventory) {
             val inv = user.inventory as WingedPlayerInventory

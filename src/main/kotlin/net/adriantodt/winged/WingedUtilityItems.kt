@@ -1,7 +1,7 @@
 package net.adriantodt.winged
 
 import net.adriantodt.winged.Winged.data
-import net.adriantodt.winged.data.WingedDataObject.BoosterType.*
+import net.adriantodt.winged.data.WingedData.BoosterType.*
 import net.adriantodt.winged.item.*
 import net.minecraft.item.Item
 import net.minecraft.util.Rarity

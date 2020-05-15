@@ -2,7 +2,7 @@ package net.adriantodt.winged.item
 
 import net.adriantodt.winged.WingedPlayerInventory
 import net.adriantodt.winged.WingedUtilityItems.emptyBooster
-import net.adriantodt.winged.data.WingedDataObject
+import net.adriantodt.winged.data.WingedData
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
 import net.minecraft.client.item.TooltipContext
@@ -18,7 +18,7 @@ import net.minecraft.util.TypedActionResult
 import net.minecraft.world.World
 
 
-class ActiveBoosterItem(settings: Settings, private val data: WingedDataObject.BoosterData) : Item(settings) {
+class ActiveBoosterItem(settings: Settings, private val data: WingedData.BoosterData) : Item(settings) {
     override fun use(world: World?, user: PlayerEntity, hand: Hand): TypedActionResult<ItemStack> {
         return TypedActionResult.success(data.toBooster(user.getStackInHand(hand)))
     }

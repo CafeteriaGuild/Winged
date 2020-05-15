@@ -1,7 +1,7 @@
 package net.adriantodt.winged.item
 
 import net.adriantodt.winged.WingedUtilityItems.emptyBooster
-import net.adriantodt.winged.data.WingedDataObject.BoosterVelocity
+import net.adriantodt.winged.data.WingedData.BoosterVelocity
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
 import net.minecraft.client.item.TooltipContext

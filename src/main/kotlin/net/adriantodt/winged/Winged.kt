@@ -12,10 +12,10 @@ import nerdhub.cardinal.components.api.util.EntityComponents
 import nerdhub.cardinal.components.api.util.RespawnCopyStrategy
 import net.adriantodt.winged.data.Wing
 import net.adriantodt.winged.data.WingedConfig
-import net.adriantodt.winged.data.WingedDataObject
+import net.adriantodt.winged.data.WingedData
 import net.adriantodt.winged.data.components.PlayerComponent
 import net.adriantodt.winged.data.components.impl.DefaultPlayerComponent
-import net.adriantodt.winged.data.impl.WingedDataObjectImpl
+import net.adriantodt.winged.data.impl.WingedDataImpl
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder
 import net.minecraft.entity.player.PlayerEntity
@@ -33,7 +33,7 @@ object Winged : ModInitializer {
     val configHolder: ConfigHolder<WingedConfig> =
         AutoConfig.register(WingedConfig::class.java, ::JanksonConfigSerializer)
 
-    val data: WingedDataObject = WingedDataObjectImpl(configHolder.config)
+    val data: WingedData = WingedDataImpl(configHolder.config)
 
     val wingRegistry = DefaultedRegistry<Wing>("minecraft:elytra")
 

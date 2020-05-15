@@ -2,7 +2,7 @@ package net.adriantodt.winged
 
 import io.netty.buffer.Unpooled
 import net.adriantodt.winged.Winged.configHolder
-import net.adriantodt.winged.data.WingedDataObject.BoosterType.*
+import net.adriantodt.winged.data.WingedData.BoosterType.*
 import net.fabricmc.fabric.api.network.ServerSidePacketRegistry
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.network.PacketByteBuf

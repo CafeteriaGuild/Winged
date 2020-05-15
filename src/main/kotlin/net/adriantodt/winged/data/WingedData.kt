@@ -8,24 +8,8 @@ import net.minecraft.entity.LivingEntity
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
 
-interface WingedDataObject {
-    interface Accessible<T> {
-        fun access(): T
-    }
-
-    enum class BoosterType {
-        STANDARD {
-            override fun fromConfig(config: WingedConfig.BoostersConfig) = config.standardBooster
-        },
-        FAST {
-            override fun fromConfig(config: WingedConfig.BoostersConfig) = config.fastBooster
-        },
-        SLOW {
-            override fun fromConfig(config: WingedConfig.BoostersConfig) = config.slowBooster
-        };
-
-        abstract fun fromConfig(config: WingedConfig.BoostersConfig): WingedConfig.BoosterValues
-    }
+interface WingedData {
+    enum class BoosterType { STANDARD, FAST, SLOW }
 
     interface BoosterVelocity {
         // Positive, greater than zero. Default 0.1

@@ -15,9 +15,7 @@ import net.minecraft.world.World
 
 
 class HeartOfTheSkyItem(settings: Settings) : Item(settings) {
-    override fun hasEnchantmentGlint(stack: ItemStack?): Boolean {
-        return true
-    }
+    override fun hasEnchantmentGlint(stack: ItemStack?) = true
 
     @Environment(EnvType.CLIENT)
     override fun appendTooltip(stack: ItemStack, world: World?, tooltip: MutableList<Text>, ctx: TooltipContext) {
