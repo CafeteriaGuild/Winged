@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "winged:item/wip_icon"
+    "layer0": "winged:item/heart_of_the_sky"
   }
 }
