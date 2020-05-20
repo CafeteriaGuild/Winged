@@ -19,12 +19,14 @@ class HeartOfTheSkyItem(settings: Settings) : Item(settings) {
 
     @Environment(EnvType.CLIENT)
     override fun appendTooltip(stack: ItemStack, world: World?, tooltip: MutableList<Text>, ctx: TooltipContext) {
-        tooltip += TranslatableText("$translationKey.description")
-        tooltip += TranslatableText("tooltip.winged.heart_of_the_sky")
+        tooltip.add(TranslatableText("$translationKey.description"))
+        tooltip.add(TranslatableText("tooltip.winged.heart_of_the_sky"))
         if (ctx.isAdvanced) {
-            tooltip += TranslatableText(
-                "tooltip.winged.time_left",
-                secondsLeft(stack, data.heartOfTheSkyItemTicksPerDamage)
+            tooltip.add(
+                TranslatableText(
+                    "tooltip.winged.time_left",
+                    secondsLeft(stack, data.heartOfTheSkyItemTicksPerDamage)
+                )
             )
         }
     }

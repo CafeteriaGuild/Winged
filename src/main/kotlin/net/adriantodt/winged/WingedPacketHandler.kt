@@ -5,8 +5,8 @@ import net.adriantodt.winged.Winged.configHolder
 import net.adriantodt.winged.data.WingedData.BoosterType.*
 import net.fabricmc.fabric.api.network.ServerSidePacketRegistry
 import net.minecraft.nbt.CompoundTag
-import net.minecraft.network.PacketByteBuf
 import net.minecraft.server.network.ServerPlayerEntity
+import net.minecraft.util.PacketByteBuf
 
 
 object WingedPacketHandler {

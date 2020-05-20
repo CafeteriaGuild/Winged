@@ -40,12 +40,13 @@ dependencies {
     modImplementation "net.fabricmc:fabric-language-kotlin:${project.fabric_kotlin_version}"
 
     //DEPENDENCY: Cardinal Components
-    modApi "com.github.OnyxStudios.Cardinal-Components-API:cardinal-components-base:${project.cardinal_components_version}"
-    modImplementation "com.github.OnyxStudios.Cardinal-Components-API:cardinal-components-entity:${project.cardinal_components_version}"
+    //On 1.15.2 it's not OnyxStudios but NerdHubMC
+    modApi "com.github.NerdHubMC.Cardinal-Components-API:cardinal-components-base:${project.cardinal_components_version}"
+    modImplementation "com.github.NerdHubMC.Cardinal-Components-API:cardinal-components-entity:${project.cardinal_components_version}"
     //modImplementation "com.github.OnyxStudios.Cardinal-Components-API:cardinal-components-level:${project.cardinal_components_version}"
 
-    include "com.github.OnyxStudios.Cardinal-Components-API:cardinal-components-base:${project.cardinal_components_version}"
-    include "com.github.OnyxStudios.Cardinal-Components-API:cardinal-components-entity:${project.cardinal_components_version}"
+    include "com.github.NerdHubMC.Cardinal-Components-API:cardinal-components-base:${project.cardinal_components_version}"
+    include "com.github.NerdHubMC.Cardinal-Components-API:cardinal-components-entity:${project.cardinal_components_version}"
     //include "com.github.OnyxStudios.Cardinal-Components-API:cardinal-components-level:${project.cardinal_components_version}"
 
     //DEPENDENCY: Player Ability Lib
@@ -55,10 +56,11 @@ dependencies {
     // Config and ModMenu Compat
     modApi "me.sargunvohra.mcmods:autoconfig1u:2.1.0"
     include "me.sargunvohra.mcmods:autoconfig1u:2.1.0"
-    modImplementation "io.github.prospector:modmenu:1.11.4+build.9"
+    modImplementation "io.github.prospector:modmenu:1.10.0+build.28"
 
     // Test environiment with some mods
-    modRuntime "me.shedaniel:RoughlyEnoughItems:4.3.2-unstable"
+    modRuntime "io.github.prospector:modmenu:1.10.0+build.28"
+    //modRuntime "me.shedaniel:RoughlyEnoughItems:4.3.2-unstable"
 
     // PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
     // You may need to force-disable transitiveness on them.

@@ -29,7 +29,7 @@ public abstract class ClientPlayerEntityMixin extends PlayerEntityMixin {
             method = "tickMovement"
     )
     public void tickMovement(CallbackInfo info) {
-        if (Winged.INSTANCE.getPlayerComponentType().get(this).getWing() != null && this.checkFallFlying()) {
+        if (Winged.INSTANCE.getPlayerComponentType().get(this).getWing() != null && this.method_23668()) {
             //noinspection ConstantConditions
             this.networkHandler.sendPacket(new ClientCommandC2SPacket((ClientPlayerEntity) ((Object) this), ClientCommandC2SPacket.Mode.START_FALL_FLYING));
         }

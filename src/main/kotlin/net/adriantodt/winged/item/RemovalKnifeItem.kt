@@ -38,7 +38,7 @@ class RemovalKnifeItem(settings: Settings) : Item(settings) {
 
     @Environment(EnvType.CLIENT)
     override fun appendTooltip(stack: ItemStack, world: World?, tooltip: MutableList<Text>, ctx: TooltipContext) {
-        tooltip += TranslatableText("$translationKey.lore1")
-        tooltip += TranslatableText("tooltip.winged.remove_wing_item")
+        tooltip.add(TranslatableText("$translationKey.lore1"))
+        tooltip.add(TranslatableText("tooltip.winged.remove_wing_item"))
     }
 }

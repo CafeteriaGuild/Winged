@@ -12,22 +12,22 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class PlayerEntityMixin extends LivingEntityMixin {
 
     @Shadow
-    public abstract boolean checkFallFlying();
+    public abstract boolean method_23668(); //checkFallFlying
 
     @Shadow
-    public abstract void startFallFlying();
+    public abstract void method_23669(); //startFallFlying
 
     @Inject(
             at = @At(
                     value = "INVOKE_ASSIGN",
                     target = "Lnet/minecraft/entity/player/PlayerEntity;getEquippedStack(Lnet/minecraft/entity/EquipmentSlot;)Lnet/minecraft/item/ItemStack;"
             ),
-            method = "checkFallFlying",
+            method = "method_23668",
             cancellable = true
     )
     public void checkFallFlying(CallbackInfoReturnable<Boolean> info) {
         if (Winged.INSTANCE.getPlayerComponentType().get(this).getWing() != null) {
-            this.startFallFlying();
+            this.method_23669();
             info.setReturnValue(true);
         }
     }

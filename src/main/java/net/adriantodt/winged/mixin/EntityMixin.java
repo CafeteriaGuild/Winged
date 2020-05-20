@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.Shadow;
 @Mixin(Entity.class)
 public abstract class EntityMixin {
     @Shadow
-    public abstract boolean isOnGround();
+    public boolean onGround;
 
     @Shadow
     protected abstract boolean getFlag(int index);

@@ -73,9 +73,9 @@ object WingedLootTables {
             lootTable(identifier) {
                 if (poolConfig.generate) {
                     addPool {
-                        rolls(ConstantLootTableRange.create(1))
-                        with(ItemEntry.builder(if (poolConfig.broken) brokenCoreOfFlight else coreOfFlight))
-                        conditionally(RandomChanceLootCondition.builder(poolConfig.chance.coerceIn(0f, 1f)))
+                        withRolls(ConstantLootTableRange.create(1))
+                        withEntry(ItemEntry.builder(if (poolConfig.broken) brokenCoreOfFlight else coreOfFlight))
+                        withCondition(RandomChanceLootCondition.builder(poolConfig.chance.coerceIn(0f, 1f)))
                     }
                 }
             }
@@ -84,16 +84,16 @@ object WingedLootTables {
             lootTable(identifier) {
                 if (poolConfig.drop) {
                     addPool {
-                        rolls(ConstantLootTableRange.create(1))
-                        with(ItemEntry.builder(item))
-                        conditionally(
+                        withRolls(ConstantLootTableRange.create(1))
+                        withEntry(ItemEntry.builder(item))
+                        withCondition(
                             RandomChanceWithLootingLootCondition.builder(
                                 poolConfig.chance.coerceIn(0f, 1f),
                                 poolConfig.lootingMultiplier.coerceIn(0f, 1f)
                             )
                         )
                         if (poolConfig.requirePlayer) {
-                            conditionally(KilledByPlayerLootCondition.builder())
+                            withCondition(KilledByPlayerLootCondition.builder())
                         }
                     }
                 }
@@ -103,18 +103,18 @@ object WingedLootTables {
             lootTable(identifier) {
                 if (poolConfig.drop) {
                     addPool {
-                        rolls(ConstantLootTableRange.create(1))
-                        with(ItemEntry.builder(item))
-                        conditionally(
+                        withRolls(ConstantLootTableRange.create(1))
+                        withEntry(ItemEntry.builder(item))
+                        withCondition(
                             RandomChanceWithLootingLootCondition.builder(
                                 poolConfig.chance.coerceIn(0f, 1f),
                                 poolConfig.lootingMultiplier.coerceIn(0f, 1f)
                             )
                         )
                         if (poolConfig.requirePlayer) {
-                            conditionally(KilledByPlayerLootCondition.builder())
+                            withCondition(KilledByPlayerLootCondition.builder())
                         }
-                        conditionally(
+                        withCondition(
                             EntityPropertiesLootCondition.builder(
                                 LootContext.EntityTarget.THIS,
                                 EntityPredicate.Builder.create()
@@ -142,7 +142,7 @@ object WingedLootTables {
         val setter: LootTableLoadingCallback.LootTableSetter
     ) {
         fun addPool(block: FabricLootPoolBuilder.() -> Unit) {
-            supplier.pool(FabricLootPoolBuilder.builder().also(block))
+            supplier.withPool(FabricLootPoolBuilder.builder().also(block))
         }
     }
 

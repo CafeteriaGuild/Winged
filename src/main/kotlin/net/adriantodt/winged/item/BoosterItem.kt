@@ -28,10 +28,10 @@ class BoosterItem(settings: Settings, private val data: WingedData.BoosterData) 
 
     @Environment(EnvType.CLIENT)
     override fun appendTooltip(stack: ItemStack, world: World?, tooltip: MutableList<Text>, ctx: TooltipContext) {
-        tooltip += TranslatableText("$translationKey.description")
-        tooltip += TranslatableText("tooltip.winged.activate_booster")
+        tooltip.add(TranslatableText("$translationKey.description"))
+        tooltip.add(TranslatableText("tooltip.winged.activate_booster"))
         if (ctx.isAdvanced) {
-            tooltip += TranslatableText("tooltip.winged.time_left", data.secondsLeft(stack))
+            tooltip.add(TranslatableText("tooltip.winged.time_left", data.secondsLeft(stack)))
         }
     }
 }

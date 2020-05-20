@@ -38,8 +38,8 @@ class FuelPelletItem(settings: Settings, private val data: WingedData.FuelPellet
 
     @Environment(EnvType.CLIENT)
     override fun appendTooltip(stack: ItemStack?, world: World?, tooltip: MutableList<Text?>, ctx: TooltipContext?) {
-        tooltip += TranslatableText("$translationKey.description")
-        tooltip += TranslatableText("tooltip.winged.craft_booster1")
-        tooltip += TranslatableText("tooltip.winged.craft_booster2", TranslatableText(data.resultItem.translationKey))
+        tooltip.add(TranslatableText("$translationKey.description"))
+        tooltip.add(TranslatableText("tooltip.winged.craft_booster1"))
+        tooltip.add(TranslatableText("tooltip.winged.craft_booster2", TranslatableText(data.resultItem.translationKey)))
     }
 }

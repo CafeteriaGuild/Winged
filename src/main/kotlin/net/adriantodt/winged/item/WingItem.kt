@@ -35,8 +35,8 @@ class WingItem(settings: Settings, private val wingId: Identifier) : Item(settin
 
     @Environment(EnvType.CLIENT)
     override fun appendTooltip(stack: ItemStack?, world: World?, tooltip: MutableList<Text?>, ctx: TooltipContext?) {
-        tooltip += TranslatableText("$translationKey.description")
-        tooltip += TranslatableText("tooltip.winged.any_wing_item")
-        tooltip += TranslatableText("tooltip.winged.wing_author", wing.authors)
+        tooltip.add(TranslatableText("$translationKey.description"))
+        tooltip.add(TranslatableText("tooltip.winged.any_wing_item"))
+        tooltip.add(TranslatableText("tooltip.winged.wing_author", wing.authors))
     }
 }
