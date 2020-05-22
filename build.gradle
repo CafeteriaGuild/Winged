@@ -55,10 +55,10 @@ dependencies {
     // Config and ModMenu Compat
     modApi "me.sargunvohra.mcmods:autoconfig1u:2.1.0"
     include "me.sargunvohra.mcmods:autoconfig1u:2.1.0"
-    modImplementation "io.github.prospector:modmenu:1.11.4+build.9"
+    modImplementation "io.github.prospector:modmenu:1.11.6+build.11"
 
     // Test environiment with some mods
-    modRuntime "me.shedaniel:RoughlyEnoughItems:4.3.2-unstable"
+    modRuntime "me.shedaniel:RoughlyEnoughItems:4.3.11-unstable"
 
     // PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
     // You may need to force-disable transitiveness on them.

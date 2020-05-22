@@ -8,8 +8,7 @@ import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.util.Identifier
 
-class DefaultPlayerComponent(private val owner: PlayerEntity) :
-    PlayerComponent {
+class DefaultPlayerComponent(private val owner: PlayerEntity) : PlayerComponent {
     override var wing: Wing? = null
         set(value) {
             field = value
@@ -24,9 +23,7 @@ class DefaultPlayerComponent(private val owner: PlayerEntity) :
     }
 
     override fun fromTag(tag: CompoundTag) {
-        if (tag.contains(WING_TAG)) {
-            wing = Winged.wingRegistry[Identifier(tag.getString(WING_TAG))]
-        }
+        wing = if (tag.contains(WING_TAG)) Winged.wingRegistry[Identifier(tag.getString(WING_TAG))] else null
     }
 
     override fun getComponentType(): ComponentType<PlayerComponent> {
