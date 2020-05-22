@@ -1,5 +1,11 @@
 # Winged Mod
 
+### DISCLAIMER:
+
+This mod's **code** is licensed under Apache-2.0. The textures are ___not Apache-2.0___.
+
+You can freely use the code, but textures must be licensed from each artist individually.
+
 ### Thanks to:
 
 - The following wing textures are from [lemoncake__](https://www.reddit.com/user/lemoncake__/).
