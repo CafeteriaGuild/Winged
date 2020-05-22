@@ -10,6 +10,7 @@ import nerdhub.cardinal.components.api.ComponentType
 import nerdhub.cardinal.components.api.event.EntityComponentCallback
 import nerdhub.cardinal.components.api.util.EntityComponents
 import nerdhub.cardinal.components.api.util.RespawnCopyStrategy
+import net.adriantodt.winged.command.WingedCommand
 import net.adriantodt.winged.data.Wing
 import net.adriantodt.winged.data.WingedConfig
 import net.adriantodt.winged.data.WingedData
@@ -18,13 +19,13 @@ import net.adriantodt.winged.data.components.impl.DefaultPlayerComponent
 import net.adriantodt.winged.data.impl.WingedDataImpl
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder
+import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.ItemGroup
 import net.minecraft.item.ItemStack
 import net.minecraft.util.registry.DefaultedRegistry
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
-
 
 @Suppress("MemberVisibilityCanBePrivate")
 object Winged : ModInitializer {
@@ -61,6 +62,6 @@ object Winged : ModInitializer {
         WingedUtilityItems.register()
         WingItems.register()
         WingedLootTables.register(configHolder.config)
-
+        CommandRegistrationCallback.EVENT.register(WingedCommand)
     }
 }

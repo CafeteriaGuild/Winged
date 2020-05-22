@@ -14,11 +14,13 @@ import net.minecraft.text.TranslatableText
 import net.minecraft.util.Hand
 import net.minecraft.util.Identifier
 import net.minecraft.util.TypedActionResult
+import net.minecraft.util.Util
 import net.minecraft.world.World
 
 
 class WingItem(settings: Settings, private val wingId: Identifier) : Item(settings) {
     private val wing by lazy { wingRegistry[wingId] }
+    private val wingTranslationKey: String = Util.createTranslationKey("wing", wingId)
 
     override fun use(world: World, user: PlayerEntity, hand: Hand): TypedActionResult<ItemStack> {
         val itemStack = user.getStackInHand(hand)
@@ -33,9 +35,11 @@ class WingItem(settings: Settings, private val wingId: Identifier) : Item(settin
         return TypedActionResult.success(itemStack)
     }
 
+    override fun getOrCreateTranslationKey() = wingTranslationKey
+
     @Environment(EnvType.CLIENT)
     override fun appendTooltip(stack: ItemStack?, world: World?, tooltip: MutableList<Text?>, ctx: TooltipContext?) {
-        tooltip.add(TranslatableText("$translationKey.description"))
+        tooltip.add(TranslatableText("$wingTranslationKey.description"))
         tooltip.add(TranslatableText("tooltip.winged.any_wing_item"))
         tooltip.add(TranslatableText("tooltip.winged.wing_author", wing.authors))
     }
