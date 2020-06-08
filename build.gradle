@@ -8,7 +8,7 @@ sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
 archivesBaseName = project.archives_base_name
-version = project.mod_version
+version = project.minecraft_version + '-' + project.mod_version
 group = project.maven_group
 
 minecraft {
@@ -52,13 +52,19 @@ dependencies {
     modImplementation "io.github.ladysnake:PlayerAbilityLib:${project.pal_version}"
     include "io.github.ladysnake:PlayerAbilityLib:${project.pal_version}"
 
-    // Config and ModMenu Compat
-    modApi "me.sargunvohra.mcmods:autoconfig1u:2.1.0"
-    include "me.sargunvohra.mcmods:autoconfig1u:2.1.0"
-    modImplementation "io.github.prospector:modmenu:1.11.6+build.11"
+    //DEPENDENCY: Cloth Config 2
+    modApi "me.shedaniel.cloth:config-2:${project.cloth_config_version}"
+    include "me.shedaniel.cloth:config-2:${project.cloth_config_version}"
+
+    //DEPENDENCY: AutoConfig1u
+    modApi "me.sargunvohra.mcmods:autoconfig1u:${project.autoconfig1u_version}"
+    include "me.sargunvohra.mcmods:autoconfig1u:${project.autoconfig1u_version}"
+
+    //COMPATIBILITY: ModMenu
+    modImplementation "io.github.prospector:modmenu:${project.modmenu_version}"
 
     // Test environiment with some mods
-    modRuntime "me.shedaniel:RoughlyEnoughItems:4.3.11-unstable"
+    //modRuntime "me.shedaniel:RoughlyEnoughItems:4.3.13-unstable"
 
     // PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
     // You may need to force-disable transitiveness on them.

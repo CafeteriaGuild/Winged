@@ -28,6 +28,7 @@ class ActiveBoosterItem(settings: Settings, private val data: WingedData.Booster
             val inv = user.inventory as WingedPlayerInventory
             if (user.isFallFlying) {
                 val ticksLeft = stack.tag?.getInt("TicksLeft") ?: 0
+                val unbreakable = stack.tag?.getBoolean("Unbreakable") ?: false
                 if (world.isClient && ticksLeft % 5 == 1) {
                     world.addParticle(
                         ParticleTypes.FIREWORK,
@@ -38,7 +39,7 @@ class ActiveBoosterItem(settings: Settings, private val data: WingedData.Booster
                     )
                 }
                 when {
-                    user.isCreative -> {
+                    user.isCreative || unbreakable -> {
                         data.applyBoost(user)
                         inv.ensureOnlyActiveBooster(stack)
                     }

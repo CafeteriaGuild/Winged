@@ -8,6 +8,8 @@ import me.sargunvohra.mcmods.autoconfig1u.ConfigHolder
 import me.sargunvohra.mcmods.autoconfig1u.serializer.JanksonConfigSerializer
 import nerdhub.cardinal.components.api.ComponentRegistry
 import nerdhub.cardinal.components.api.ComponentType
+import nerdhub.cardinal.components.api.component.Component
+import nerdhub.cardinal.components.api.component.ComponentContainer
 import nerdhub.cardinal.components.api.event.EntityComponentCallback
 import nerdhub.cardinal.components.api.util.EntityComponents
 import nerdhub.cardinal.components.api.util.RespawnCopyStrategy
@@ -21,6 +23,8 @@ import net.adriantodt.winged.data.impl.WingedDataImpl
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback
+import net.fabricmc.fabric.api.event.Event
+import net.minecraft.entity.Entity
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.ItemGroup
 import net.minecraft.item.ItemStack
@@ -46,11 +50,13 @@ object Winged : ModInitializer {
 
     val playerComponentType: ComponentType<PlayerComponent> = ComponentRegistry.INSTANCE
         .registerIfAbsent(identifier("player_data"), PlayerComponent::class.java)
-        .attach(EntityComponentCallback.event(PlayerEntity::class.java), ::DefaultPlayerComponent)
 
     val heartOfTheSkyAbilitySource: AbilitySource = Pal.getAbilitySource(identifier("heart_of_the_sky"))
 
     fun init() {
+        EntityComponentCallback.event(PlayerEntity::class.java).register { entity, components ->
+            components[playerComponentType] = DefaultPlayerComponent(entity)
+        }
         EntityComponents.setRespawnCopyStrategy(playerComponentType, RespawnCopyStrategy.ALWAYS_COPY)
     }
 
@@ -69,5 +75,9 @@ object Winged : ModInitializer {
         WingItems.register()
         WingedLootTables.register(configHolder.config)
         CommandRegistrationCallback.EVENT.register(WingedCommand)
+    }
+
+    private fun <T : Entity> Event<EntityComponentCallback<T>>.register(function: (T, ComponentContainer<Component>) -> Unit) {
+        register(EntityComponentCallback(function))
     }
 }

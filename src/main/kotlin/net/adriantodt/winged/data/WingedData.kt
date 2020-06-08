@@ -41,7 +41,9 @@ interface WingedData {
         fun convertTo(stack: ItemStack, item: Item): ItemStack {
             val converted = ItemStack(item)
             converted.damage = stack.damage
-            stack.tag?.getInt("TicksLeft")?.let { converted.orCreateTag.putInt("TicksLeft", it) }
+            val tag = stack.tag
+            tag?.getInt("TicksLeft")?.let { converted.orCreateTag.putInt("TicksLeft", it) }
+            tag?.getBoolean("Unbreakable")?.let { converted.orCreateTag.putBoolean("Unbreakable", it) }
             return converted
         }
 

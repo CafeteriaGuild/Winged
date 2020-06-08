@@ -54,6 +54,8 @@ class WingedConfig : ConfigData {
         @ConfigEntry.Gui.CollapsibleObject
         var vexEssence = DropLootTable(chance = 0.1f, lootingMultiplier = 0.04f)
 
+        @ConfigEntry.Gui.CollapsibleObject
+        var holidayDrops = DropLootTable(chance = 0.01f, lootingMultiplier = 0.005f)
     }
 
     @ConfigEntry.Category("boosters")

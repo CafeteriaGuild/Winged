@@ -1,5 +1,10 @@
 package net.adriantodt.winged
 
+import com.google.gson.JsonDeserializationContext
+import com.google.gson.JsonObject
+import com.google.gson.JsonSerializationContext
+import net.adriantodt.winged.WingItems.xmasStar
+import net.adriantodt.winged.WingItems.xmasTree
 import net.adriantodt.winged.WingedLoreItems.batWing
 import net.adriantodt.winged.WingedLoreItems.blackFeather
 import net.adriantodt.winged.WingedLoreItems.brokenCoreOfFlight
@@ -15,16 +20,18 @@ import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback
 import net.minecraft.item.Item
 import net.minecraft.loot.ConstantLootTableRange
 import net.minecraft.loot.LootManager
-import net.minecraft.loot.condition.EntityPropertiesLootCondition
-import net.minecraft.loot.condition.KilledByPlayerLootCondition
-import net.minecraft.loot.condition.RandomChanceLootCondition
-import net.minecraft.loot.condition.RandomChanceWithLootingLootCondition
+import net.minecraft.loot.condition.*
 import net.minecraft.loot.context.LootContext
 import net.minecraft.loot.entry.ItemEntry
 import net.minecraft.predicate.entity.EntityFlagsPredicate
 import net.minecraft.predicate.entity.EntityPredicate
 import net.minecraft.resource.ResourceManager
 import net.minecraft.util.Identifier
+import net.minecraft.util.JsonSerializer
+import net.minecraft.util.registry.Registry
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.LinkedHashMap
 
 object WingedLootTables {
     private val abandonedMineshaft = mcIdentifier("chests/abandoned_mineshaft")
@@ -41,6 +48,7 @@ object WingedLootTables {
     private val endermite = mcIdentifier("entities/endermite")
     private val bat = mcIdentifier("entities/bat")
     private val vex = mcIdentifier("entities/vex")
+    private val skeleton = mcIdentifier("entities/skeleton")
 
     data class DropValues(val identifier: Identifier, val item: Item, val poolConfig: WingedConfig.DropLootTable)
 
@@ -67,6 +75,8 @@ object WingedLootTables {
         DropValues(bat, batWing, config.lootTables.batWing),
         DropValues(vex, vexEssence, config.lootTables.vexEssence)
     )
+
+    private val holidayDropMobs = listOf(zombie, zombieVillager, husk, drowned, skeleton, enderman, endermite)
 
     fun register(config: WingedConfig) {
         for ((identifier, poolConfig) in coreOfFlightLootTables(config)) {
@@ -125,6 +135,29 @@ object WingedLootTables {
                 }
             }
         }
+        val holidayPoolConfig = config.lootTables.holidayDrops
+        for (identifier in holidayDropMobs) {
+            lootTable(identifier) {
+                if (holidayPoolConfig.drop) {
+                    for (item in listOf(xmasStar, xmasTree)) addPool {
+                        rolls(ConstantLootTableRange.create(1))
+                        with(ItemEntry.builder(item))
+                        conditionally(
+                            RandomChanceWithLootingLootCondition.builder(
+                                holidayPoolConfig.chance.coerceIn(0f, 1f),
+                                holidayPoolConfig.lootingMultiplier.coerceIn(0f, 1f)
+                            )
+                        )
+                        if (holidayPoolConfig.requirePlayer) {
+                            conditionally(KilledByPlayerLootCondition.builder())
+                        }
+                        conditionally(IsChristmas.builder())
+                    }
+                }
+            }
+        }
+
+        Registry.register(Registry.LOOT_CONDITION_TYPE, identifier("is_christmas"), IsChristmas.type)
 
         LootTableLoadingCallback.EVENT.register(
             LootTableLoadingCallback { resourceManager, lootManager, id, supplier, setter ->
@@ -154,5 +187,24 @@ object WingedLootTables {
 
     private fun lootTable(identifier: Identifier, block: Context.() -> Unit) {
         configurators.getOrPut(identifier, ::ArrayList).add(block)
+    }
+
+    object IsChristmas : LootCondition {
+        @JvmField
+        val type = LootConditionType(Serializer)
+
+        override fun getType() = type
+
+        override fun test(t: LootContext?): Boolean {
+            // Extracted from ChestBlockEntityRenderer
+            return Calendar.getInstance().let { it[2] + 1 == 12 && it[5] >= 24 && it[5] <= 26 }
+        }
+
+        object Serializer : JsonSerializer<IsChristmas> {
+            override fun toJson(_1: JsonObject, _2: IsChristmas, _3: JsonSerializationContext) = Unit
+            override fun fromJson(_1: JsonObject, _2: JsonDeserializationContext) = IsChristmas
+        }
+
+        fun builder() = LootCondition.Builder { IsChristmas }
     }
 }
