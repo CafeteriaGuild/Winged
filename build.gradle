@@ -64,7 +64,7 @@ dependencies {
     modImplementation "io.github.prospector:modmenu:${project.modmenu_version}"
 
     // Test environiment with some mods
-    //modRuntime "me.shedaniel:RoughlyEnoughItems:4.3.13-unstable"
+    modRuntime "me.shedaniel:RoughlyEnoughItems:${project.rei_version}"
 
     // PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
     // You may need to force-disable transitiveness on them.

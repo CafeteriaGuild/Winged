@@ -73,6 +73,9 @@ object Wings {
     val yellowElytra = Wing(wingTexture("yellow_elytra_wing"), "dbrighthd")
     val xmasTree = Wing(wingTexture("xmas_tree_wing"), "dbrighthd")
     val xmasStar = Wing(wingTexture("xmas_star_wing"), "Ontvlambaar")
+    val glider = Wing(wingTexture("glider_wing"), "dbrighthd")
+    val spooky = Wing(wingTexture("spooky_wing"), "xshot_99")
+    val irreality = Wing(wingTexture("irreality_wing"), null)
 
     private fun wingTexture(path: String) = identifier("textures/entity/$path.png")
 }

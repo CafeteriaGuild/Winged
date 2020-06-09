@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "NRN",
+    "BGB",
+    "S S"
+  ],
+  "key": {
+    "R": {
+      "item": "winged:wing_elytra_red"
+    },
+    "N": {
+      "item": "minecraft:gold_nugget"
+    },
+    "G": {
+      "item": "minecraft:glowstone_dust"
+    },
+    "B": {
+      "item": "winged:bowl_of_dyes"
+    },
+    "S": {
+      "item": "minecraft:spruce_sapling"
+    }
+  },
+  "result": {
+    "item": "winged:wing_xmas_tree"
+  }
+}

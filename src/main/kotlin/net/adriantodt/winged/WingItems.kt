@@ -39,7 +39,7 @@ object WingItems {
     val dragonfly = wingItem(identifier("dragonfly").wing(Wings.dragonfly))
     val greenBeetle = wingItem(identifier("green_beetle").wing(Wings.greenBeetle))
     val purpleBeetle = wingItem(identifier("purple_beetle").wing(Wings.purpleBeetle))
-    val goldenBeetle = wingItem(identifier("golden_dragon").wing(Wings.goldenBeetle))
+    val goldenBeetle = wingItem(identifier("golden_beetle").wing(Wings.goldenBeetle))
     val friedChicken = wingItem(identifier("fried_chicken").wing(Wings.friedChicken))
     val greenDragon = wingItem(identifier("green_dragon").wing(Wings.greenDragon))
     val redDragon = wingItem(identifier("red_dragon").wing(Wings.redDragon))
@@ -78,6 +78,9 @@ object WingItems {
     val elytraBlack = wingItem(identifier("black_elytra").wing(Wings.blackElytra))
     val xmasTree = wingItem(identifier("xmas_tree").wing(Wings.xmasTree))
     val xmasStar = wingItem(identifier("xmas_star").wing(Wings.xmasStar))
+    val glider = wingItem(identifier("glider").wing(Wings.glider))
+    val spooky = wingItem(identifier("spooky").wing(Wings.spooky))
+    val irreality = wingItem(identifier("irreality").wing(Wings.irreality))
 
     fun register() {
         identifier("wing_elytra").item(elytra)
@@ -149,6 +152,9 @@ object WingItems {
         identifier("wing_elytra_black").item(elytraBlack)
         identifier("wing_xmas_tree").item(xmasTree)
         identifier("wing_xmas_star").item(xmasStar)
+        identifier("wing_glider").item(glider)
+        identifier("wing_spooky").item(spooky)
+        identifier("wing_irreality").item(irreality)
     }
 
     private fun wingItem(identifier: Identifier) = WingItem(

@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GCG",
+    "ISI",
+    "I I"
+  ],
+  "key": {
+    "C": {
+      "item": "winged:core_of_flight"
+    },
+    "G": {
+      "item": "minecraft:green_dye"
+    },
+    "S": {
+      "item": "minecraft:spider_eye"
+    },
+    "I": {
+      "item": "winged:irreality_crystal"
+    }
+  },
+  "result": {
+    "item": "winged:wing_green_beetle"
+  }
+}

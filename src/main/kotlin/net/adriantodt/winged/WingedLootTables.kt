@@ -3,6 +3,7 @@ package net.adriantodt.winged
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonObject
 import com.google.gson.JsonSerializationContext
+import net.adriantodt.winged.WingItems.spooky
 import net.adriantodt.winged.WingItems.xmasStar
 import net.adriantodt.winged.WingItems.xmasTree
 import net.adriantodt.winged.WingedLoreItems.batWing
@@ -29,9 +30,9 @@ import net.minecraft.resource.ResourceManager
 import net.minecraft.util.Identifier
 import net.minecraft.util.JsonSerializer
 import net.minecraft.util.registry.Registry
-import java.util.*
-import kotlin.collections.ArrayList
-import kotlin.collections.LinkedHashMap
+import java.util.Calendar.DAY_OF_MONTH
+import java.util.Calendar.MONTH
+import java.util.Calendar.getInstance as calendarNow
 
 object WingedLootTables {
     private val abandonedMineshaft = mcIdentifier("chests/abandoned_mineshaft")
@@ -153,11 +154,26 @@ object WingedLootTables {
                         }
                         conditionally(IsChristmas.builder())
                     }
+                    for (item in listOf(spooky)) addPool {
+                        rolls(ConstantLootTableRange.create(1))
+                        with(ItemEntry.builder(item))
+                        conditionally(
+                            RandomChanceWithLootingLootCondition.builder(
+                                holidayPoolConfig.chance.coerceIn(0f, 1f),
+                                holidayPoolConfig.lootingMultiplier.coerceIn(0f, 1f)
+                            )
+                        )
+                        if (holidayPoolConfig.requirePlayer) {
+                            conditionally(KilledByPlayerLootCondition.builder())
+                        }
+                        conditionally(IsHalloween.builder())
+                    }
                 }
             }
         }
 
         Registry.register(Registry.LOOT_CONDITION_TYPE, identifier("is_christmas"), IsChristmas.type)
+        Registry.register(Registry.LOOT_CONDITION_TYPE, identifier("is_halloween"), IsHalloween.type)
 
         LootTableLoadingCallback.EVENT.register(
             LootTableLoadingCallback { resourceManager, lootManager, id, supplier, setter ->
@@ -195,9 +211,9 @@ object WingedLootTables {
 
         override fun getType() = type
 
-        override fun test(t: LootContext?): Boolean {
+        override fun test(_1: LootContext): Boolean {
             // Extracted from ChestBlockEntityRenderer
-            return Calendar.getInstance().let { it[2] + 1 == 12 && it[5] >= 24 && it[5] <= 26 }
+            return calendarNow().let { it[MONTH] + 1 == 12 && it[DAY_OF_MONTH] in 24..26 }
         }
 
         object Serializer : JsonSerializer<IsChristmas> {
@@ -206,5 +222,26 @@ object WingedLootTables {
         }
 
         fun builder() = LootCondition.Builder { IsChristmas }
+    }
+
+    object IsHalloween : LootCondition {
+        @JvmField
+        val type = LootConditionType(Serializer)
+
+        override fun getType() = type
+
+        override fun test(_1: LootContext): Boolean {
+            // Extracted from ChestBlockEntityRenderer
+            return calendarNow().let {
+                it[MONTH] + 1 == 10 && it[DAY_OF_MONTH] in 30..31 || it[MONTH] + 1 == 11 && it[DAY_OF_MONTH] == 1
+            }
+        }
+
+        object Serializer : JsonSerializer<IsHalloween> {
+            override fun toJson(_1: JsonObject, _2: IsHalloween, _3: JsonSerializationContext) = Unit
+            override fun fromJson(_1: JsonObject, _2: JsonDeserializationContext) = IsHalloween
+        }
+
+        fun builder() = LootCondition.Builder { IsHalloween }
     }
 }

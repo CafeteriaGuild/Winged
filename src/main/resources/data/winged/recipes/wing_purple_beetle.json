@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PCP",
+    "ISI",
+    "I I"
+  ],
+  "key": {
+    "C": {
+      "item": "winged:core_of_flight"
+    },
+    "P": {
+      "item": "minecraft:purple_dye"
+    },
+    "S": {
+      "item": "minecraft:spider_eye"
+    },
+    "I": {
+      "item": "winged:irreality_crystal"
+    }
+  },
+  "result": {
+    "item": "winged:wing_purple_beetle"
+  }
+}
