@@ -29,6 +29,7 @@ object WingedUtilityItems {
     val fastFuelPellet = FuelPelletItem(itemSettings(), data.fuelPellet(FAST))
 
     val heartOfTheSky = HeartOfTheSkyItem(itemSettings().rarity(Rarity.EPIC).maxDamage(800))
+    val randomWing = GiftWingItem(itemSettings().rarity(Rarity.EPIC).maxCount(1))
 
     fun register() {
         identifier("ceremonial_knife").item(ceremonialKnife)
@@ -47,5 +48,6 @@ object WingedUtilityItems {
         identifier("fuel_pellet_fast").item(fastFuelPellet)
         identifier("fuel_pellet_slow").item(slowFuelPellet)
         identifier("heart_of_the_sky").item(heartOfTheSky)
+        identifier("wing_random").item(randomWing)
     }
 }

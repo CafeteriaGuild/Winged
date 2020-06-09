@@ -18,6 +18,7 @@ object WingedLoreItems {
     val bowlOfDyes = itemSettings().recipeRemainder(net.minecraft.item.Items.BOWL).loreItem()
     val attendeeTicket = itemSettings().rarity(Rarity.UNCOMMON).loreItem()
     val vexEssence = itemSettings().rarity(Rarity.UNCOMMON).loreItem()
+    val dragonScale = itemSettings().rarity(Rarity.UNCOMMON).loreItem()
 
     fun register() {
         identifier("core_of_flight").item(coreOfFlight)
@@ -33,5 +34,6 @@ object WingedLoreItems {
         identifier("bowl_of_dyes").item(bowlOfDyes)
         identifier("attendee_ticket").item(attendeeTicket)
         identifier("vex_essence").item(vexEssence)
+        identifier("dragon_scale").item(dragonScale)
     }
 }

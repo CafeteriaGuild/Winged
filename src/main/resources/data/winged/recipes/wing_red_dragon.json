@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "DCD",
+    "SIS",
+    "S S"
+  ],
+  "key": {
+    "C": {
+      "item": "winged:core_of_flight"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "D": {
+      "item": "minecraft:red_dye"
+    },
+    "S": {
+      "item": "winged:dragon_scale"
+    }
+  },
+  "result": {
+    "item": "winged:wing_red_dragon"
+  }
+}
