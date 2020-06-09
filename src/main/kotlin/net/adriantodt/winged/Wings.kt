@@ -77,5 +77,5 @@ object Wings {
     val spooky = Wing(wingTexture("spooky_wing"), "xshot_99")
     val irreality = Wing(wingTexture("irreality_wing"), null)
 
-    private fun wingTexture(path: String) = identifier("textures/entity/$path.png")
+    private fun wingTexture(path: String) = identifier("textures/wing/$path.png")
 }
