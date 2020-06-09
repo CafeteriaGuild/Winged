@@ -26,7 +26,7 @@ class ForwardLauncherItem(settings: Settings, private val data: BoosterVelocity)
             data.applyBoost(user)
             user.isOnGround = false
             user.checkFallFlying()
-            if (!user.isCreative) {
+            if (!user.isCreative && stack.tag?.getBoolean("Unbreakable") != true) {
                 stack.damage += 1
                 if (stack.damage == maxDamage) {
                     world.playSound(user, user.blockPos, ENTITY_ITEM_BREAK, PLAYERS, 0.8f, 1.2f)
