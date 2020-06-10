@@ -1,3 +1,5 @@
+import java.text.MessageFormat
+
 plugins {
     id 'fabric-loom'
     id 'maven-publish'
@@ -100,6 +102,21 @@ task sourcesJar(type: Jar, dependsOn: classes) {
 
 jar {
     from "LICENSE"
+}
+
+task printInfo {
+    doLast {
+        System.out << MessageFormat.format(
+                '''----- BEGIN -----
+### Release Info
+This release was built for Minecraft **{0}**, with Fabric Loader **{1}**, Fabric API **{2}** and Fabric Language Kotlin **{3}**.
+
+Mod Menu Integration was tested using version **{4}**.
+------ END ------''',
+                project.minecraft_version, project.loader_version, project.fabric_version, project.fabric_kotlin_version,
+                project.modmenu_version
+        )
+    }
 }
 
 // configure the maven publication

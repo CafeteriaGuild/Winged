@@ -9,8 +9,6 @@ import net.fabricmc.api.Environment
 
 @Environment(EnvType.CLIENT)
 class ModMenuIntegration : ModMenuApi {
-    override fun getModId() = "winged"
-
     override fun getModConfigScreenFactory() = ConfigScreenFactory {
         AutoConfig.getConfigScreen(WingedConfig::class.java, it).get()
     }
