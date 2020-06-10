@@ -83,6 +83,7 @@ object WingItems {
     val glider = wingItem(identifier("glider").wing(Wings.glider))
     val spooky = wingItem(identifier("spooky").wing(Wings.spooky))
     val irreality = wingItem(identifier("irreality").wing(Wings.irreality))
+    val glass = wingItem(identifier("glass").wing(Wings.glass))
 
     fun register() {
         identifier("wing_elytra").item(elytra.giftable())
@@ -157,6 +158,7 @@ object WingItems {
         identifier("wing_glider").item(glider.giftable())
         identifier("wing_spooky").item(spooky.giftable())
         identifier("wing_irreality").item(irreality.giftable())
+        identifier("wing_glass").item(glass.giftable())
     }
 
     private fun wingItem(identifier: Identifier) = WingItem(
