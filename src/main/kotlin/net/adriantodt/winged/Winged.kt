@@ -21,7 +21,6 @@ import net.adriantodt.winged.data.components.impl.DefaultPlayerComponent
 import net.adriantodt.winged.data.impl.WingedDataImpl
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder
-import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback
 import net.fabricmc.fabric.api.event.Event
 import net.minecraft.entity.Entity
 import net.minecraft.entity.player.PlayerEntity
@@ -68,7 +67,7 @@ object Winged : ModInitializer {
         WingedUtilityItems.register()
         WingItems.register()
         WingedLootTables.register(configHolder.config)
-        CommandRegistrationCallback.EVENT.register(WingedCommand)
+        WingedCommand.init()
     }
 
     private fun <T : Entity> Event<EntityComponentCallback<T>>.register(function: (T, ComponentContainer<Component>) -> Unit) {
