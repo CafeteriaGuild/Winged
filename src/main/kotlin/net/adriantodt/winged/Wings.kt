@@ -78,5 +78,8 @@ object Wings {
     val irreality = Wing(wingTexture("irreality_wing"), null)
     val glass = Wing(wingTexture("glass_wing"), "Cael")
 
+    //TEMPLATE -- FOR MODDERS/ARTISTS -- /GIVE ONLY
+    val template = Wing(wingTexture("template_wing"), null)
+
     private fun wingTexture(path: String) = identifier("textures/wing/$path.png")
 }

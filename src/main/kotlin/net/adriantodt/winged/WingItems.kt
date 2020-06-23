@@ -85,6 +85,9 @@ object WingItems {
     val irreality = wingItem(identifier("irreality").wing(Wings.irreality))
     val glass = wingItem(identifier("glass").wing(Wings.glass))
 
+    //TEMPLATE -- FOR MODDERS/ARTISTS -- /GIVE ONLY
+    val template = WingItem(Item.Settings().maxCount(1), identifier("template").wing(Wings.template))
+
     fun register() {
         identifier("wing_elytra").item(elytra.giftable())
         identifier("wing_mojang_cape").item(mojangCape.giftable())
@@ -159,6 +162,9 @@ object WingItems {
         identifier("wing_spooky").item(spooky.giftable())
         identifier("wing_irreality").item(irreality.giftable())
         identifier("wing_glass").item(glass.giftable())
+
+        //TEMPLATE -- FOR MODDERS/ARTISTS -- /GIVE ONLY
+        identifier("wing_template").item(template)
     }
 
     private fun wingItem(identifier: Identifier) = WingItem(
