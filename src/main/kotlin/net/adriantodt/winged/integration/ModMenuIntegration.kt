@@ -12,4 +12,6 @@ class ModMenuIntegration : ModMenuApi {
     override fun getModConfigScreenFactory() = ConfigScreenFactory {
         AutoConfig.getConfigScreen(WingedConfig::class.java, it).get()
     }
+
+    override fun getModId(): String = "winged"
 }

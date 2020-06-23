@@ -17,7 +17,7 @@ public abstract class LivingEntityMixin extends EntityMixin {
     private boolean injectAiFix(boolean value) {
         boolean bl = this.getFlag(7);
 
-        if (bl && !this.isOnGround() && !this.hasVehicle()) {
+        if (bl && !this.onGround && !this.hasVehicle()) {
             return Winged.INSTANCE.getPlayerComponentType().get(this).getWing() != null || value;
         }
         return value;

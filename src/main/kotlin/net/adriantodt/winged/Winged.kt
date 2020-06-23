@@ -1,6 +1,5 @@
 package net.adriantodt.winged
 
-import com.mojang.serialization.Lifecycle
 import io.github.ladysnake.pal.AbilitySource
 import io.github.ladysnake.pal.Pal
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig
@@ -29,7 +28,6 @@ import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.ItemGroup
 import net.minecraft.item.ItemStack
 import net.minecraft.util.registry.DefaultedRegistry
-import net.minecraft.util.registry.RegistryKey
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 
@@ -42,11 +40,7 @@ object Winged : ModInitializer {
 
     val data: WingedData = WingedDataImpl(configHolder.config)
 
-    val wingRegistry = DefaultedRegistry<Wing>(
-        "minecraft:elytra",
-        RegistryKey.ofRegistry(identifier("wing")),
-        Lifecycle.experimental()
-    )
+    val wingRegistry = DefaultedRegistry<Wing>("minecraft:elytra")
 
     val playerComponentType: ComponentType<PlayerComponent> = ComponentRegistry.INSTANCE
         .registerIfAbsent(identifier("player_data"), PlayerComponent::class.java)

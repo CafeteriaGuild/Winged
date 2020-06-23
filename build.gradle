@@ -42,12 +42,13 @@ dependencies {
     modImplementation "net.fabricmc:fabric-language-kotlin:${project.fabric_kotlin_version}"
 
     //DEPENDENCY: Cardinal Components
-    modApi "com.github.OnyxStudios.Cardinal-Components-API:cardinal-components-base:${project.cardinal_components_version}"
-    modImplementation "com.github.OnyxStudios.Cardinal-Components-API:cardinal-components-entity:${project.cardinal_components_version}"
+    //On 1.15.2 it's not OnyxStudios but NerdHubMC
+    modApi "com.github.NerdHubMC.Cardinal-Components-API:cardinal-components-base:${project.cardinal_components_version}"
+    modImplementation "com.github.NerdHubMC.Cardinal-Components-API:cardinal-components-entity:${project.cardinal_components_version}"
     //modImplementation "com.github.OnyxStudios.Cardinal-Components-API:cardinal-components-level:${project.cardinal_components_version}"
 
-    include "com.github.OnyxStudios.Cardinal-Components-API:cardinal-components-base:${project.cardinal_components_version}"
-    include "com.github.OnyxStudios.Cardinal-Components-API:cardinal-components-entity:${project.cardinal_components_version}"
+    include "com.github.NerdHubMC.Cardinal-Components-API:cardinal-components-base:${project.cardinal_components_version}"
+    include "com.github.NerdHubMC.Cardinal-Components-API:cardinal-components-entity:${project.cardinal_components_version}"
     //include "com.github.OnyxStudios.Cardinal-Components-API:cardinal-components-level:${project.cardinal_components_version}"
 
     //DEPENDENCY: Player Ability Lib

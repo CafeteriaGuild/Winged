@@ -28,8 +28,6 @@ import net.minecraft.predicate.entity.EntityFlagsPredicate
 import net.minecraft.predicate.entity.EntityPredicate
 import net.minecraft.resource.ResourceManager
 import net.minecraft.util.Identifier
-import net.minecraft.util.JsonSerializer
-import net.minecraft.util.registry.Registry
 import java.util.Calendar.DAY_OF_MONTH
 import java.util.Calendar.MONTH
 import java.util.Calendar.getInstance as calendarNow
@@ -84,9 +82,9 @@ object WingedLootTables {
             lootTable(identifier) {
                 if (poolConfig.generate) {
                     addPool {
-                        rolls(ConstantLootTableRange.create(1))
-                        with(ItemEntry.builder(if (poolConfig.broken) brokenCoreOfFlight else coreOfFlight))
-                        conditionally(RandomChanceLootCondition.builder(poolConfig.chance.coerceIn(0f, 1f)))
+                        withRolls(ConstantLootTableRange.create(1))
+                        withEntry(ItemEntry.builder(if (poolConfig.broken) brokenCoreOfFlight else coreOfFlight))
+                        withCondition(RandomChanceLootCondition.builder(poolConfig.chance.coerceIn(0f, 1f)))
                     }
                 }
             }
@@ -95,16 +93,16 @@ object WingedLootTables {
             lootTable(identifier) {
                 if (poolConfig.drop) {
                     addPool {
-                        rolls(ConstantLootTableRange.create(1))
-                        with(ItemEntry.builder(item))
-                        conditionally(
+                        withRolls(ConstantLootTableRange.create(1))
+                        withEntry(ItemEntry.builder(item))
+                        withCondition(
                             RandomChanceWithLootingLootCondition.builder(
                                 poolConfig.chance.coerceIn(0f, 1f),
                                 poolConfig.lootingMultiplier.coerceIn(0f, 1f)
                             )
                         )
                         if (poolConfig.requirePlayer) {
-                            conditionally(KilledByPlayerLootCondition.builder())
+                            withCondition(KilledByPlayerLootCondition.builder())
                         }
                     }
                 }
@@ -114,18 +112,18 @@ object WingedLootTables {
             lootTable(identifier) {
                 if (poolConfig.drop) {
                     addPool {
-                        rolls(ConstantLootTableRange.create(1))
-                        with(ItemEntry.builder(item))
-                        conditionally(
+                        withRolls(ConstantLootTableRange.create(1))
+                        withEntry(ItemEntry.builder(item))
+                        withCondition(
                             RandomChanceWithLootingLootCondition.builder(
                                 poolConfig.chance.coerceIn(0f, 1f),
                                 poolConfig.lootingMultiplier.coerceIn(0f, 1f)
                             )
                         )
                         if (poolConfig.requirePlayer) {
-                            conditionally(KilledByPlayerLootCondition.builder())
+                            withCondition(KilledByPlayerLootCondition.builder())
                         }
-                        conditionally(
+                        withCondition(
                             EntityPropertiesLootCondition.builder(
                                 LootContext.EntityTarget.THIS,
                                 EntityPredicate.Builder.create()
@@ -141,39 +139,39 @@ object WingedLootTables {
             lootTable(identifier) {
                 if (holidayPoolConfig.drop) {
                     for (item in listOf(xmasStar, xmasTree)) addPool {
-                        rolls(ConstantLootTableRange.create(1))
-                        with(ItemEntry.builder(item))
-                        conditionally(
+                        withRolls(ConstantLootTableRange.create(1))
+                        withEntry(ItemEntry.builder(item))
+                        withCondition(
                             RandomChanceWithLootingLootCondition.builder(
                                 holidayPoolConfig.chance.coerceIn(0f, 1f),
                                 holidayPoolConfig.lootingMultiplier.coerceIn(0f, 1f)
                             )
                         )
                         if (holidayPoolConfig.requirePlayer) {
-                            conditionally(KilledByPlayerLootCondition.builder())
+                            withCondition(KilledByPlayerLootCondition.builder())
                         }
-                        conditionally(IsChristmas.builder())
+                        withCondition(IsChristmas.builder())
                     }
                     for (item in listOf(spooky)) addPool {
-                        rolls(ConstantLootTableRange.create(1))
-                        with(ItemEntry.builder(item))
-                        conditionally(
+                        withRolls(ConstantLootTableRange.create(1))
+                        withEntry(ItemEntry.builder(item))
+                        withCondition(
                             RandomChanceWithLootingLootCondition.builder(
                                 holidayPoolConfig.chance.coerceIn(0f, 1f),
                                 holidayPoolConfig.lootingMultiplier.coerceIn(0f, 1f)
                             )
                         )
                         if (holidayPoolConfig.requirePlayer) {
-                            conditionally(KilledByPlayerLootCondition.builder())
+                            withCondition(KilledByPlayerLootCondition.builder())
                         }
-                        conditionally(IsHalloween.builder())
+                        withCondition(IsHalloween.builder())
                     }
                 }
             }
         }
 
-        Registry.register(Registry.LOOT_CONDITION_TYPE, identifier("is_christmas"), IsChristmas.type)
-        Registry.register(Registry.LOOT_CONDITION_TYPE, identifier("is_halloween"), IsHalloween.type)
+        LootConditions.register(IsChristmas.Factory)
+        LootConditions.register(IsHalloween.Factory)
 
         LootTableLoadingCallback.EVENT.register(
             LootTableLoadingCallback { resourceManager, lootManager, id, supplier, setter ->
@@ -191,7 +189,7 @@ object WingedLootTables {
         val setter: LootTableLoadingCallback.LootTableSetter
     ) {
         fun addPool(block: FabricLootPoolBuilder.() -> Unit) {
-            supplier.pool(FabricLootPoolBuilder.builder().also(block))
+            supplier.withPool(FabricLootPoolBuilder.builder().also(block))
         }
     }
 
@@ -206,17 +204,12 @@ object WingedLootTables {
     }
 
     object IsChristmas : LootCondition {
-        @JvmField
-        val type = LootConditionType(Serializer)
-
-        override fun getType() = type
-
         override fun test(_1: LootContext): Boolean {
             // Extracted from ChestBlockEntityRenderer
             return calendarNow().let { it[MONTH] + 1 == 12 && it[DAY_OF_MONTH] in 24..26 }
         }
 
-        object Serializer : JsonSerializer<IsChristmas> {
+        object Factory : LootCondition.Factory<IsChristmas>(identifier("is_christmas"), IsChristmas::class.java) {
             override fun toJson(_1: JsonObject, _2: IsChristmas, _3: JsonSerializationContext) = Unit
             override fun fromJson(_1: JsonObject, _2: JsonDeserializationContext) = IsChristmas
         }
@@ -225,11 +218,6 @@ object WingedLootTables {
     }
 
     object IsHalloween : LootCondition {
-        @JvmField
-        val type = LootConditionType(Serializer)
-
-        override fun getType() = type
-
         override fun test(_1: LootContext): Boolean {
             // Extracted from ChestBlockEntityRenderer
             return calendarNow().let {
@@ -237,7 +225,7 @@ object WingedLootTables {
             }
         }
 
-        object Serializer : JsonSerializer<IsHalloween> {
+        object Factory : LootCondition.Factory<IsHalloween>(identifier("is_halloween"), IsHalloween::class.java) {
             override fun toJson(_1: JsonObject, _2: IsHalloween, _3: JsonSerializationContext) = Unit
             override fun fromJson(_1: JsonObject, _2: JsonDeserializationContext) = IsHalloween
         }

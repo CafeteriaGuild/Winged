@@ -21,11 +21,11 @@ import net.minecraft.world.World
 class ForwardLauncherItem(settings: Settings, private val data: BoosterVelocity) : Item(settings) {
     override fun use(world: World, user: PlayerEntity, hand: Hand): TypedActionResult<ItemStack> {
         val stack = user.getStackInHand(hand)
-        if (user.isOnGround) {
+        if (user.onGround) {
             world.playSound(user, user.blockPos, BLOCK_PISTON_EXTEND, PLAYERS, 0.8f, 1.2f)
             data.applyBoost(user)
-            user.isOnGround = false
-            user.checkFallFlying()
+            user.onGround = false
+            user.method_23668() //checkFallFlying
             if (!user.isCreative && stack.tag?.getBoolean("Unbreakable") != true) {
                 stack.damage += 1
                 if (stack.damage == maxDamage) {
