@@ -60,11 +60,7 @@ object WingedLootTables {
     )
 
     private fun dropLootTales(config: WingedConfig) = listOf(
-        DropValues(chicken, blackFeather, config.lootTables.blackFeather)
-    )
-
-    private fun fireDropLootTales(config: WingedConfig) = listOf(
-        DropValues(chicken, friedChicken, config.lootTables.friedChicken),
+        DropValues(chicken, blackFeather, config.lootTables.blackFeather),
         DropValues(zombie, demonicFlesh, config.lootTables.demonicFlesh),
         DropValues(zombieVillager, demonicFlesh, config.lootTables.demonicFlesh),
         DropValues(husk, demonicFlesh, config.lootTables.demonicFlesh),
@@ -73,6 +69,10 @@ object WingedLootTables {
         DropValues(endermite, irrealityCrystal, config.lootTables.endermiteIrrealityCrystal),
         DropValues(bat, batWing, config.lootTables.batWing),
         DropValues(vex, vexEssence, config.lootTables.vexEssence)
+    )
+
+    private fun fireDropLootTales(config: WingedConfig) = listOf(
+        DropValues(chicken, friedChicken, config.lootTables.friedChicken)
     )
 
     private val holidayDropMobs = listOf(zombie, zombieVillager, husk, drowned, skeleton, enderman, endermite)
