@@ -11,8 +11,8 @@ import net.minecraft.world.World
 
 
 class LoreItem(settings: Settings, private val amount: Int = 2, private val glint: Boolean = false) : Item(settings) {
-    override fun hasEnchantmentGlint(stack: ItemStack?): Boolean {
-        return glint || super.hasEnchantmentGlint(stack)
+    override fun hasGlint(stack: ItemStack?): Boolean {
+        return glint || super.hasGlint(stack)
     }
 
     @Environment(EnvType.CLIENT)

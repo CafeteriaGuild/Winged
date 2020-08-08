@@ -7,10 +7,10 @@ import net.adriantodt.winged.Winged.wingRegistry
 import net.adriantodt.winged.data.Wing
 import net.adriantodt.winged.identifier
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback
-import net.minecraft.command.arguments.EntityArgumentType.getPlayer
-import net.minecraft.command.arguments.EntityArgumentType.player
-import net.minecraft.command.arguments.IdentifierArgumentType.getIdentifier
-import net.minecraft.command.arguments.IdentifierArgumentType.identifier
+import net.minecraft.command.argument.EntityArgumentType.getPlayer
+import net.minecraft.command.argument.EntityArgumentType.player
+import net.minecraft.command.argument.IdentifierArgumentType.getIdentifier
+import net.minecraft.command.argument.IdentifierArgumentType.identifier
 import net.minecraft.command.suggestion.SuggestionProviders
 import net.minecraft.server.command.CommandSource
 import net.minecraft.server.command.ServerCommandSource

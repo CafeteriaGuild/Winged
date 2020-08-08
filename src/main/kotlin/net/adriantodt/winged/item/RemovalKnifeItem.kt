@@ -34,7 +34,7 @@ class RemovalKnifeItem(settings: Settings) : Item(settings) {
         return TypedActionResult.success(if (user.isCreative) itemStack else ItemStack(ceremonialKnife))
     }
 
-    override fun hasEnchantmentGlint(stack: ItemStack?) = true
+    override fun hasGlint(stack: ItemStack?) = true
 
     @Environment(EnvType.CLIENT)
     override fun appendTooltip(stack: ItemStack, world: World?, tooltip: MutableList<Text>, ctx: TooltipContext) {

@@ -55,8 +55,8 @@ dependencies {
     include "io.github.ladysnake:PlayerAbilityLib:${project.pal_version}"
 
     //DEPENDENCY: Cloth Config 2
-    modApi "me.shedaniel.cloth:config-2:${project.cloth_config_version}"
-    include "me.shedaniel.cloth:config-2:${project.cloth_config_version}"
+    //modApi "me.shedaniel.cloth:config-2:${project.cloth_config_version}"
+    //include "me.shedaniel.cloth:config-2:${project.cloth_config_version}"
 
     //DEPENDENCY: AutoConfig1u
     modApi "me.sargunvohra.mcmods:autoconfig1u:${project.autoconfig1u_version}"
@@ -66,7 +66,7 @@ dependencies {
     modImplementation "io.github.prospector:modmenu:${project.modmenu_version}"
 
     // Test environiment with some mods
-    modRuntime "me.shedaniel:RoughlyEnoughItems:${project.rei_version}"
+    //modRuntime "me.shedaniel:RoughlyEnoughItems:${project.rei_version}"
 
     // PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
     // You may need to force-disable transitiveness on them.
