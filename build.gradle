@@ -54,8 +54,12 @@ dependencies {
     include "io.github.ladysnake:PlayerAbilityLib:${project.pal_version}"
 
     //DEPENDENCY: Cloth Config 2
-    //modApi "me.shedaniel.cloth:config-2:${project.cloth_config_version}"
-    //include "me.shedaniel.cloth:config-2:${project.cloth_config_version}"
+    modApi("me.shedaniel.cloth:config-2:${project.cloth_config_version}") {
+        exclude group: "net.fabricmc.fabric-api", module: "fabric-api"
+    }
+    include ("me.shedaniel.cloth:config-2:${project.cloth_config_version}") {
+        exclude group: "net.fabricmc.fabric-api", module: "fabric-api"
+    }
 
     //DEPENDENCY: AutoConfig1u
     modApi "me.sargunvohra.mcmods:autoconfig1u:${project.autoconfig1u_version}"
