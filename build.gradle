@@ -16,17 +16,16 @@ group = project.maven_group
 minecraft {
 }
 
-
 repositories {
     jcenter()
     maven { url = "http://maven.fabricmc.net/" }
     maven {
-        name = "Jitpack"
-        url = "https://jitpack.io"
-    }
-    maven {
         name = "Ladysnake Libs"
         url = 'https://dl.bintray.com/ladysnake/libs'
+    }
+    maven {
+        name = "Jitpack"
+        url = "https://jitpack.io"
     }
 }
 

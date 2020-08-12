@@ -17,6 +17,15 @@ class WingedConfig : ConfigData {
     @ConfigEntry.Gui.TransitiveObject
     var lootTables = LootTablesConfig()
 
+    @ConfigEntry.Gui.EnumHandler
+    var velocityUnit = VelocityUnit.METERS_PER_SECOND
+
+    enum class VelocityUnit(val multiplier: Double, val suffix: String) {
+        METERS_PER_SECOND(1.0, "m/s"),
+        KILOMETERS_PER_HOUR(3.6, "km/h"),
+        MILES_PER_HOUR(2.23694, "mph")
+    }
+
     class LootTablesConfig {
         @ConfigEntry.Gui.CollapsibleObject
         var abandonedMineshaft = CoreOfFlightLootTable()

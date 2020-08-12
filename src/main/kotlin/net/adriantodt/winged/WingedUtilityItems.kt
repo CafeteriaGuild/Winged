@@ -10,6 +10,7 @@ import net.minecraft.util.Rarity
 object WingedUtilityItems {
     val ceremonialKnife = itemSettings().maxCount(1).loreItem()
     val dippedCeremonialKnife = RemovalKnifeItem(itemSettings().rarity(Rarity.RARE).maxCount(1))
+    val speedometer = SpeedometerItem(itemSettings().maxCount(1).rarity(Rarity.UNCOMMON))
 
     val emptyBooster = LoreItem(itemSettings())
 
@@ -34,6 +35,7 @@ object WingedUtilityItems {
     fun register() {
         identifier("ceremonial_knife").item(ceremonialKnife)
         identifier("dipped_ceremonial_knife").item(dippedCeremonialKnife)
+        identifier("speedometer").item(speedometer)
 
         identifier("booster_empty").item(emptyBooster)
         identifier("booster_standard").item(standardBooster)

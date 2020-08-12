@@ -1,0 +1,80 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "winged:item/speedometer_00"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "winged:speed": 1
+      },
+      "model": "winged:item/speedometer_01"
+    },
+    {
+      "predicate": {
+        "winged:speed": 2
+      },
+      "model": "winged:item/speedometer_02"
+    },
+    {
+      "predicate": {
+        "winged:speed": 3
+      },
+      "model": "winged:item/speedometer_03"
+    },
+    {
+      "predicate": {
+        "winged:speed": 4
+      },
+      "model": "winged:item/speedometer_04"
+    },
+    {
+      "predicate": {
+        "winged:speed": 5
+      },
+      "model": "winged:item/speedometer_05"
+    },
+    {
+      "predicate": {
+        "winged:speed": 6
+      },
+      "model": "winged:item/speedometer_06"
+    },
+    {
+      "predicate": {
+        "winged:speed": 7
+      },
+      "model": "winged:item/speedometer_07"
+    },
+    {
+      "predicate": {
+        "winged:speed": 8
+      },
+      "model": "winged:item/speedometer_08"
+    },
+    {
+      "predicate": {
+        "winged:speed": 9
+      },
+      "model": "winged:item/speedometer_09"
+    },
+    {
+      "predicate": {
+        "winged:speed": 10
+      },
+      "model": "winged:item/speedometer_10"
+    },
+    {
+      "predicate": {
+        "winged:speed": 11
+      },
+      "model": "winged:item/speedometer_11"
+    },
+    {
+      "predicate": {
+        "winged:speed": 12
+      },
+      "model": "winged:item/speedometer_12"
+    }
+  ]
+}
