@@ -1,6 +1,6 @@
 {
   "text.winged.velocityUnit.meters_per_second": "米/秒",
-  "text.winged.velocityUnit.kilometers_per_hour": "千米/时",
+  "text.winged.velocityUnit.kilometers_per_hour": "千米/小时",
   "text.winged.velocityUnit.miles_per_hour": "迈",													  
   "text.autoconfig.winged.title": "Winged配置",
   "text.autoconfig.winged.category.default": "常规",
