@@ -3,17 +3,9 @@
   "package": "net.adriantodt.winged.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "EntityMixin",
     "LivingEntityMixin",
-    "PlayerEntityMixin",
     "PlayerInventoryMixin",
     "PlayerManagerMixin"
-  ],
-  "client": [
-    "CapeFeatureRendererMixin",
-    "ClientPlayerEntityMixin",
-    "LivingEntityRendererMixin",
-    "PlayerEntityRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

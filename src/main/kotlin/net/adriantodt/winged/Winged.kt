@@ -13,6 +13,7 @@ import nerdhub.cardinal.components.api.component.ComponentContainer
 import nerdhub.cardinal.components.api.event.EntityComponentCallback
 import nerdhub.cardinal.components.api.util.EntityComponents
 import nerdhub.cardinal.components.api.util.RespawnCopyStrategy
+import net.adriantodt.fallflyinglib.FallFlyingLib
 import net.adriantodt.winged.command.WingedCommand
 import net.adriantodt.winged.data.Wing
 import net.adriantodt.winged.data.WingedConfig
@@ -57,6 +58,7 @@ object Winged : ModInitializer {
             components[playerComponentType] = DefaultPlayerComponent(entity)
         }
         EntityComponents.setRespawnCopyStrategy(playerComponentType, RespawnCopyStrategy.ALWAYS_COPY)
+        FallFlyingLib.registerAccessor(playerComponentType::get)
     }
 
     val mainGroup: ItemGroup = FabricItemGroupBuilder.create(identifier("main"))
