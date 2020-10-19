@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "id": "winged",
+  "id": "zephyr",
   "version": "${version}",
-  "name": "Winged Mod",
-  "description": "Permanently change the way your character looks by attaching a colorful wing to his body!",
+  "name": "Zephyr",
+  "description": "Relics of the god of flight.",
   "authors": [
     {
       "name": "AdrianTodt",
       "contact": {
-        "homepage": "https://twitter.com/AdrianTodt"
+        "homepage": "https://adriantodt.net"
       }
     }
   ],
@@ -18,28 +18,25 @@
     "sources": "https://github.com/AdrianTodt/Winged"
   },
   "license": "Apache-2.0",
-  "icon": "assets/winged/textures/icon.png",
+  "icon": "assets/zephyr/textures/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
       {
         "adapter": "kotlin",
-        "value": "net.adriantodt.winged.Winged"
+        "value": "net.adriantodt.zephyr.init.Zephyr"
       }
     ],
     "client": [
       {
         "adapter": "kotlin",
-        "value": "net.adriantodt.winged.WingedClient"
+        "value": "net.adriantodt.zephyr.init.ZephyrClient"
       }
     ],
     "modmenu": [
-      "net.adriantodt.winged.integration.ModMenuIntegration"
+      "net.adriantodt.zephyr.init.ZephyrModMenu"
     ]
   },
-  "mixins": [
-    "winged.mixins.json"
-  ],
   "depends": {
     "fabricloader": ">=0.8.7",
     "fabric": "*",
@@ -47,5 +44,9 @@
     "cardinal-components-base": "*",
     "cardinal-components-entity": "*",
     "minecraft": "1.16.x"
+  },
+  "suggests": {
+    "modmenu": "*",
+    "roughlyenoughitems": "*"
   }
 }

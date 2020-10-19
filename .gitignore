@@ -15,3 +15,7 @@
 
 /run/
 /minecraft/
+
+# project
+
+/.old

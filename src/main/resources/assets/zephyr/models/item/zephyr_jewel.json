@@ -1,0 +1,20 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "zephyr:item/zephyr_jewel"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "minecraft:damage": 0.75
+      },
+      "model": "zephyr:item/zephyr_jewel_damaged_1"
+    },
+    {
+      "predicate": {
+        "minecraft:damage": 0.875
+      },
+      "model": "zephyr:item/zephyr_jewel_damaged_2"
+    }
+  ]
+}
