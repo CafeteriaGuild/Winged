@@ -1,17 +1,16 @@
 package net.adriantodt.winged
 
 import com.mojang.serialization.Lifecycle
+import dev.onyxstudios.cca.api.v3.component.ComponentKey
+import dev.onyxstudios.cca.api.v3.component.ComponentRegistryV3
+import dev.onyxstudios.cca.api.v3.entity.EntityComponentFactory
+import dev.onyxstudios.cca.api.v3.entity.EntityComponentFactoryRegistry
+import dev.onyxstudios.cca.api.v3.entity.EntityComponentInitializer
 import io.github.ladysnake.pal.AbilitySource
 import io.github.ladysnake.pal.Pal
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig
 import me.sargunvohra.mcmods.autoconfig1u.ConfigHolder
 import me.sargunvohra.mcmods.autoconfig1u.serializer.JanksonConfigSerializer
-import nerdhub.cardinal.components.api.ComponentRegistry
-import nerdhub.cardinal.components.api.ComponentType
-import nerdhub.cardinal.components.api.component.Component
-import nerdhub.cardinal.components.api.component.ComponentContainer
-import nerdhub.cardinal.components.api.event.EntityComponentCallback
-import nerdhub.cardinal.components.api.util.EntityComponents
 import nerdhub.cardinal.components.api.util.RespawnCopyStrategy
 import net.adriantodt.fallflyinglib.FallFlyingLib
 import net.adriantodt.winged.command.WingedCommand
@@ -23,9 +22,6 @@ import net.adriantodt.winged.data.components.impl.DefaultPlayerComponent
 import net.adriantodt.winged.data.impl.WingedDataImpl
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder
-import net.fabricmc.fabric.api.event.Event
-import net.minecraft.entity.Entity
-import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.ItemGroup
 import net.minecraft.item.ItemStack
 import net.minecraft.util.registry.DefaultedRegistry
@@ -34,7 +30,7 @@ import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 
 @Suppress("MemberVisibilityCanBePrivate")
-object Winged : ModInitializer {
+object Winged : ModInitializer, EntityComponentInitializer {
     val logger: Logger = LogManager.getLogger(Winged.javaClass)
 
     val configHolder: ConfigHolder<WingedConfig> =
@@ -48,16 +44,11 @@ object Winged : ModInitializer {
         Lifecycle.stable()
     )
 
-    val playerComponentType: ComponentType<PlayerComponent> = ComponentRegistry.INSTANCE
-        .registerIfAbsent(identifier("player_data"), PlayerComponent::class.java)
+    val playerComponentType: ComponentKey<PlayerComponent> = ComponentRegistryV3.INSTANCE.getOrCreate(identifier("player_data"), PlayerComponent::class.java)
 
     val heartOfTheSkyAbilitySource: AbilitySource = Pal.getAbilitySource(identifier("heart_of_the_sky"))
 
     fun init() {
-        EntityComponentCallback.event(PlayerEntity::class.java).register { entity, components ->
-            components[playerComponentType] = DefaultPlayerComponent(entity)
-        }
-        EntityComponents.setRespawnCopyStrategy(playerComponentType, RespawnCopyStrategy.ALWAYS_COPY)
         FallFlyingLib.registerAccessor(playerComponentType::get)
     }
 
@@ -78,7 +69,7 @@ object Winged : ModInitializer {
         WingedCommand.init()
     }
 
-    private fun <T : Entity> Event<EntityComponentCallback<T>>.register(function: (T, ComponentContainer<Component>) -> Unit) {
-        register(EntityComponentCallback(function))
+    override fun registerEntityComponentFactories(registry: EntityComponentFactoryRegistry) {
+        registry.registerForPlayers(playerComponentType, EntityComponentFactory { player -> DefaultPlayerComponent(player) }, RespawnCopyStrategy.ALWAYS_COPY)
     }
 }

@@ -1,12 +1,12 @@
 package net.adriantodt.winged.data.components
 
-import nerdhub.cardinal.components.api.component.Component
-import nerdhub.cardinal.components.api.component.extension.CopyableComponent
-import nerdhub.cardinal.components.api.util.sync.EntitySyncedComponent
+import dev.onyxstudios.cca.api.v3.component.ComponentV3
+import dev.onyxstudios.cca.api.v3.component.CopyableComponent
+import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent
 import net.adriantodt.fallflyinglib.FallFlyingAbility
 import net.adriantodt.winged.data.Wing
 
-interface PlayerComponent : Component, EntitySyncedComponent, CopyableComponent<PlayerComponent>, FallFlyingAbility {
+interface PlayerComponent : ComponentV3, AutoSyncedComponent, CopyableComponent<PlayerComponent>, FallFlyingAbility {
     var wing: Wing?
 
     override fun allowFallFlying(): Boolean = wing != null

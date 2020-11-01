@@ -1,6 +1,5 @@
 package net.adriantodt.winged.data.components.impl
 
-import nerdhub.cardinal.components.api.ComponentType
 import net.adriantodt.winged.Winged
 import net.adriantodt.winged.data.Wing
 import net.adriantodt.winged.data.components.PlayerComponent
@@ -12,23 +11,21 @@ class DefaultPlayerComponent(private val owner: PlayerEntity) : PlayerComponent 
     override var wing: Wing? = null
         set(value) {
             field = value
-            this.sync()
+            Winged.playerComponentType.sync(owner)
         }
 
-    override fun getEntity() = owner
-
-    override fun toTag(tag: CompoundTag): CompoundTag {
+    override fun writeToNbt(tag: CompoundTag) {
         wing?.let { tag.putString(WING_TAG, Winged.wingRegistry.getId(it).toString()) }
-        return tag
     }
-
-    override fun fromTag(tag: CompoundTag) {
+    override fun readFromNbt(tag: CompoundTag) {
         wing = if (tag.contains(WING_TAG)) Winged.wingRegistry[Identifier(tag.getString(WING_TAG))] else null
     }
-
-    override fun getComponentType(): ComponentType<PlayerComponent> {
-        return Winged.playerComponentType
+    override fun copyFrom(other: PlayerComponent) {
+        val tag = CompoundTag()
+        other.writeToNbt(tag)
+        readFromNbt(tag)
     }
+
 
     companion object {
         const val WING_TAG = "Wing"
