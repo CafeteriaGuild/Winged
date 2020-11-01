@@ -33,8 +33,19 @@
         "value": "net.adriantodt.winged.WingedClient"
       }
     ],
+    "cardinal-components-entity": [
+      {
+        "adapter": "kotlin",
+        "value": "net.adriantodt.winged.Winged"
+      }
+    ],
     "modmenu": [
       "net.adriantodt.winged.integration.ModMenuIntegration"
+    ]
+  },
+  "custom": {
+    "cardinal-components": [
+      "winged:player_data"
     ]
   },
   "mixins": [
