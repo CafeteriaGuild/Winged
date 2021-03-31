@@ -28,6 +28,12 @@ repositories {
         url = "https://jitpack.io"
     }
     maven { url "https://maven.shedaniel.me/" }
+    maven {
+        url "https://maven.terraformersmc.com/releases/"
+        content {
+            includeGroup "com.terraformersmc"
+        }
+    }
 }
 
 dependencies {
@@ -67,7 +73,9 @@ dependencies {
     }
 
     //COMPATIBILITY: ModMenu
-    modImplementation "io.github.prospector:modmenu:${project.modmenu_version}"
+    modImplementation("com.terraformersmc:modmenu:${project.modmenu_version}") {
+        transitive(false)
+    }
 
     // Test environiment with some mods
     modRuntime "me.shedaniel:RoughlyEnoughItems:${project.rei_version}"
