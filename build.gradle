@@ -27,10 +27,6 @@ repositories {
         name = "Jitpack"
         url = "https://jitpack.io"
     }
-    maven {
-        name = "AdrianTodt's Maven"
-        url = "https://dl.bintray.com/adriantodt/maven"
-    }
     maven { url "https://maven.shedaniel.me/" }
 }
 
@@ -59,8 +55,8 @@ dependencies {
     include "io.github.ladysnake:PlayerAbilityLib:${project.pal_version}"
 
     //DEPENDENCY: Fall Flying Lib
-    modImplementation "net.adriantodt.fabricmc:fallflyinglib:${project.ffl_version}"
-    include "net.adriantodt.fabricmc:fallflyinglib:${project.ffl_version}"
+    modImplementation "com.github.adriantodt:FallFlyingLib:${project.ffl_version}"
+    include "com.github.adriantodt:FallFlyingLib:${project.ffl_version}"
 
     //DEPENDENCY: Cloth Config 2
     modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") {
