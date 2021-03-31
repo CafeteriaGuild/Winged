@@ -29,7 +29,7 @@ public class WingedFeatureRenderer<T extends LivingEntity, M extends EntityModel
             matrixStack.translate(0.0D, 0.0D, 0.125D);
             this.getContextModel().copyStateTo(this.elytra);
             this.elytra.setAngles(entity, f, g, j, k, l);
-            VertexConsumer vertexConsumer = ItemRenderer.getArmorVertexConsumer(vertexConsumerProvider, this.elytra.getLayer(wing.getSkin()), false, false);
+            VertexConsumer vertexConsumer = ItemRenderer.getArmorGlintConsumer(vertexConsumerProvider, this.elytra.getLayer(wing.getSkin()), false, false);
             this.elytra.render(matrixStack, vertexConsumer, i, OverlayTexture.DEFAULT_UV, 1.0F, 1.0F, 1.0F, 1.0F);
             matrixStack.pop();
         });
