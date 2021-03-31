@@ -2,7 +2,7 @@ package net.adriantodt.winged.integration
 
 import io.github.prospector.modmenu.api.ConfigScreenFactory
 import io.github.prospector.modmenu.api.ModMenuApi
-import me.sargunvohra.mcmods.autoconfig1u.AutoConfig
+import me.shedaniel.autoconfig.AutoConfig
 import net.adriantodt.winged.data.WingedConfig
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment

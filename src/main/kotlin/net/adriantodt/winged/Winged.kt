@@ -8,9 +8,9 @@ import dev.onyxstudios.cca.api.v3.entity.EntityComponentFactoryRegistry
 import dev.onyxstudios.cca.api.v3.entity.EntityComponentInitializer
 import io.github.ladysnake.pal.AbilitySource
 import io.github.ladysnake.pal.Pal
-import me.sargunvohra.mcmods.autoconfig1u.AutoConfig
-import me.sargunvohra.mcmods.autoconfig1u.ConfigHolder
-import me.sargunvohra.mcmods.autoconfig1u.serializer.JanksonConfigSerializer
+import me.shedaniel.autoconfig.AutoConfig
+import me.shedaniel.autoconfig.ConfigHolder
+import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer
 import nerdhub.cardinal.components.api.util.RespawnCopyStrategy
 import net.adriantodt.fallflyinglib.FallFlyingLib
 import net.adriantodt.winged.command.WingedCommand
