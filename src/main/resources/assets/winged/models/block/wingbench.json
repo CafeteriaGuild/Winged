@@ -7,6 +7,6 @@
     "east": "winged:block/wingbench_side",
     "west": "winged:block/wingbench_side",
     "up": "winged:block/wingbench_top",
-    "down": "winged:block/wingench_side"
+    "down": "block/end_stone"
   }
 }

@@ -1,7 +1,19 @@
 {
   "variants": {
-    "": {
+    "facing=north": {
+      "model": "winged:block/wingbench",
+      "y": 180
+    },
+    "facing=south": {
       "model": "winged:block/wingbench"
+    },
+    "facing=west": {
+      "model": "winged:block/wingbench",
+      "y": 90
+    },
+    "facing=east": {
+      "model": "winged:block/wingbench",
+      "y": 270
     }
   }
 }
