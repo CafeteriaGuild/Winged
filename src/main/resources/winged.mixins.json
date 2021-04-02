@@ -5,7 +5,8 @@
   "mixins": [
     "LivingEntityMixin",
     "PlayerInventoryMixin",
-    "PlayerManagerMixin"
+    "PlayerManagerMixin",
+    "ShapedRecipeAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

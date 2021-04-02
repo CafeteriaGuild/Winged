@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "winged:block/wingbench_side",
+    "north": "winged:block/wingbench_side",
+    "south": "winged:block/wingbench_side",
+    "east": "winged:block/wingbench_side",
+    "west": "winged:block/wingbench_side",
+    "up": "winged:block/wingbench_top",
+    "down": "winged:block/wingench_side"
+  }
+}

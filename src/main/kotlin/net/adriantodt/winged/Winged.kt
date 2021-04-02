@@ -13,6 +13,7 @@ import me.shedaniel.autoconfig.ConfigHolder
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer
 import nerdhub.cardinal.components.api.util.RespawnCopyStrategy
 import net.adriantodt.fallflyinglib.FallFlyingLib
+import net.adriantodt.winged.block.WingBenchBlock
 import net.adriantodt.winged.command.WingedCommand
 import net.adriantodt.winged.data.Wing
 import net.adriantodt.winged.data.WingedConfig
@@ -20,11 +21,19 @@ import net.adriantodt.winged.data.WingedData
 import net.adriantodt.winged.data.components.PlayerComponent
 import net.adriantodt.winged.data.components.impl.DefaultPlayerComponent
 import net.adriantodt.winged.data.impl.WingedDataImpl
+import net.adriantodt.winged.recipe.WingRecipe
+import net.adriantodt.winged.screen.WingBenchScreenHandler
 import net.fabricmc.api.ModInitializer
+import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder
+import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry
+import net.fabricmc.fabric.impl.screenhandler.ExtendedScreenHandlerType
+import net.minecraft.block.Blocks
+import net.minecraft.item.BlockItem
 import net.minecraft.item.ItemGroup
 import net.minecraft.item.ItemStack
 import net.minecraft.util.registry.DefaultedRegistry
+import net.minecraft.util.registry.Registry
 import net.minecraft.util.registry.RegistryKey
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
@@ -48,6 +57,11 @@ object Winged : ModInitializer, EntityComponentInitializer {
 
     val heartOfTheSkyAbilitySource: AbilitySource = Pal.getAbilitySource(identifier("heart_of_the_sky"))
 
+
+    val wingbenchType = ScreenHandlerRegistry.registerExtended(WingBenchScreenHandler.ID) { syncId, inv, buf ->
+        WingBenchScreenHandler(syncId, inv)
+    } as ExtendedScreenHandlerType<WingBenchScreenHandler>
+
     fun init() {
         FallFlyingLib.registerAccessor(playerComponentType::get)
     }
@@ -67,6 +81,13 @@ object Winged : ModInitializer, EntityComponentInitializer {
         WingItems.register()
         WingedLootTables.register(configHolder.config)
         WingedCommand.init()
+
+        Registry.register(Registry.RECIPE_TYPE, WingRecipe.ID, WingRecipe.TYPE)
+        Registry.register(Registry.RECIPE_SERIALIZER, WingRecipe.ID, WingRecipe.SERIALIZER)
+
+        val block = WingBenchBlock(FabricBlockSettings.copyOf(Blocks.END_STONE))
+        Registry.register(Registry.BLOCK, identifier("wingbench"), block)
+        Registry.register(Registry.ITEM, identifier("wingbench"), BlockItem(block, itemSettings()))
     }
 
     override fun registerEntityComponentFactories(registry: EntityComponentFactoryRegistry) {
