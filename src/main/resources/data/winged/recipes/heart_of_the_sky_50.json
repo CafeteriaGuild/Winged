@@ -1,13 +1,13 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    " N ",
+    " D ",
     "SHS",
     " B "
   ],
   "key": {
     "H": {
-      "item": "winged:heart_of_the_sky_25"
+      "item": "winged:heart_of_the_sky_75"
     },
     "S": {
       "item": "winged:shard_of_zephyr"
@@ -15,11 +15,11 @@
     "B": {
       "item": "minecraft:slime_ball"
     },
-    "N": {
-      "item": "minecraft:nether_star"
+    "D": {
+      "item": "minecraft:diamond"
     }
   },
   "result": {
-    "item": "winged:heart_of_the_sky"
+    "item": "winged:heart_of_the_sky_50"
   }
 }
