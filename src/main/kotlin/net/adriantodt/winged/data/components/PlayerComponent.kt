@@ -8,6 +8,7 @@ import net.adriantodt.winged.data.Wing
 
 interface PlayerComponent : ComponentV3, AutoSyncedComponent, CopyableComponent<PlayerComponent>, FallFlyingAbility {
     var wing: Wing?
+    var creativeFlight: Boolean
 
     override fun allowFallFlying(): Boolean = wing != null
     override fun shouldHideCape(): Boolean = wing != null

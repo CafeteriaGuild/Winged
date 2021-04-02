@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "DCD",
+    "IDI",
+    "I I"
+  ],
+  "key": {
+    "C": {
+      "item": "winged:heart_of_the_sky"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "I": {
+      "item": "winged:irreality_crystal"
+    }
+  },
+  "result": {
+    "item": "winged:wing_fairyonline_creative_flight"
+  }
+}

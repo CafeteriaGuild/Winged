@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SCS",
+    "ISI",
+    "I I"
+  ],
+  "key": {
+    "C": {
+      "item": "winged:heart_of_the_sky"
+    },
+    "S": {
+      "item": "minecraft:spider_eye"
+    },
+    "I": {
+      "item": "winged:irreality_crystal"
+    }
+  },
+  "result": {
+    "item": "winged:wing_dragonfly_creative_flight"
+  }
+}

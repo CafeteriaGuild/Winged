@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RCR",
+    "SPS",
+    "I I"
+  ],
+  "key": {
+    "C": {
+      "item": "winged:heart_of_the_sky"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "P": {
+      "item": "minecraft:piston"
+    },
+    "S": {
+      "item": "winged:dragon_scale"
+    }
+  },
+  "result": {
+    "item": "winged:wing_mech_dragon_creative_flight"
+  }
+}

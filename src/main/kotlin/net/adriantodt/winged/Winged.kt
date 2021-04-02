@@ -57,7 +57,7 @@ object Winged : ModInitializer, EntityComponentInitializer {
         .build()
 
     val showcaseGroup: ItemGroup = FabricItemGroupBuilder.create(identifier("showcase"))
-        .icon { ItemStack(WingItems.elytra) }
+        .icon { ItemStack(WingItems.elytra.first) }
         .build()
 
     override fun onInitialize() {
@@ -70,6 +70,6 @@ object Winged : ModInitializer, EntityComponentInitializer {
     }
 
     override fun registerEntityComponentFactories(registry: EntityComponentFactoryRegistry) {
-        registry.registerForPlayers(playerComponentType, EntityComponentFactory { player -> DefaultPlayerComponent(player) }, RespawnCopyStrategy.ALWAYS_COPY)
+        registry.registerForPlayers(playerComponentType, EntityComponentFactory { player -> DefaultPlayerComponent(player, false) }, RespawnCopyStrategy.ALWAYS_COPY)
     }
 }

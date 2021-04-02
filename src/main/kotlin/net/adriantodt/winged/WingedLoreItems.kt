@@ -1,11 +1,15 @@
 package net.adriantodt.winged
 
+import net.minecraft.item.Item
 import net.minecraft.util.Rarity
 
 @Suppress("MemberVisibilityCanBePrivate")
 object WingedLoreItems {
     val coreOfFlight = itemSettings().rarity(Rarity.RARE).maxCount(1).loreItem(glint = true)
-    val brokenCoreOfFlight = itemSettings().maxCount(1).rarity(Rarity.UNCOMMON).loreItem()
+    val brokenCoreOfFlight25 = itemSettings().maxCount(1).rarity(Rarity.UNCOMMON).loreItem()
+    val brokenCoreOfFlight50 = itemSettings().maxCount(1).rarity(Rarity.UNCOMMON).loreItem()
+    val brokenCoreOfFlight75 = itemSettings().maxCount(1).rarity(Rarity.UNCOMMON).loreItem()
+    val shardOfZephyr = Item(itemSettings().rarity(Rarity.UNCOMMON))
 
     val batWing = itemSettings().rarity(Rarity.UNCOMMON).loreItem()
     val blackFeather = itemSettings().rarity(Rarity.UNCOMMON).loreItem()
@@ -22,7 +26,10 @@ object WingedLoreItems {
 
     fun register() {
         identifier("core_of_flight").item(coreOfFlight)
-        identifier("broken_core_of_flight").item(brokenCoreOfFlight)
+        identifier("broken_core_of_flight_25").item(brokenCoreOfFlight25)
+        identifier("broken_core_of_flight_50").item(brokenCoreOfFlight50)
+        identifier("broken_core_of_flight_75").item(brokenCoreOfFlight75)
+        identifier("shard_of_zephyr").item(shardOfZephyr)
 
         identifier("bat_wing").item(batWing)
         identifier("black_feather").item(blackFeather)

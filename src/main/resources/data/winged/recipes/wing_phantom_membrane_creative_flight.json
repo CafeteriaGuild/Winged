@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PCP",
+    "PIP",
+    "P P"
+  ],
+  "key": {
+    "C": {
+      "item": "winged:heart_of_the_sky"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "P": {
+      "item": "minecraft:phantom_membrane"
+    }
+  },
+  "result": {
+    "item": "winged:wing_phantom_membrane_creative_flight"
+  }
+}

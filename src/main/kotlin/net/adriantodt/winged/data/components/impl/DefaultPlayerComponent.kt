@@ -7,7 +7,7 @@ import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.util.Identifier
 
-class DefaultPlayerComponent(private val owner: PlayerEntity) : PlayerComponent {
+class DefaultPlayerComponent(private val owner: PlayerEntity, override var creativeFlight: Boolean) : PlayerComponent {
     override var wing: Wing? = null
         set(value) {
             field = value
@@ -16,9 +16,11 @@ class DefaultPlayerComponent(private val owner: PlayerEntity) : PlayerComponent 
 
     override fun writeToNbt(tag: CompoundTag) {
         wing?.let { tag.putString(WING_TAG, Winged.wingRegistry.getId(it).toString()) }
+        tag.putBoolean("creativeFlight", creativeFlight)
     }
     override fun readFromNbt(tag: CompoundTag) {
         wing = if (tag.contains(WING_TAG)) Winged.wingRegistry[Identifier(tag.getString(WING_TAG))] else null
+        creativeFlight = tag.getBoolean("creativeFlight")
     }
     override fun copyFrom(other: PlayerComponent) {
         val tag = CompoundTag()
