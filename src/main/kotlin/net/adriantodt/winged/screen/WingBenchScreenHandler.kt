@@ -53,6 +53,47 @@ class WingBenchScreenHandler(syncId: Int, private val playerInventory: PlayerInv
         }
     }
 
+    override fun transferSlot(player: PlayerEntity, index: Int): ItemStack? {
+        var resultStack = ItemStack.EMPTY
+        val slot = slots[index]
+        if (slot != null && slot.hasStack()) {
+            val slotStack = slot.stack
+            resultStack = slotStack.copy()
+            if (index == 0) {
+                slotStack.item.onCraft(slotStack, player.world, player)
+                if (!insertItem(slotStack, 8, 44, true)) {
+                    return ItemStack.EMPTY
+                }
+                slot.onStackChanged(slotStack, resultStack)
+            } else if (index in 8..43) {
+                if (!insertItem(slotStack, 1, 8, false)) {
+                    if (index < 35) {
+                        if (!insertItem(slotStack, 35, 44, false)) {
+                            return ItemStack.EMPTY
+                        }
+                    } else if (!insertItem(slotStack, 8, 35, false)) {
+                        return ItemStack.EMPTY
+                    }
+                }
+            } else if (!insertItem(slotStack, 8, 44, false)) {
+                return ItemStack.EMPTY
+            }
+            if (slotStack.isEmpty) {
+                slot.stack = ItemStack.EMPTY
+            } else {
+                slot.markDirty()
+            }
+            if (slotStack.count == resultStack.count) {
+                return ItemStack.EMPTY
+            }
+            val itemStack3 = slot.onTakeItem(player, slotStack)
+            if (index == 0) {
+                player.dropItem(itemStack3, false)
+            }
+        }
+        return resultStack
+    }
+
     override fun onContentChanged(inventory: Inventory?) {
         updateResult(syncId, playerInventory.player.world, playerInventory.player, input, result)
     }
