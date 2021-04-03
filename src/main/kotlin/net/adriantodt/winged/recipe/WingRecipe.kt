@@ -14,7 +14,7 @@ import net.minecraft.world.World
 
 class WingRecipe(
     private val id: Identifier,
-    private val inputs: DefaultedList<Ingredient>,
+    val inputs: DefaultedList<Ingredient>,
     private val output: ItemStack
 ) : Recipe<WingBenchCraftingInventory> {
 

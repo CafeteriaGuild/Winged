@@ -74,6 +74,8 @@ object Winged : ModInitializer, EntityComponentInitializer {
         .icon { ItemStack(WingItems.elytra.first) }
         .build()
 
+    val wingBenchBlock = WingBenchBlock(FabricBlockSettings.copyOf(Blocks.END_STONE))
+
     override fun onInitialize() {
         init()
         WingedLoreItems.register()
@@ -85,9 +87,8 @@ object Winged : ModInitializer, EntityComponentInitializer {
         Registry.register(Registry.RECIPE_TYPE, WingRecipe.ID, WingRecipe.TYPE)
         Registry.register(Registry.RECIPE_SERIALIZER, WingRecipe.ID, WingRecipe.SERIALIZER)
 
-        val block = WingBenchBlock(FabricBlockSettings.copyOf(Blocks.END_STONE))
-        Registry.register(Registry.BLOCK, identifier("wingbench"), block)
-        Registry.register(Registry.ITEM, identifier("wingbench"), BlockItem(block, itemSettings()))
+        Registry.register(Registry.BLOCK, identifier("wingbench"), wingBenchBlock)
+        Registry.register(Registry.ITEM, identifier("wingbench"), BlockItem(wingBenchBlock, itemSettings()))
     }
 
     override fun registerEntityComponentFactories(registry: EntityComponentFactoryRegistry) {

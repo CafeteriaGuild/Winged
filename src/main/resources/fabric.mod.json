@@ -41,6 +41,12 @@
     ],
     "modmenu": [
       "net.adriantodt.winged.integration.ModMenuIntegration"
+    ],
+    "rei_plugins_v0": [
+      {
+        "adapter": "kotlin",
+        "value": "net.adriantodt.winged.integration.rei.REIPlugin"
+      }
     ]
   },
   "custom": {
