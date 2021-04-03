@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PPP",
+    "IWI",
+    "III"
+  ],
+  "key": {
+    "P": {
+      "item": "minecraft:purpur_block"
+    },
+    "W": {
+      "item": "minecraft:crafting_table"
+    },
+    "I": {
+      "item": "minecraft:end_stone"
+    }
+  },
+  "result": {
+    "item": "winged:wingbench"
+  }
+}
