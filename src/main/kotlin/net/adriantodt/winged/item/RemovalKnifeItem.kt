@@ -2,7 +2,7 @@ package net.adriantodt.winged.item
 
 import io.github.ladysnake.pal.VanillaAbilities
 import net.adriantodt.winged.Winged
-import net.adriantodt.winged.WingedLoreItems.brokenCoreOfFlight25
+import net.adriantodt.winged.WingedLoreItems.brokenCoreOfFlight75
 import net.adriantodt.winged.WingedUtilityItems.ceremonialKnife
 import net.adriantodt.winged.damagesource.RemoveWingsDamageSource
 import net.fabricmc.api.EnvType
@@ -30,12 +30,12 @@ class RemovalKnifeItem(settings: Settings) : Item(settings) {
 
         if (!world.isClient) {
             val allowFlyingTracker = VanillaAbilities.ALLOW_FLYING.getTracker(user)
-            if (allowFlyingTracker.isGrantedBy(Winged.heartOfTheSkyAbilitySource)) {
-                allowFlyingTracker.removeSource(Winged.heartOfTheSkyAbilitySource)
+            if (allowFlyingTracker.isGrantedBy(Winged.creativeWingSource)) {
+                allowFlyingTracker.removeSource(Winged.creativeWingSource)
             }
         }
 
-        if (!user.isCreative) user.giveItemStack(ItemStack(brokenCoreOfFlight25))
+        if (!user.isCreative) user.giveItemStack(ItemStack(brokenCoreOfFlight75))
         val dmg = Winged.data.removeWingsDamage
         if (dmg > 0) {
             user.damage(RemoveWingsDamageSource, dmg)

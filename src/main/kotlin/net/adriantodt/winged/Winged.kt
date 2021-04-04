@@ -8,6 +8,7 @@ import dev.onyxstudios.cca.api.v3.entity.EntityComponentFactoryRegistry
 import dev.onyxstudios.cca.api.v3.entity.EntityComponentInitializer
 import io.github.ladysnake.pal.AbilitySource
 import io.github.ladysnake.pal.Pal
+import io.github.ladysnake.pal.VanillaAbilities
 import me.shedaniel.autoconfig.AutoConfig
 import me.shedaniel.autoconfig.ConfigHolder
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer
@@ -26,6 +27,7 @@ import net.adriantodt.winged.screen.WingBenchScreenHandler
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents
 import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry
 import net.fabricmc.fabric.impl.screenhandler.ExtendedScreenHandlerType
 import net.minecraft.block.Blocks
@@ -55,7 +57,7 @@ object Winged : ModInitializer, EntityComponentInitializer {
 
     val playerComponentType: ComponentKey<PlayerComponent> = ComponentRegistryV3.INSTANCE.getOrCreate(identifier("player_data"), PlayerComponent::class.java)
 
-    val heartOfTheSkyAbilitySource: AbilitySource = Pal.getAbilitySource(identifier("heart_of_the_sky"))
+    val creativeWingSource: AbilitySource = Pal.getAbilitySource(identifier("heart_of_the_sky"))
 
 
     val wingbenchType = ScreenHandlerRegistry.registerExtended(WingBenchScreenHandler.ID) { syncId, inv, buf ->
@@ -89,6 +91,17 @@ object Winged : ModInitializer, EntityComponentInitializer {
 
         Registry.register(Registry.BLOCK, identifier("wingbench"), wingBenchBlock)
         Registry.register(Registry.ITEM, identifier("wingbench"), BlockItem(wingBenchBlock, itemSettings()))
+
+        ServerTickEvents.END_WORLD_TICK.register { world ->
+            world.players.forEach { player ->
+                val playerComponent = playerComponentType[player]
+                val tracker = VanillaAbilities.ALLOW_FLYING.getTracker(player)
+                if (playerComponent.creativeFlight
+                    && !tracker.isGrantedBy(creativeWingSource)) {
+                        tracker.addSource(creativeWingSource)
+                }
+            }
+        }
     }
 
     override fun registerEntityComponentFactories(registry: EntityComponentFactoryRegistry) {

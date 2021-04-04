@@ -37,8 +37,8 @@ class WingItem(settings: Settings, val wingId: Identifier, val creativeFlight: B
         if (!world.isClient) {
             if (creativeFlight) {
                 val allowFlyingTracker = VanillaAbilities.ALLOW_FLYING.getTracker(user)
-                if (!allowFlyingTracker.isGrantedBy(Winged.heartOfTheSkyAbilitySource))
-                    allowFlyingTracker.addSource(Winged.heartOfTheSkyAbilitySource)
+                if (!allowFlyingTracker.isGrantedBy(Winged.creativeWingSource))
+                    allowFlyingTracker.addSource(Winged.creativeWingSource)
             }
         }
         itemStack.count = 0

@@ -8,7 +8,7 @@ import net.adriantodt.winged.WingItems.xmasStar
 import net.adriantodt.winged.WingItems.xmasTree
 import net.adriantodt.winged.WingedLoreItems.batWing
 import net.adriantodt.winged.WingedLoreItems.blackFeather
-import net.adriantodt.winged.WingedLoreItems.brokenCoreOfFlight25
+import net.adriantodt.winged.WingedLoreItems.brokenCoreOfFlight75
 import net.adriantodt.winged.WingedLoreItems.coreOfFlight
 import net.adriantodt.winged.WingedLoreItems.demonicFlesh
 import net.adriantodt.winged.WingedLoreItems.friedChicken
@@ -94,7 +94,7 @@ object WingedLootTables {
                 if (poolConfig.generate) {
                     addPool {
                         rolls(ConstantLootTableRange.create(1))
-                        with(ItemEntry.builder(if (poolConfig.broken) brokenCoreOfFlight25 else coreOfFlight))
+                        with(ItemEntry.builder(if (poolConfig.broken) brokenCoreOfFlight75 else coreOfFlight))
                         conditionally(RandomChanceLootCondition.builder(poolConfig.chance.coerceIn(0f, 1f)))
                     }
                 }
