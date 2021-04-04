@@ -13,6 +13,7 @@ import net.adriantodt.winged.WingedLoreItems.coreOfFlight
 import net.adriantodt.winged.WingedLoreItems.demonicFlesh
 import net.adriantodt.winged.WingedLoreItems.friedChicken
 import net.adriantodt.winged.WingedLoreItems.irrealityCrystal
+import net.adriantodt.winged.WingedLoreItems.shardOfZephyr
 import net.adriantodt.winged.WingedLoreItems.vexEssence
 import net.adriantodt.winged.data.WingedConfig
 import net.fabricmc.fabric.api.loot.v1.FabricLootPoolBuilder
@@ -61,6 +62,14 @@ object WingedLootTables {
         woodlandMansion to config.lootTables.woodlandMansion
     )
 
+    private fun shardOfFlightLootTables(config: WingedConfig) = listOf(
+        abandonedMineshaft to config.lootTables.abandonedMineshaftShardOfFlight,
+        buriedTreasure to config.lootTables.buriedTreasureShardOfFlight,
+        endCityTreasure to config.lootTables.endCityTreasureShardOfFlight,
+        simpleDungeon to config.lootTables.simpleDungeonShardOfFlight,
+        woodlandMansion to config.lootTables.woodlandMansionShardOfFlight
+    )
+
     private fun dropLootTales(config: WingedConfig) = listOf(
         DropValues(chicken, blackFeather, config.lootTables.blackFeather),
         DropValues(zombie, demonicFlesh, config.lootTables.demonicFlesh),
@@ -91,6 +100,19 @@ object WingedLootTables {
                 }
             }
         }
+
+        for ((identifier, poolConfig) in shardOfFlightLootTables(config)) {
+            lootTable(identifier) {
+                if (poolConfig.generate) {
+                    addPool {
+                        rolls(ConstantLootTableRange.create(1))
+                        with(ItemEntry.builder(shardOfZephyr))
+                        conditionally(RandomChanceLootCondition.builder(poolConfig.chance.coerceIn(0f, 1f)))
+                    }
+                }
+            }
+        }
+
         for ((identifier, item, poolConfig) in dropLootTales(config)) {
             lootTable(identifier) {
                 if (poolConfig.drop) {

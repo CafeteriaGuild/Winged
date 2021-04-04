@@ -46,6 +46,21 @@ class WingedConfig : ConfigData {
         var endCityTreasure = CoreOfFlightLootTable(broken = false)
 
         @ConfigEntry.Gui.CollapsibleObject
+        var abandonedMineshaftShardOfFlight = ShardOfFlightLootTable()
+
+        @ConfigEntry.Gui.CollapsibleObject
+        var buriedTreasureShardOfFlight = ShardOfFlightLootTable()
+
+        @ConfigEntry.Gui.CollapsibleObject
+        var simpleDungeonShardOfFlight = ShardOfFlightLootTable()
+
+        @ConfigEntry.Gui.CollapsibleObject
+        var woodlandMansionShardOfFlight = ShardOfFlightLootTable()
+
+        @ConfigEntry.Gui.CollapsibleObject
+        var endCityTreasureShardOfFlight = ShardOfFlightLootTable(chance = 0.3f)
+
+        @ConfigEntry.Gui.CollapsibleObject
         var blackFeather = DropLootTable()
 
         @ConfigEntry.Gui.CollapsibleObject
@@ -68,6 +83,9 @@ class WingedConfig : ConfigData {
 
         @ConfigEntry.Gui.CollapsibleObject
         var holidayDrops = DropLootTable(chance = 0.01f, lootingMultiplier = 0.005f)
+
+        @ConfigEntry.Gui.CollapsibleObject
+        var enderdragonHeartOfTheSky = DropLootTable(chance = 1f, lootingMultiplier = 0f)
     }
 
     @ConfigEntry.Category("boosters")
@@ -89,6 +107,8 @@ class WingedConfig : ConfigData {
     }
 
     class CoreOfFlightLootTable(var generate: Boolean = true, var broken: Boolean = true, var chance: Float = 0.1f)
+    
+    class ShardOfFlightLootTable(var generate: Boolean = true, var chance: Float = 0.2f)
 
     class DropLootTable(
         var drop: Boolean = true, var requirePlayer: Boolean = true,
