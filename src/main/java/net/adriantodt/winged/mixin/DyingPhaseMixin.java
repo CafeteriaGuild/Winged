@@ -1,5 +1,6 @@
 package net.adriantodt.winged.mixin;
 
+import net.adriantodt.winged.Winged;
 import net.adriantodt.winged.WingedUtilityItems;
 import net.adriantodt.winged.ext.WingedEnderDragonExtension;
 import net.minecraft.entity.boss.dragon.EnderDragonEntity;
@@ -26,8 +27,8 @@ public abstract class DyingPhaseMixin extends AbstractPhase {
     }
 
     @Inject(method = "serverTick", at = @At("RETURN"))
-    private void a(CallbackInfo ci) {
-        if (dragon.getHealth() <= 0) {
+    private void winged_dropHeartOfTheSky(CallbackInfo ci) {
+        if (dragon.getHealth() <= 0 && Winged.INSTANCE.getConfigHolder().getConfig().getLootTables().getEnderdragonDropsHeartOfTheSky()) {
             WingedEnderDragonExtension ext = (WingedEnderDragonExtension) dragon;
             UUID taggedPlayer = ext.getTaggedPlayer();
             if (taggedPlayer != null) {

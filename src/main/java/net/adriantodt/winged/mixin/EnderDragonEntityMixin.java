@@ -31,7 +31,7 @@ public abstract class EnderDragonEntityMixin extends MobEntity implements Winged
     }
 
     @Inject(method = "damagePart", at = @At("HEAD"))
-    private void a(EnderDragonPart part, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+    private void winged_tagPlayer(EnderDragonPart part, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         Entity attacker = source.getAttacker();
         if (attacker instanceof PlayerEntity && ((PlayerEntity) attacker).getMainHandStack().getItem() == WingedUtilityItems.INSTANCE.getDippedCeremonialKnife()) {
             taggedPlayer = attacker.getUuid();
