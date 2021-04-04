@@ -18,10 +18,8 @@ import net.adriantodt.winged.block.WingBenchBlock
 import net.adriantodt.winged.command.WingedCommand
 import net.adriantodt.winged.data.Wing
 import net.adriantodt.winged.data.WingedConfig
-import net.adriantodt.winged.data.WingedData
 import net.adriantodt.winged.data.components.PlayerComponent
 import net.adriantodt.winged.data.components.impl.DefaultPlayerComponent
-import net.adriantodt.winged.data.impl.WingedDataImpl
 import net.adriantodt.winged.recipe.WingRecipe
 import net.adriantodt.winged.screen.WingBenchScreenHandler
 import net.fabricmc.api.ModInitializer
@@ -46,8 +44,6 @@ object Winged : ModInitializer, EntityComponentInitializer {
 
     val configHolder: ConfigHolder<WingedConfig> =
         AutoConfig.register(WingedConfig::class.java, ::JanksonConfigSerializer)
-
-    val data: WingedData = WingedDataImpl(configHolder.config)
 
     val wingRegistry = DefaultedRegistry<Wing>(
         "minecraft:elytra",

@@ -36,8 +36,8 @@ class RemovalKnifeItem(settings: Settings) : Item(settings) {
         }
 
         if (!user.isCreative) user.giveItemStack(ItemStack(brokenCoreOfFlight75))
-        val dmg = Winged.data.removeWingsDamage
-        if (dmg > 0) {
+        val dmg = Winged.configHolder.config.removeWingsDamage
+        if (dmg > 0 && !world.isClient) {
             user.damage(RemoveWingsDamageSource, dmg)
         }
         user.playSound(SoundEvents.ENTITY_ITEM_BREAK, 1.0f, 1.0f)
