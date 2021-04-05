@@ -16,7 +16,7 @@ class WingBenchScreen(handler: WingBenchScreenHandler, playerInventory: PlayerIn
         backgroundWidth = 174
         y -= 2
         titleY = -19
-        playerInventoryTitleY =this.backgroundHeight - 118
+        playerInventoryTitleY = this.backgroundHeight - 118
     }
 
     override fun render(matrices: MatrixStack?, mouseX: Int, mouseY: Int, delta: Float) {

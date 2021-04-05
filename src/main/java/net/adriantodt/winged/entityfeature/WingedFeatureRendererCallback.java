@@ -9,9 +9,8 @@ import net.minecraft.entity.LivingEntity;
 
 @Environment(EnvType.CLIENT)
 public class WingedFeatureRendererCallback implements LivingEntityFeatureRendererRegistrationCallback {
-    @SuppressWarnings({"unchecked", "rawtypes"})
     @Override
     public void registerRenderers(EntityType<? extends LivingEntity> t, LivingEntityRenderer<?, ?> context, RegistrationHelper helper) {
-        helper.register(new WingedFeatureRenderer(context));
+        helper.register(new WingedFeatureRenderer<>(context));
     }
 }

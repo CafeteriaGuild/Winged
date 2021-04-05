@@ -17,8 +17,7 @@ minecraft {
 }
 
 repositories {
-    jcenter()
-    maven { url = "http://maven.fabricmc.net/" }
+    maven { url = "https://maven.fabricmc.net/" }
     maven {
         name = "Ladysnake Libs"
         url = 'https://dl.bintray.com/ladysnake/libs'
@@ -48,27 +47,18 @@ dependencies {
     modImplementation "net.fabricmc:fabric-language-kotlin:${project.fabric_kotlin_version}"
 
     //DEPENDENCY: Cardinal Components
-    modApi "com.github.OnyxStudios.Cardinal-Components-API:cardinal-components-base:${project.cardinal_components_version}"
-    modImplementation "com.github.OnyxStudios.Cardinal-Components-API:cardinal-components-entity:${project.cardinal_components_version}"
-    //modImplementation "com.github.OnyxStudios.Cardinal-Components-API:cardinal-components-level:${project.cardinal_components_version}"
-
-    include "com.github.OnyxStudios.Cardinal-Components-API:cardinal-components-base:${project.cardinal_components_version}"
-    include "com.github.OnyxStudios.Cardinal-Components-API:cardinal-components-entity:${project.cardinal_components_version}"
-    //include "com.github.OnyxStudios.Cardinal-Components-API:cardinal-components-level:${project.cardinal_components_version}"
+    include modApi("com.github.OnyxStudios.Cardinal-Components-API:cardinal-components-base:${project.cardinal_components_version}")
+    include modImplementation("com.github.OnyxStudios.Cardinal-Components-API:cardinal-components-entity:${project.cardinal_components_version}")
+    //include modImplementation("com.github.OnyxStudios.Cardinal-Components-API:cardinal-components-level:${project.cardinal_components_version}")
 
     //DEPENDENCY: Player Ability Lib
-    modImplementation "io.github.ladysnake:PlayerAbilityLib:${project.pal_version}"
-    include "io.github.ladysnake:PlayerAbilityLib:${project.pal_version}"
+    include modImplementation("io.github.ladysnake:PlayerAbilityLib:${project.pal_version}")
 
     //DEPENDENCY: Fall Flying Lib
-    modImplementation "com.github.adriantodt:FallFlyingLib:${project.ffl_version}"
-    include "com.github.adriantodt:FallFlyingLib:${project.ffl_version}"
+    include modImplementation("com.github.adriantodt:FallFlyingLib:${project.ffl_version}")
 
     //DEPENDENCY: Cloth Config 2
-    modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") {
-        exclude group: "net.fabricmc.fabric-api", module: "fabric-api"
-    }
-    include ("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") {
+    include modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") {
         exclude group: "net.fabricmc.fabric-api", module: "fabric-api"
     }
 
@@ -78,10 +68,7 @@ dependencies {
     }
 
     // Test environiment with some mods
-    modImplementation "me.shedaniel:RoughlyEnoughItems:${project.rei_version}"
-
-    // PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
-    // You may need to force-disable transitiveness on them.
+    modImplementation("me.shedaniel:RoughlyEnoughItems:${project.rei_version}")
 }
 
 processResources {

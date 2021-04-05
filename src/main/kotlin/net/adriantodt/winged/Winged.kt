@@ -13,6 +13,7 @@ import me.shedaniel.autoconfig.AutoConfig
 import me.shedaniel.autoconfig.ConfigHolder
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer
 import nerdhub.cardinal.components.api.util.RespawnCopyStrategy
+import net.adriantodt.fallflyinglib.FallFlyingAbility
 import net.adriantodt.fallflyinglib.FallFlyingLib
 import net.adriantodt.winged.block.WingBenchBlock
 import net.adriantodt.winged.command.WingedCommand
@@ -61,7 +62,21 @@ object Winged : ModInitializer, EntityComponentInitializer {
     } as ExtendedScreenHandlerType<WingBenchScreenHandler>
 
     fun init() {
-        FallFlyingLib.registerAccessor(playerComponentType::get)
+        FallFlyingLib.registerAccessor { entity ->
+            try {
+                playerComponentType.get(entity)
+            } catch (e: NoSuchElementException) {
+                object: FallFlyingAbility {
+                    override fun allowFallFlying(): Boolean {
+                        return false
+                    }
+
+                    override fun shouldHideCape(): Boolean {
+                        return false
+                    }
+                }
+            }
+        }
     }
 
     val mainGroup: ItemGroup = FabricItemGroupBuilder.create(identifier("main"))
