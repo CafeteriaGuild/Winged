@@ -30,6 +30,7 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents
 import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry
 import net.fabricmc.fabric.impl.screenhandler.ExtendedScreenHandlerType
 import net.minecraft.block.Blocks
+import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.BlockItem
 import net.minecraft.item.ItemGroup
 import net.minecraft.item.ItemStack
@@ -63,9 +64,9 @@ object Winged : ModInitializer, EntityComponentInitializer {
 
     fun init() {
         FallFlyingLib.registerAccessor { entity ->
-            try {
+            if (entity is PlayerEntity) {
                 playerComponentType.get(entity)
-            } catch (e: NoSuchElementException) {
+            } else {
                 object: FallFlyingAbility {
                     override fun allowFallFlying(): Boolean {
                         return false
