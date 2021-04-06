@@ -333,5 +333,6 @@
   "commands.winged.get_no_wing": "%1$s isn't using a Wing",
   "commands.winged.set": "Wing used by %1$s set to %2$s",
   "commands.winged.clear": "Wing used by %1$s was cleared",
-  "wing.notFound": "Unknown wing: %s"
+  "wing.notFound": "Unknown wing: %s",
+  "misc.winged.dragonKill": "Your Dipped Ceremonial Knife has preserved what's left of the dragon's heart..."
 }

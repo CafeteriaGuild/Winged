@@ -8,7 +8,7 @@ import net.minecraft.entity.boss.dragon.phase.AbstractPhase;
 import net.minecraft.entity.boss.dragon.phase.DyingPhase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.LiteralText;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.collection.DefaultedList;
@@ -35,7 +35,7 @@ public abstract class DyingPhaseMixin extends AbstractPhase {
                 ServerPlayerEntity player = dragon.getServer().getPlayerManager().getPlayer(taggedPlayer);
                 if (player != null) {
                     ItemScatterer.spawn(dragon.world, dragon.getBlockPos(), DefaultedList.ofSize(1, new ItemStack(WingedUtilityItems.INSTANCE.getHeartOfTheSky75())));
-                    player.sendMessage(new LiteralText("Your Ceremonial Knife has preserved what's left of the dragon's heart...")
+                    player.sendMessage(new TranslatableText("misc.winged.dragonKill")
                             .formatted(Formatting.DARK_PURPLE, Formatting.ITALIC), false);
                 }
             }
