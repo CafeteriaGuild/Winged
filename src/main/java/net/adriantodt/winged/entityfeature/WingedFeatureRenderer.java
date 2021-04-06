@@ -24,6 +24,7 @@ public class WingedFeatureRenderer<T extends LivingEntity, M extends EntityModel
     }
 
     public void render(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, T entity, float f, float g, float h, float j, float k, float l) {
+        if (entity.isInvisible()) return;
         Winged.INSTANCE.getPlayerComponentType().maybeGet(entity).map(PlayerComponent::getWing).ifPresent(wing -> {
             matrixStack.push();
             matrixStack.translate(0.0D, 0.0D, 0.125D);
