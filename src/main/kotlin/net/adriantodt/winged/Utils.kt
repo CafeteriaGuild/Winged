@@ -1,5 +1,6 @@
 package net.adriantodt.winged
 
+import net.adriantodt.fallflyinglib.FallFlyingAbility
 import net.adriantodt.winged.item.LoreItem
 import net.minecraft.block.Block
 import net.minecraft.item.BlockItem
@@ -41,3 +42,9 @@ fun secondsLeft(stack: ItemStack, ticksPerDamage: Int): Double {
 operator fun Vec3d.times(other: Double): Vec3d = multiply(other)
 
 operator fun Vec3d.plus(other: Vec3d): Vec3d = add(other)
+
+object InvalidFalLFlyingProvider : FallFlyingAbility {
+    override fun allowFallFlying(): Boolean = false
+
+    override fun shouldHideCape(): Boolean = false
+}
