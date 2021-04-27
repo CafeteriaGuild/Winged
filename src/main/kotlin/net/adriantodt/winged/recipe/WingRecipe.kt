@@ -67,7 +67,7 @@ class WingRecipe(
             }
 
             override fun read(identifier: Identifier, packetByteBuf: PacketByteBuf): WingRecipe {
-                val defaultedList = DefaultedList.ofSize(7, Ingredient.EMPTY)
+                val defaultedList = DefaultedList.ofSize(8, Ingredient.EMPTY)
                 for (k in defaultedList.indices) {
                     defaultedList[k] = Ingredient.fromPacket(packetByteBuf)
                 }
