@@ -24,12 +24,13 @@ class WingBenchScreenHandler(syncId: Int, private val playerInventory: PlayerInv
         addSlot(WingBenchCraftingResultSlot(playerInventory.player, input, result, 0, 80, 99- 20))
 
         addSlot(Slot(input, 0, 55, 24 - 24))
-        addSlot(Slot(input, 1, 80, 24 - 24))
-        addSlot(Slot(input, 2, 105, 24 - 24))
-        addSlot(Slot(input, 3, 42, 60 - 24))
-        addSlot(Slot(input, 4, 119, 60 - 24))
-        addSlot(Slot(input, 5, 26, 96 - 24))
-        addSlot(Slot(input, 6, 134, 96 - 24))
+        addSlot(Slot(input, 1, 80, 24 - 31))
+        addSlot(Slot(input, 4, 80, 24 - 7))
+        addSlot(Slot(input, 3, 105, 24 - 24))
+        addSlot(Slot(input, 2, 42, 60 - 24))
+        addSlot(Slot(input, 5, 119, 60 - 24))
+        addSlot(Slot(input, 6, 26, 96 - 24))
+        addSlot(Slot(input, 7, 134, 96 - 24))
 
         addPlayerSlots()
 

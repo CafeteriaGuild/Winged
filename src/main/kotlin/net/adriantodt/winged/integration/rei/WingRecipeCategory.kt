@@ -32,19 +32,20 @@ class WingRecipeCategory(private val identifier: Identifier, private val logo: E
     override fun setupDisplay(recipeDisplay: WingRecipeDisplay?, bounds: Rectangle): MutableList<Widget> {
         val list = mutableListOf<Widget>(Widgets.createCategoryBase(bounds))
         list.add(Widgets.createDrawableWidget { _, matrices, _, _, _ ->
-            drawBg(matrices, bounds.x + 2, bounds.y + 5)
+            drawBg(matrices, bounds.x + 5, bounds.y + 7)
         })
 
         val input = recipeDisplay!!.inputEntries
         val recipe = recipeDisplay.recipe
         val outputs = EntryStack.create(recipe.output)
         list.add(Widgets.createSlot(Point(bounds.x + 42, bounds.y + 17)).entries(input[0]).disableBackground())
-        list.add(Widgets.createSlot(Point(bounds.x + 67, bounds.y + 17)).entries(input[1]).disableBackground())
-        list.add(Widgets.createSlot(Point(bounds.x + 92, bounds.y + 17)).entries(input[2]).disableBackground())
-        list.add(Widgets.createSlot(Point(bounds.x + 29, bounds.y + 53)).entries(input[3]).disableBackground())
-        list.add(Widgets.createSlot(Point(bounds.x + 106, bounds.y + 53)).entries(input[4]).disableBackground())
-        list.add(Widgets.createSlot(Point(bounds.x + 13, bounds.y + 89)).entries(input[5]).disableBackground())
-        list.add(Widgets.createSlot(Point(bounds.x + 121, bounds.y + 89)).entries(input[6]).disableBackground())
+        list.add(Widgets.createSlot(Point(bounds.x + 67, bounds.y + 17 - 7)).entries(input[1]).disableBackground())
+        list.add(Widgets.createSlot(Point(bounds.x + 67, bounds.y + 17 + 17)).entries(input[4]).disableBackground())
+        list.add(Widgets.createSlot(Point(bounds.x + 92, bounds.y + 17)).entries(input[3]).disableBackground())
+        list.add(Widgets.createSlot(Point(bounds.x + 29, bounds.y + 53)).entries(input[2]).disableBackground())
+        list.add(Widgets.createSlot(Point(bounds.x + 106, bounds.y + 53)).entries(input[5]).disableBackground())
+        list.add(Widgets.createSlot(Point(bounds.x + 13, bounds.y + 89)).entries(input[6]).disableBackground())
+        list.add(Widgets.createSlot(Point(bounds.x + 121, bounds.y + 89)).entries(input[7]).disableBackground())
         list.add(Widgets.createSlot(Point(bounds.x + 67, bounds.y + 96)).entry(outputs).disableBackground().markOutput())
 
         return list
@@ -55,8 +56,8 @@ class WingRecipeCategory(private val identifier: Identifier, private val logo: E
     }
 
     private fun drawBg(matrices: MatrixStack, x: Int, y: Int) {
-        val width = 144
-        val height = 114
+        val width = 140
+        val height = 110
         MinecraftClient.getInstance().textureManager.bindTexture( identifier("textures/gui/rei_integration.png"))
 
         val tessellator = Tessellator.getInstance()

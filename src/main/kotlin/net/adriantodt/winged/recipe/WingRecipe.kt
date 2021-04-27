@@ -53,15 +53,12 @@ class WingRecipe(
                 val defaultedList = ShapedRecipeAccessor.winged_getIngredients(strings, map, i, j)
 
                 assert(defaultedList[4].isEmpty)
-                //silently ignoring it because i don't want to modify every recipe
-                //assert(defaultedList[7].isEmpty)
 
-                val actual = DefaultedList.ofSize(7, Ingredient.EMPTY)
+                val actual = DefaultedList.ofSize(8, Ingredient.EMPTY)
                 defaultedList.forEachIndexed { index, ing ->
-                    if (index != 7 && index != 4) {
-                        if (index < 4) actual[index] = ing
-                        else if (index < 7) actual[index - 1] = ing
-                        else actual[index - 2] = ing
+                    if (index != 7) {
+                        if (index < 7) actual[index] = ing
+                        else if (index == 8) actual[7] = ing
                     }
                 }
 

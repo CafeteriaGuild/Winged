@@ -10,7 +10,7 @@ import net.minecraft.screen.ScreenHandler
 import net.minecraft.util.collection.DefaultedList
 
 class WingBenchCraftingInventory(private val handler: ScreenHandler) : Inventory, RecipeInputProvider {
-    val stacks: DefaultedList<ItemStack> = DefaultedList.ofSize(7, ItemStack.EMPTY)
+    val stacks: DefaultedList<ItemStack> = DefaultedList.ofSize(8, ItemStack.EMPTY)
 
     override fun size(): Int = this.stacks.size
 
