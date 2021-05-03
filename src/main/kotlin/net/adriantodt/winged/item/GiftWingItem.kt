@@ -20,7 +20,10 @@ class GiftWingItem(settings: Settings) : Item(settings) {
 
     override fun use(world: World, user: PlayerEntity, hand: Hand): TypedActionResult<ItemStack> {
         user.playSound(SoundEvents.BLOCK_WOOL_BREAK, 1.0f, 0.0f)
-        return TypedActionResult.success(ItemStack(WingItems.giftableWings.random(user.random.asKotlinRandom())))
+        return if (world.isClient)
+            TypedActionResult.pass(user.getStackInHand(hand))
+        else
+            TypedActionResult.success(ItemStack(WingItems.giftableWings.random(user.random.asKotlinRandom())))
     }
 
     @Environment(EnvType.CLIENT)
