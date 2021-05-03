@@ -35,8 +35,6 @@ public abstract class EnderDragonEntityMixin extends MobEntity implements Winged
         Entity attacker = source.getAttacker();
         if (attacker instanceof PlayerEntity && ((PlayerEntity) attacker).getMainHandStack().getItem() == WingedUtilityItems.INSTANCE.getDippedCeremonialKnife()) {
             taggedPlayer = attacker.getUuid();
-        } else {
-            taggedPlayer = null;
         }
     }
 
