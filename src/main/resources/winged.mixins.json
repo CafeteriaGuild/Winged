@@ -3,7 +3,6 @@
   "package": "net.adriantodt.winged.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "DyingPhaseMixin",
     "EnderDragonEntityMixin",
     "ShapedRecipeAccessor"
   ],
