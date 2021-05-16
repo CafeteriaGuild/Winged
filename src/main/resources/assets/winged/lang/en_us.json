@@ -158,6 +158,8 @@
   "item.winged.dragon_scale.lore2": "§7§oTrust me, I know chemistry.\"§r",
   "item.winged.wing_random": "Gift",
   "item.winged.wing_random.description": "§7§o\"Wrapped with love!\"§r",
+  "item.winged.wing_random_creative_flight": "Gift",
+  "item.winged.wing_random_creative_flight.description": "§7§o\"Wrapped with love!\"§r",
   "item.winged.speedometer": "Speedometer",
   "item.winged.speedometer.description": "§7§o\"Gotta go fast!\"§r",
   "block.winged.wingbench": "Zephyr Workbench",
