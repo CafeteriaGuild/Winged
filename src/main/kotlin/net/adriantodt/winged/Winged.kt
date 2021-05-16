@@ -20,6 +20,8 @@ import net.adriantodt.winged.data.Wing
 import net.adriantodt.winged.data.WingedConfig
 import net.adriantodt.winged.data.components.PlayerComponent
 import net.adriantodt.winged.data.components.impl.DefaultPlayerComponent
+import net.adriantodt.winged.item.HeartOfTheSkyItem
+import net.adriantodt.winged.item.LoreItem
 import net.adriantodt.winged.recipe.WingRecipe
 import net.adriantodt.winged.screen.WingBenchScreenHandler
 import net.fabricmc.api.ModInitializer
@@ -29,6 +31,7 @@ import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry
 import net.minecraft.block.Blocks
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.BlockItem
+import net.minecraft.item.Item
 import net.minecraft.item.ItemGroup
 import net.minecraft.item.ItemStack
 import net.minecraft.util.registry.DefaultedRegistry
@@ -88,7 +91,8 @@ object Winged : ModInitializer, EntityComponentInitializer {
         registry.registerForPlayers(
             playerComponentType,
             { DefaultPlayerComponent(it, false) },
-            RespawnCopyStrategy.ALWAYS_COPY
+            if (configHolder.config.keepWingsAfterDeath) RespawnCopyStrategy.ALWAYS_COPY
+            else RespawnCopyStrategy.INVENTORY
         )
     }
 

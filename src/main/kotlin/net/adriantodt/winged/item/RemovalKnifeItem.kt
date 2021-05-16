@@ -3,7 +3,8 @@ package net.adriantodt.winged.item
 import io.github.ladysnake.pal.Pal
 import io.github.ladysnake.pal.VanillaAbilities
 import net.adriantodt.winged.Winged
-import net.adriantodt.winged.WingedLoreItems.brokenCoreOfFlight75
+import net.adriantodt.winged.WingedLoreItems
+import net.adriantodt.winged.WingedUtilityItems
 import net.adriantodt.winged.WingedUtilityItems.ceremonialKnife
 import net.adriantodt.winged.damagesource.RemoveWingsDamageSource
 import net.fabricmc.api.EnvType
@@ -27,14 +28,16 @@ class RemovalKnifeItem(settings: Settings) : Item(settings) {
             return TypedActionResult.fail(itemStack)
         }
         playerComponent.wing = null
+        val wasFlight = playerComponent.creativeFlight
         playerComponent.creativeFlight = false
 
         if (!world.isClient) {
             Pal.revokeAbility(user, VanillaAbilities.ALLOW_FLYING, Winged.wingSource)
         }
 
-        if (!user.isCreative) user.giveItemStack(ItemStack(brokenCoreOfFlight75))
-        val dmg = Winged.configHolder.config.removeWingsDamage
+        val config = Winged.configHolder.config
+        if (!user.isCreative) user.giveItemStack(ItemStack(getCoreItem(wasFlight, config.wingRemovalBrokenCore)))
+        val dmg = config.removeWingsDamage
         if (dmg > 0 && !world.isClient) {
             user.damage(RemoveWingsDamageSource, dmg)
         }
@@ -48,5 +51,17 @@ class RemovalKnifeItem(settings: Settings) : Item(settings) {
     override fun appendTooltip(stack: ItemStack, world: World?, tooltip: MutableList<Text>, ctx: TooltipContext) {
         tooltip += TranslatableText("$translationKey.lore1")
         tooltip += TranslatableText("tooltip.winged.remove_wing_item")
+    }
+
+    companion object {
+        @JvmStatic
+        fun getCoreItem(creativeFlight: Boolean, dropBroken: Boolean): Item {
+            return when {
+                creativeFlight && dropBroken -> WingedLoreItems.brokenCoreOfFlight75
+                creativeFlight && !dropBroken -> WingedLoreItems.coreOfFlight
+                !creativeFlight && dropBroken -> WingedUtilityItems.heartOfTheSky75
+                else -> WingedUtilityItems.heartOfTheSky
+            }
+        }
     }
 }

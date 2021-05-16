@@ -1,12 +1,13 @@
 {
-  "required": true,
-  "package": "net.adriantodt.winged.mixin",
-  "compatibilityLevel": "JAVA_8",
-  "mixins": [
-    "EnderDragonEntityMixin",
-    "ShapedRecipeAccessor"
-  ],
-  "injectors": {
-    "defaultRequire": 1
+    "required": true,
+    "package": "net.adriantodt.winged.mixin",
+    "compatibilityLevel": "JAVA_8",
+    "mixins": [
+        "EnderDragonEntityMixin",
+        "PlayerEntityMixin",
+        "ShapedRecipeAccessor"
+    ],
+    "injectors": {
+        "defaultRequire": 1
   }
 }

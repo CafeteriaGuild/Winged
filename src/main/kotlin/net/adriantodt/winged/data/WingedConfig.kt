@@ -3,13 +3,19 @@ package net.adriantodt.winged.data
 import me.shedaniel.autoconfig.ConfigData
 import me.shedaniel.autoconfig.annotation.Config
 import me.shedaniel.autoconfig.annotation.ConfigEntry
-import me.shedaniel.clothconfig2.gui.entries.SelectionListEntry
 
 @Config(name = "winged")
 class WingedConfig : ConfigData {
 
     @ConfigEntry.Gui.Tooltip
     var removeWingsDamage = 12f
+
+    @ConfigEntry.Gui.Tooltip
+    @ConfigEntry.Gui.RequiresRestart
+    var keepWingsAfterDeath = true
+
+    @ConfigEntry.Gui.Tooltip
+    var wingRemovalBrokenCore = true
 
     @ConfigEntry.Category("lootTables")
     @ConfigEntry.Gui.TransitiveObject
@@ -67,20 +73,43 @@ class WingedConfig : ConfigData {
         var shard: ShardLootTable = ShardLootTable()
     )
 
-    class CoreLootTable(var generate: Boolean = true, var broken: Boolean = true, var chance: Float = 0.1f)
+    class CoreLootTable(
+        @ConfigEntry.Gui.RequiresRestart
+        var generate: Boolean = true,
+        @ConfigEntry.Gui.RequiresRestart
+        var broken: Boolean = true,
+        @ConfigEntry.Gui.RequiresRestart
+        var chance: Float = 0.1f
+    )
 
-    class ShardLootTable(var generate: Boolean = true, var chance: Float = 0.2f)
+    class ShardLootTable(
+        @ConfigEntry.Gui.RequiresRestart
+        var generate: Boolean = true,
+        @ConfigEntry.Gui.RequiresRestart
+        var chance: Float = 0.2f
+    )
 
     class DropLootTable(
-        var drop: Boolean = true, var requirePlayer: Boolean = true,
-        var chance: Float = 0.05f, var lootingMultiplier: Float = 0.02f
+        @ConfigEntry.Gui.RequiresRestart
+        var drop: Boolean = true,
+        @ConfigEntry.Gui.RequiresRestart
+        var requirePlayer: Boolean = true,
+        @ConfigEntry.Gui.RequiresRestart
+        var chance: Float = 0.05f,
+        @ConfigEntry.Gui.RequiresRestart
+        var lootingMultiplier: Float = 0.02f
     )
 
     class WingDropLootTable(
+        @ConfigEntry.Gui.RequiresRestart
         var drop: Boolean = true,
+        @ConfigEntry.Gui.RequiresRestart
         var requirePlayer: Boolean = true,
+        @ConfigEntry.Gui.RequiresRestart
         var standardChance: Float = 0.05f,
+        @ConfigEntry.Gui.RequiresRestart
         var creativeFlightChance: Float = 0.025f,
+        @ConfigEntry.Gui.RequiresRestart
         var lootingMultiplier: Float = 0.02f
     )
 }
