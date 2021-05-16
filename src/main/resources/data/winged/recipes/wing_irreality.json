@@ -1,9 +1,9 @@
 {
   "type": "winged:wingrecipe",
   "pattern": [
-    " I ",
     "ICI",
-    " I "
+    "III",
+    "I I"
   ],
   "key": {
     "C": {

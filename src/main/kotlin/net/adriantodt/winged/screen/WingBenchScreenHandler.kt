@@ -20,20 +20,16 @@ class WingBenchScreenHandler(syncId: Int, private val playerInventory: PlayerInv
     private val result: CraftingResultInventory = CraftingResultInventory()
 
     init {
-
-        addSlot(WingBenchCraftingResultSlot(playerInventory.player, input, result, 0, 80, 99- 20))
-
-        addSlot(Slot(input, 0, 55, 24 - 24))
-        addSlot(Slot(input, 1, 80, 24 - 31))
-        addSlot(Slot(input, 4, 80, 24 - 7))
-        addSlot(Slot(input, 3, 105, 24 - 24))
-        addSlot(Slot(input, 2, 42, 60 - 24))
-        addSlot(Slot(input, 5, 119, 60 - 24))
-        addSlot(Slot(input, 6, 26, 96 - 24))
-        addSlot(Slot(input, 7, 134, 96 - 24))
-
+        addSlot(WingBenchCraftingResultSlot(playerInventory.player, input, result, 0, 80, 105))
+        addSlot(Slot(input, 0, 55, 26))
+        addSlot(Slot(input, 1, 80, 19))
+        addSlot(Slot(input, 2, 42, 62))
+        addSlot(Slot(input, 3, 105, 26))
+        addSlot(Slot(input, 4, 80, 43))
+        addSlot(Slot(input, 5, 119, 62))
+        addSlot(Slot(input, 6, 26, 98))
+        addSlot(Slot(input, 7, 134, 98))
         addPlayerSlots()
-
     }
 
     override fun canUse(player: PlayerEntity?): Boolean = true
@@ -107,12 +103,12 @@ class WingBenchScreenHandler(syncId: Int, private val playerInventory: PlayerInv
     private fun addPlayerSlots() {
         for (x in 0 until 9) {
             for (y in 0 until 3) {
-                addSlot(Slot(playerInventory, x + y * 9 + 9, 8 + x * 18, 84 + y * 18+18+13))
+                addSlot(Slot(playerInventory, x + y * 9 + 9, 8 + x * 18, 84 + y * 76))
             }
         }
 
         for (x in 0 until 9) {
-            addSlot(Slot(playerInventory, x, 8 + x * 18, 142+18+13))
+            addSlot(Slot(playerInventory, x, 8 + x * 18, 200))
         }
     }
 

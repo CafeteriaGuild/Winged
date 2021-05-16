@@ -3,7 +3,6 @@ package net.adriantodt.winged
 import com.mojang.serialization.Lifecycle
 import dev.onyxstudios.cca.api.v3.component.ComponentKey
 import dev.onyxstudios.cca.api.v3.component.ComponentRegistryV3
-import dev.onyxstudios.cca.api.v3.entity.EntityComponentFactory
 import dev.onyxstudios.cca.api.v3.entity.EntityComponentFactoryRegistry
 import dev.onyxstudios.cca.api.v3.entity.EntityComponentInitializer
 import io.github.ladysnake.pal.AbilitySource
@@ -14,6 +13,7 @@ import me.shedaniel.autoconfig.ConfigHolder
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer
 import nerdhub.cardinal.components.api.util.RespawnCopyStrategy
 import net.adriantodt.fallflyinglib.FallFlyingLib
+import net.adriantodt.fallflyinglib.event.PreFallFlyingCallback
 import net.adriantodt.winged.block.WingBenchBlock
 import net.adriantodt.winged.command.WingedCommand
 import net.adriantodt.winged.data.Wing
@@ -25,9 +25,7 @@ import net.adriantodt.winged.screen.WingBenchScreenHandler
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents
 import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry
-import net.fabricmc.fabric.impl.screenhandler.ExtendedScreenHandlerType
 import net.minecraft.block.Blocks
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.BlockItem
@@ -52,36 +50,27 @@ object Winged : ModInitializer, EntityComponentInitializer {
         Lifecycle.stable()
     )
 
-    val playerComponentType: ComponentKey<PlayerComponent> = ComponentRegistryV3.INSTANCE.getOrCreate(identifier("player_data"), PlayerComponent::class.java)
+    val playerComponentType: ComponentKey<PlayerComponent> =
+        ComponentRegistryV3.INSTANCE.getOrCreate(identifier("player_data"), PlayerComponent::class.java)
 
-    val creativeWingSource: AbilitySource = Pal.getAbilitySource(identifier("heart_of_the_sky"))
+    val wingSource: AbilitySource = Pal.getAbilitySource(identifier("wing"))
 
-
-    val wingbenchType = ScreenHandlerRegistry.registerExtended(WingBenchScreenHandler.ID) { syncId, inv, buf ->
+    val wingbenchType = ScreenHandlerRegistry.registerSimple(WingBenchScreenHandler.ID) { syncId, inv ->
         WingBenchScreenHandler(syncId, inv)
-    } as ExtendedScreenHandlerType<WingBenchScreenHandler>
-
-    fun init() {
-        FallFlyingLib.registerAccessor { entity ->
-            if (entity is PlayerEntity)
-                playerComponentType.get(entity)
-            else
-                InvalidFalLFlyingProvider
-        }
-    }
+    }!!
 
     val mainGroup: ItemGroup = FabricItemGroupBuilder.create(identifier("main"))
         .icon { ItemStack(WingedLoreItems.coreOfFlight) }
         .build()
 
     val showcaseGroup: ItemGroup = FabricItemGroupBuilder.create(identifier("showcase"))
-        .icon { ItemStack(WingItems.elytra.first) }
+        .icon { ItemStack(WingItems.elytra.standard) }
         .build()
 
     val wingBenchBlock = WingBenchBlock(FabricBlockSettings.copyOf(Blocks.END_STONE))
 
     override fun onInitialize() {
-        init()
+        PreFallFlyingCallback.EVENT.register(this::handleWingsAndCreativeFlight)
         WingedLoreItems.register()
         WingedUtilityItems.register()
         WingItems.register()
@@ -93,20 +82,35 @@ object Winged : ModInitializer, EntityComponentInitializer {
 
         Registry.register(Registry.BLOCK, identifier("wingbench"), wingBenchBlock)
         Registry.register(Registry.ITEM, identifier("wingbench"), BlockItem(wingBenchBlock, itemSettings()))
-
-        ServerTickEvents.END_WORLD_TICK.register { world ->
-            world.players.forEach { player ->
-                val playerComponent = playerComponentType[player]
-                val tracker = VanillaAbilities.ALLOW_FLYING.getTracker(player)
-                if (playerComponent.creativeFlight
-                    && !tracker.isGrantedBy(creativeWingSource)) {
-                        tracker.addSource(creativeWingSource)
-                }
-            }
-        }
     }
 
     override fun registerEntityComponentFactories(registry: EntityComponentFactoryRegistry) {
-        registry.registerForPlayers(playerComponentType, EntityComponentFactory { player -> DefaultPlayerComponent(player, false) }, RespawnCopyStrategy.ALWAYS_COPY)
+        registry.registerForPlayers(
+            playerComponentType,
+            { DefaultPlayerComponent(it, false) },
+            RespawnCopyStrategy.ALWAYS_COPY
+        )
+    }
+
+    private fun handleWingsAndCreativeFlight(player: PlayerEntity) {
+        if (player.world.isClient) return
+        val component = playerComponentType.getNullable(player) ?: return
+        val wing = component.wing
+
+        val fallFlyingTracker = FallFlyingLib.ABILITY.getTracker(player)
+        val allowFlyingTracker = VanillaAbilities.ALLOW_FLYING.getTracker(player)
+
+        if (wing == null) {
+            fallFlyingTracker.removeSource(wingSource)
+            allowFlyingTracker.removeSource(wingSource)
+        } else {
+            fallFlyingTracker.addSource(wingSource)
+
+            if (component.creativeFlight) {
+                allowFlyingTracker.addSource(wingSource)
+            } else {
+                allowFlyingTracker.removeSource(wingSource)
+            }
+        }
     }
 }

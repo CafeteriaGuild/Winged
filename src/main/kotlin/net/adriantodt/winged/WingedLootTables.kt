@@ -54,148 +54,37 @@ object WingedLootTables {
 
     data class DropValues(val identifier: Identifier, val item: Item, val poolConfig: WingedConfig.DropLootTable)
 
-    private fun coreOfFlightLootTables(config: WingedConfig) = listOf(
-        abandonedMineshaft to config.lootTables.abandonedMineshaft,
-        buriedTreasure to config.lootTables.buriedTreasure,
-        endCityTreasure to config.lootTables.endCityTreasure,
-        simpleDungeon to config.lootTables.simpleDungeon,
-        woodlandMansion to config.lootTables.woodlandMansion
-    )
-
-    private fun shardOfFlightLootTables(config: WingedConfig) = listOf(
-        abandonedMineshaft to config.lootTables.abandonedMineshaftShardOfFlight,
-        buriedTreasure to config.lootTables.buriedTreasureShardOfFlight,
-        endCityTreasure to config.lootTables.endCityTreasureShardOfFlight,
-        simpleDungeon to config.lootTables.simpleDungeonShardOfFlight,
-        woodlandMansion to config.lootTables.woodlandMansionShardOfFlight
-    )
-
-    private fun dropLootTales(config: WingedConfig) = listOf(
-        DropValues(chicken, blackFeather, config.lootTables.blackFeather),
-        DropValues(zombie, demonicFlesh, config.lootTables.demonicFlesh),
-        DropValues(zombieVillager, demonicFlesh, config.lootTables.demonicFlesh),
-        DropValues(husk, demonicFlesh, config.lootTables.demonicFlesh),
-        DropValues(drowned, demonicFlesh, config.lootTables.demonicFlesh),
-        DropValues(enderman, irrealityCrystal, config.lootTables.endermanIrrealityCrystal),
-        DropValues(endermite, irrealityCrystal, config.lootTables.endermiteIrrealityCrystal),
-        DropValues(bat, batWing, config.lootTables.batWing),
-        DropValues(vex, vexEssence, config.lootTables.vexEssence)
-    )
-
-    private fun fireDropLootTales(config: WingedConfig) = listOf(
-        DropValues(chicken, friedChicken, config.lootTables.friedChicken)
-    )
-
     private val holidayDropMobs = listOf(zombie, zombieVillager, husk, drowned, skeleton, enderman, endermite)
 
     fun register(config: WingedConfig) {
-        for ((identifier, poolConfig) in coreOfFlightLootTables(config)) {
-            lootTable(identifier) {
-                if (poolConfig.generate) {
-                    addPool {
-                        rolls(ConstantLootTableRange.create(1))
-                        with(ItemEntry.builder(if (poolConfig.broken) brokenCoreOfFlight75 else coreOfFlight))
-                        conditionally(RandomChanceLootCondition.builder(poolConfig.chance.coerceIn(0f, 1f)))
-                    }
-                }
-            }
-        }
-
-        for ((identifier, poolConfig) in shardOfFlightLootTables(config)) {
-            lootTable(identifier) {
-                if (poolConfig.generate) {
-                    addPool {
-                        rolls(ConstantLootTableRange.create(1))
-                        with(ItemEntry.builder(shardOfZephyr))
-                        conditionally(RandomChanceLootCondition.builder(poolConfig.chance.coerceIn(0f, 1f)))
-                    }
-                }
-            }
-        }
-
-        for ((identifier, item, poolConfig) in dropLootTales(config)) {
-            lootTable(identifier) {
-                if (poolConfig.drop) {
-                    addPool {
-                        rolls(ConstantLootTableRange.create(1))
-                        with(ItemEntry.builder(item))
-                        conditionally(
-                            RandomChanceWithLootingLootCondition.builder(
-                                poolConfig.chance.coerceIn(0f, 1f),
-                                poolConfig.lootingMultiplier.coerceIn(0f, 1f)
-                            )
-                        )
-                        if (poolConfig.requirePlayer) {
-                            conditionally(KilledByPlayerLootCondition.builder())
-                        }
-                    }
-                }
-            }
-        }
-        for ((identifier, item, poolConfig) in fireDropLootTales(config)) {
-            lootTable(identifier) {
-                if (poolConfig.drop) {
-                    addPool {
-                        rolls(ConstantLootTableRange.create(1))
-                        with(ItemEntry.builder(item))
-                        conditionally(
-                            RandomChanceWithLootingLootCondition.builder(
-                                poolConfig.chance.coerceIn(0f, 1f),
-                                poolConfig.lootingMultiplier.coerceIn(0f, 1f)
-                            )
-                        )
-                        if (poolConfig.requirePlayer) {
-                            conditionally(KilledByPlayerLootCondition.builder())
-                        }
-                        conditionally(
-                            EntityPropertiesLootCondition.builder(
-                                LootContext.EntityTarget.THIS,
-                                EntityPredicate.Builder.create()
-                                    .flags(EntityFlagsPredicate.Builder.create().onFire(true).build())
-                            )
-                        )
-                    }
-                }
-            }
-        }
-        val holidayPoolConfig = config.lootTables.holidayDrops
-        for (identifier in holidayDropMobs) {
-            lootTable(identifier) {
-                if (holidayPoolConfig.drop) {
-                    for (item in listOf(xmasStar.first, xmasTree.first)) addPool {
-                        rolls(ConstantLootTableRange.create(1))
-                        with(ItemEntry.builder(item))
-                        conditionally(
-                            RandomChanceWithLootingLootCondition.builder(
-                                holidayPoolConfig.chance.coerceIn(0f, 1f),
-                                holidayPoolConfig.lootingMultiplier.coerceIn(0f, 1f)
-                            )
-                        )
-                        if (holidayPoolConfig.requirePlayer) {
-                            conditionally(KilledByPlayerLootCondition.builder())
-                        }
-                        conditionally(IsChristmas.builder())
-                    }
-                    for (item in listOf(spooky.first)) addPool {
-                        rolls(ConstantLootTableRange.create(1))
-                        with(ItemEntry.builder(item))
-                        conditionally(
-                            RandomChanceWithLootingLootCondition.builder(
-                                holidayPoolConfig.chance.coerceIn(0f, 1f),
-                                holidayPoolConfig.lootingMultiplier.coerceIn(0f, 1f)
-                            )
-                        )
-                        if (holidayPoolConfig.requirePlayer) {
-                            conditionally(KilledByPlayerLootCondition.builder())
-                        }
-                        conditionally(IsHalloween.builder())
-                    }
-                }
-            }
-        }
-
-        Registry.register(Registry.LOOT_CONDITION_TYPE, identifier("is_christmas"), IsChristmas.type)
-        Registry.register(Registry.LOOT_CONDITION_TYPE, identifier("is_halloween"), IsHalloween.type)
+        registerCoreAndShards(
+            listOf(
+                abandonedMineshaft to config.lootTables.abandonedMineshaft,
+                buriedTreasure to config.lootTables.buriedTreasure,
+                endCityTreasure to config.lootTables.endCityTreasure,
+                simpleDungeon to config.lootTables.simpleDungeon,
+                woodlandMansion to config.lootTables.woodlandMansion
+            )
+        )
+        registerDrops(
+            listOf(
+                DropValues(chicken, blackFeather, config.lootTables.blackFeather),
+                DropValues(zombie, demonicFlesh, config.lootTables.demonicFlesh),
+                DropValues(zombieVillager, demonicFlesh, config.lootTables.demonicFlesh),
+                DropValues(husk, demonicFlesh, config.lootTables.demonicFlesh),
+                DropValues(drowned, demonicFlesh, config.lootTables.demonicFlesh),
+                DropValues(enderman, irrealityCrystal, config.lootTables.endermanIrrealityCrystal),
+                DropValues(endermite, irrealityCrystal, config.lootTables.endermiteIrrealityCrystal),
+                DropValues(bat, batWing, config.lootTables.batWing),
+                DropValues(vex, vexEssence, config.lootTables.vexEssence)
+            )
+        )
+        registerFireDrops(
+            listOf(
+                DropValues(chicken, friedChicken, config.lootTables.friedChicken)
+            )
+        )
+        registerHolidayDrops(config.lootTables.holidayDrops)
 
         LootTableLoadingCallback.EVENT.register(
             LootTableLoadingCallback { resourceManager, lootManager, id, supplier, setter ->
@@ -203,6 +92,82 @@ object WingedLootTables {
                 configurators[id]?.forEach { ctx.it() }
             }
         )
+    }
+
+    private fun registerCoreAndShards(pools: List<Pair<Identifier, WingedConfig.CoreAndShardLootTables>>) {
+        for ((identifier, pool) in pools) {
+            if (pool.core.generate) lootTable(identifier) {
+                standardPool(if (pool.core.broken) brokenCoreOfFlight75 else coreOfFlight) {
+                    randomChanceCondition(pool.core.chance)
+                }
+            }
+            if (pool.shard.generate) lootTable(identifier) {
+                standardPool(shardOfZephyr) {
+                    randomChanceCondition(pool.shard.chance)
+                }
+            }
+        }
+    }
+
+    private fun registerDrops(pools: List<DropValues>) {
+        for ((identifier, item, pool) in pools) {
+            if (pool.drop) lootTable(identifier) {
+                standardPool(item, pool.requirePlayer) {
+                    randomChanceWithLootingCondition(pool.chance, pool.lootingMultiplier)
+                }
+            }
+        }
+    }
+
+    private fun registerFireDrops(pools: List<DropValues>) {
+        for ((identifier, item, pool) in pools) {
+            if (pool.drop) lootTable(identifier) {
+                standardPool(item, pool.requirePlayer) {
+                    randomChanceWithLootingCondition(pool.chance, pool.lootingMultiplier)
+                    onFireCondition()
+                }
+            }
+        }
+    }
+
+    private fun registerHolidayDrops(pool: WingedConfig.WingDropLootTable) {
+        Registry.register(Registry.LOOT_CONDITION_TYPE, identifier("is_christmas"), IsChristmas.type)
+        Registry.register(Registry.LOOT_CONDITION_TYPE, identifier("is_halloween"), IsHalloween.type)
+
+        if (pool.drop) for (identifier in holidayDropMobs) lootTable(identifier) {
+            for (variations in listOf(xmasStar, xmasTree)) {
+                standardPool(variations.standard, pool.requirePlayer) {
+                    randomChanceWithLootingCondition(
+                        pool.standardChance,
+                        pool.lootingMultiplier
+                    )
+                    isChristmasCondition()
+                }
+                standardPool(variations.creativeFlight, pool.requirePlayer) {
+                    randomChanceWithLootingCondition(
+                        pool.creativeFlightChance,
+                        pool.lootingMultiplier
+                    )
+                    isChristmasCondition()
+                }
+            }
+            for (variations in listOf(spooky)) {
+                standardPool(variations.standard, pool.requirePlayer) {
+                    randomChanceWithLootingCondition(
+                        pool.standardChance,
+                        pool.lootingMultiplier
+                    )
+                    isHalloweenCondition()
+                }
+                standardPool(variations.creativeFlight, pool.requirePlayer) {
+                    randomChanceWithLootingCondition(
+                        pool.creativeFlightChance,
+                        pool.lootingMultiplier
+                    )
+                    isHalloweenCondition()
+                }
+            }
+        }
     }
 
     private data class Context(
@@ -214,6 +179,15 @@ object WingedLootTables {
     ) {
         fun addPool(block: FabricLootPoolBuilder.() -> Unit) {
             supplier.pool(FabricLootPoolBuilder.builder().also(block))
+        }
+
+        fun standardPool(item: Item, requirePlayer: Boolean = false, block: FabricLootPoolBuilder.() -> Unit) {
+            addPool {
+                rolls(ConstantLootTableRange.create(1))
+                with(ItemEntry.builder(item))
+                block()
+                if (requirePlayer) killedByPlayerCondition()
+            }
         }
     }
 
@@ -265,5 +239,36 @@ object WingedLootTables {
         }
 
         fun builder() = LootCondition.Builder { IsHalloween }
+    }
+
+    private fun FabricLootPoolBuilder.killedByPlayerCondition() {
+        conditionally(KilledByPlayerLootCondition.builder())
+    }
+
+    private fun FabricLootPoolBuilder.randomChanceCondition(chance: Float) {
+        conditionally(RandomChanceLootCondition.builder(chance.coerceIn(0f, 1f)))
+    }
+
+    private fun FabricLootPoolBuilder.randomChanceWithLootingCondition(chance: Float, lootingMultiplier: Float) {
+        conditionally(
+            RandomChanceWithLootingLootCondition.builder(chance.coerceIn(0f, 1f), lootingMultiplier.coerceIn(0f, 1f))
+        )
+    }
+
+    private fun FabricLootPoolBuilder.onFireCondition() {
+        conditionally(
+            EntityPropertiesLootCondition.builder(
+                LootContext.EntityTarget.THIS,
+                EntityPredicate.Builder.create().flags(EntityFlagsPredicate.Builder.create().onFire(true).build())
+            )
+        )
+    }
+
+    private fun FabricLootPoolBuilder.isChristmasCondition() {
+        conditionally(IsChristmas.builder())
+    }
+
+    private fun FabricLootPoolBuilder.isHalloweenCondition() {
+        conditionally(IsHalloween.builder())
     }
 }

@@ -85,108 +85,119 @@ object WingItems {
     val glass = wingItem(identifier("glass").wing(Wings.glass))
 
     //TEMPLATE -- FOR MODDERS/ARTISTS -- /GIVE ONLY
-    val template = WingItem(Item.Settings().maxCount(1), identifier("template").wing(Wings.template))
+    val template = wingItem(identifier("template").wing(Wings.template))
 
     fun register() {
-        registerWingItems("wing_elytra", elytra, true)
-        registerWingItems("wing_mojang_cape", mojangCape, true)
-        registerWingItems("wing_mojang_cape_alt", mojangCapeAlt, true)
-        registerWingItems("wing_minecon_2011_cape", minecon2011Cape, true)
-        registerWingItems("wing_minecon_2012_cape", minecon2012Cape, true)
-        registerWingItems("wing_minecon_2013_cape", minecon2013Cape, true)
-        registerWingItems("wing_minecon_2015_cape", minecon2015Cape, true)
-        registerWingItems("wing_minecon_2016_cape", minecon2016Cape, true)
-        registerWingItems("wing_minecon_2019_cape", minecon2019Cape, true)
-        registerWingItems("wing_cobalt_cape", cobaltCape, true)
-        registerWingItems("wing_scrolls_cape", scrollsCape, true)
-        registerWingItems("wing_crowdin_cape", crowdinCape, true)
-        registerWingItems("wing_mapmaker_cape", mapmakerCape, true)
-        registerWingItems("wing_millionth_cape", millionthCape, true)
-        registerWingItems("wing_mojira_mod_cape", mojiraModCape, true)
-        registerWingItems("wing_dannybstyle_cape", dannybstyleCape, true)
-        registerWingItems("wing_julianclark_cape", julianclarkCape, true)
-        registerWingItems("wing_julianclark_cape_alt", julianclarkCapeAlt, true)
-        registerWingItems("wing_mrmessiah_cape", mrmessiahCape, true)
-        registerWingItems("wing_prismarine_cape", prismarineCape, true)
-        registerWingItems("wing_turtle_cape", turtleCape, true)
-        registerWingItems("wing_eagle", eagle, true)
-        registerWingItems("wing_greenwing_macaw", greenwingMacaw, true)
-        registerWingItems("wing_fairyonline", fairyonline, true)
-        registerWingItems("wing_angel", angel, true)
-        registerWingItems("wing_demon", demon, true)
-        registerWingItems("wing_phoenix", phoenix, true)
-        registerWingItems("wing_dragonfly", dragonfly, true)
-        registerWingItems("wing_green_beetle", greenBeetle, true)
-        registerWingItems("wing_purple_beetle", purpleBeetle, true)
-        registerWingItems("wing_golden_beetle", goldenBeetle, true)
-        registerWingItems("wing_fried_chicken", friedChicken, true)
-        registerWingItems("wing_green_dragon", greenDragon, true)
-        registerWingItems("wing_red_dragon", redDragon, true)
-        registerWingItems("wing_fire_dragon", fireDragon, true)
-        registerWingItems("wing_phantom", phantom, true)
-        registerWingItems("wing_phantom_alt", phantomAlt, true)
-        registerWingItems("wing_phantom_membrane", phantomMembrane, true)
-        registerWingItems("wing_bat", bat, true)
-        registerWingItems("wing_bat_alt", batAlt, true)
-        registerWingItems("wing_mech_dragon", mechDragon, true)
-        registerWingItems("wing_redstone", redstone, true)
-        registerWingItems("wing_shulker", shulker, true)
-        registerWingItems("wing_tnt", tnt, true)
-        registerWingItems("wing_tiny_bird", tinyBird, true)
-        registerWingItems("wing_vex", vex, true)
-        registerWingItems("wing_creamy_white", creamyWhite, true)
-        registerWingItems("wing_brazil", brazil, true)
-        registerWingItems("wing_usa", usa, true)
-        registerWingItems("wing_earth", earth, true)
-        registerWingItems("wing_rainbow", rainbow, true)
-        registerWingItems("wing_elytra_white", elytraWhite, true)
-        registerWingItems("wing_elytra_orange", elytraOrange, true)
-        registerWingItems("wing_elytra_magenta", elytraMagenta, true)
-        registerWingItems("wing_elytra_light_blue", elytraLightBlue, true)
-        registerWingItems("wing_elytra_yellow", elytraYellow, true)
-        registerWingItems("wing_elytra_lime", elytraLime, true)
-        registerWingItems("wing_elytra_pink", elytraPink, true)
-        registerWingItems("wing_elytra_gray", elytraGray, true)
-        registerWingItems("wing_elytra_light_gray", elytraLightGray, true)
-        registerWingItems("wing_elytra_cyan", elytraCyan, true)
-        registerWingItems("wing_elytra_purple", elytraPurple, true)
-        registerWingItems("wing_elytra_blue", elytraBlue, true)
-        registerWingItems("wing_elytra_brown", elytraBrown, true)
-        registerWingItems("wing_elytra_green", elytraGreen, true)
-        registerWingItems("wing_elytra_red", elytraRed, true)
-        registerWingItems("wing_elytra_black", elytraBlack, true)
-        registerWingItems("wing_xmas_tree", xmasTree, true)
-        registerWingItems("wing_xmas_star", xmasStar, true)
-        registerWingItems("wing_glider", glider, true)
-        registerWingItems("wing_spooky", spooky, true)
-        registerWingItems("wing_irreality", irreality, true)
-        registerWingItems("wing_glass", glass, true)
+        registerWings("wing_elytra", elytra)
+        registerWings("wing_mojang_cape", mojangCape)
+        registerWings("wing_mojang_cape_alt", mojangCapeAlt)
+        registerWings("wing_minecon_2011_cape", minecon2011Cape)
+        registerWings("wing_minecon_2012_cape", minecon2012Cape)
+        registerWings("wing_minecon_2013_cape", minecon2013Cape)
+        registerWings("wing_minecon_2015_cape", minecon2015Cape)
+        registerWings("wing_minecon_2016_cape", minecon2016Cape)
+        registerWings("wing_minecon_2019_cape", minecon2019Cape)
+        registerWings("wing_cobalt_cape", cobaltCape)
+        registerWings("wing_scrolls_cape", scrollsCape)
+        registerWings("wing_crowdin_cape", crowdinCape)
+        registerWings("wing_mapmaker_cape", mapmakerCape)
+        registerWings("wing_millionth_cape", millionthCape)
+        registerWings("wing_mojira_mod_cape", mojiraModCape)
+        registerWings("wing_dannybstyle_cape", dannybstyleCape)
+        registerWings("wing_julianclark_cape", julianclarkCape)
+        registerWings("wing_julianclark_cape_alt", julianclarkCapeAlt)
+        registerWings("wing_mrmessiah_cape", mrmessiahCape)
+        registerWings("wing_prismarine_cape", prismarineCape)
+        registerWings("wing_turtle_cape", turtleCape)
+        registerWings("wing_eagle", eagle)
+        registerWings("wing_greenwing_macaw", greenwingMacaw)
+        registerWings("wing_fairyonline", fairyonline)
+        registerWings("wing_angel", angel)
+        registerWings("wing_demon", demon)
+        registerWings("wing_phoenix", phoenix)
+        registerWings("wing_dragonfly", dragonfly)
+        registerWings("wing_green_beetle", greenBeetle)
+        registerWings("wing_purple_beetle", purpleBeetle)
+        registerWings("wing_golden_beetle", goldenBeetle)
+        registerWings("wing_fried_chicken", friedChicken)
+        registerWings("wing_green_dragon", greenDragon)
+        registerWings("wing_red_dragon", redDragon)
+        registerWings("wing_fire_dragon", fireDragon)
+        registerWings("wing_phantom", phantom)
+        registerWings("wing_phantom_alt", phantomAlt)
+        registerWings("wing_phantom_membrane", phantomMembrane)
+        registerWings("wing_bat", bat)
+        registerWings("wing_bat_alt", batAlt)
+        registerWings("wing_mech_dragon", mechDragon)
+        registerWings("wing_redstone", redstone)
+        registerWings("wing_shulker", shulker)
+        registerWings("wing_tnt", tnt)
+        registerWings("wing_tiny_bird", tinyBird)
+        registerWings("wing_vex", vex)
+        registerWings("wing_creamy_white", creamyWhite)
+        registerWings("wing_brazil", brazil)
+        registerWings("wing_usa", usa)
+        registerWings("wing_earth", earth)
+        registerWings("wing_rainbow", rainbow)
+        registerWings("wing_elytra_white", elytraWhite)
+        registerWings("wing_elytra_orange", elytraOrange)
+        registerWings("wing_elytra_magenta", elytraMagenta)
+        registerWings("wing_elytra_light_blue", elytraLightBlue)
+        registerWings("wing_elytra_yellow", elytraYellow)
+        registerWings("wing_elytra_lime", elytraLime)
+        registerWings("wing_elytra_pink", elytraPink)
+        registerWings("wing_elytra_gray", elytraGray)
+        registerWings("wing_elytra_light_gray", elytraLightGray)
+        registerWings("wing_elytra_cyan", elytraCyan)
+        registerWings("wing_elytra_purple", elytraPurple)
+        registerWings("wing_elytra_blue", elytraBlue)
+        registerWings("wing_elytra_brown", elytraBrown)
+        registerWings("wing_elytra_green", elytraGreen)
+        registerWings("wing_elytra_red", elytraRed)
+        registerWings("wing_elytra_black", elytraBlack)
+        registerWings("wing_xmas_tree", xmasTree)
+        registerWings("wing_xmas_star", xmasStar)
+        registerWings("wing_glider", glider)
+        registerWings("wing_spooky", spooky)
+        registerWings("wing_irreality", irreality)
+        registerWings("wing_glass", glass)
 
         //TEMPLATE -- FOR MODDERS/ARTISTS -- /GIVE ONLY
-        identifier("wing_template").item(template)
+        registerWings("wing_template", template, false)
     }
 
-    private fun registerWingItems(path: String, pair: Pair<WingItem, WingItem>, giftable: Boolean = false) {
-        identifier(path).item(pair.first.also { if (giftable) it.giftable() })
-        identifier("${path}_creative_flight").item(pair.second)
+    private fun registerWings(path: String, variations: WingVariations, giftable: Boolean = true) {
+        if (giftable) {
+            giftableWings += variations
+        }
+        identifier(path).item(variations.standard)
+        identifier("${path}_creative_flight").item(variations.creativeFlight)
     }
 
-    private fun wingItem(identifier: Identifier) = WingItem(
-        Item.Settings().group(Winged.showcaseGroup).rarity(Rarity.EPIC).maxCount(1),
-        identifier
-    ) to WingItem(
-        Item.Settings().group(Winged.showcaseGroup).rarity(Rarity.EPIC).maxCount(1),
-        identifier,
-        true
-    )
+    private fun wingItem(identifier: Identifier): WingVariations {
+        return WingVariations(
+            standard = WingItem(
+                Item.Settings().group(Winged.showcaseGroup).rarity(Rarity.RARE).maxCount(1),
+                identifier
+            ),
+            creativeFlight = WingItem(
+                Item.Settings().group(Winged.showcaseGroup).rarity(Rarity.EPIC).maxCount(1),
+                identifier,
+                true
+            )
+        )
+    }
 
-    val giftableWings = ArrayList<WingItem>()
-
-    fun randomWing(random: Random) = giftableWings.elementAt(random.nextInt(giftableWings.size))
+    val giftableWings = ArrayList<WingVariations>()
 
     private fun Identifier.wing(wing: Wing) = apply {
         Registry.register(Winged.wingRegistry, this, wing)
     }
 
-    private fun WingItem.giftable() = apply { giftableWings += this }
+    data class WingVariations(
+        val standard: WingItem,
+        val creativeFlight: WingItem
+    ) {
+        val asList by lazy { listOf(standard, creativeFlight) }
+    }
 }

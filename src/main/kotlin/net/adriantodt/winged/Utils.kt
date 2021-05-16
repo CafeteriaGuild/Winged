@@ -1,6 +1,5 @@
 package net.adriantodt.winged
 
-import net.adriantodt.fallflyinglib.FallFlyingAbility
 import net.adriantodt.winged.item.LoreItem
 import net.minecraft.block.Block
 import net.minecraft.item.BlockItem
@@ -33,18 +32,6 @@ fun Item.Settings.food(block: FoodComponent.Builder.() -> Unit) = apply {
 
 fun Item.Settings.loreItem(amount: Int = 2, glint: Boolean = false) = LoreItem(this, amount, glint)
 
-fun secondsLeft(stack: ItemStack, ticksPerDamage: Int): Double {
-    val damageTicksLeft = (stack.maxDamage - stack.damage) * ticksPerDamage
-    val tagTicksLeft = stack.tag?.getInt("TicksLeft") ?: 0
-    return (damageTicksLeft + tagTicksLeft) / 20.0
-}
-
 operator fun Vec3d.times(other: Double): Vec3d = multiply(other)
 
 operator fun Vec3d.plus(other: Vec3d): Vec3d = add(other)
-
-object InvalidFalLFlyingProvider : FallFlyingAbility {
-    override fun allowFallFlying(): Boolean = false
-
-    override fun shouldHideCape(): Boolean = false
-}

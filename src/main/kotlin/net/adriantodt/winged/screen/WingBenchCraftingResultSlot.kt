@@ -15,7 +15,6 @@ class WingBenchCraftingResultSlot(
     x: Int,
     y: Int
 ) : Slot(inventory, index, x, y) {
-
     private var amount = 0
 
     override fun canInsert(stack: ItemStack): Boolean = false

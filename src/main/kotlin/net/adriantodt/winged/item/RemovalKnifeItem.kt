@@ -1,5 +1,6 @@
 package net.adriantodt.winged.item
 
+import io.github.ladysnake.pal.Pal
 import io.github.ladysnake.pal.VanillaAbilities
 import net.adriantodt.winged.Winged
 import net.adriantodt.winged.WingedLoreItems.brokenCoreOfFlight75
@@ -29,10 +30,7 @@ class RemovalKnifeItem(settings: Settings) : Item(settings) {
         playerComponent.creativeFlight = false
 
         if (!world.isClient) {
-            val allowFlyingTracker = VanillaAbilities.ALLOW_FLYING.getTracker(user)
-            if (allowFlyingTracker.isGrantedBy(Winged.creativeWingSource)) {
-                allowFlyingTracker.removeSource(Winged.creativeWingSource)
-            }
+            Pal.revokeAbility(user, VanillaAbilities.ALLOW_FLYING, Winged.wingSource)
         }
 
         if (!user.isCreative) user.giveItemStack(ItemStack(brokenCoreOfFlight75))

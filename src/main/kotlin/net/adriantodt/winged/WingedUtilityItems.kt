@@ -14,7 +14,8 @@ object WingedUtilityItems {
     val heartOfTheSky25 = itemSettings().rarity(Rarity.UNCOMMON).loreItem()
     val heartOfTheSky50 = itemSettings().rarity(Rarity.UNCOMMON).loreItem()
     val heartOfTheSky75 = itemSettings().rarity(Rarity.UNCOMMON).loreItem()
-    val randomWing = GiftWingItem(itemSettings().rarity(Rarity.EPIC).maxCount(1))
+    val randomWing = GiftWingItem(itemSettings().rarity(Rarity.RARE).maxCount(1))
+    val randomWingCreativeFlight = GiftWingItem(itemSettings().rarity(Rarity.EPIC).maxCount(1), true)
 
     fun register() {
         identifier("ceremonial_knife").item(ceremonialKnife)
@@ -25,5 +26,6 @@ object WingedUtilityItems {
         identifier("heart_of_the_sky_50").item(heartOfTheSky50)
         identifier("heart_of_the_sky_75").item(heartOfTheSky75)
         identifier("wing_random").item(randomWing)
+        identifier("wing_random_creative_flight").item(randomWingCreativeFlight)
     }
 }
