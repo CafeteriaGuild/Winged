@@ -1,22 +1,21 @@
 {
-  "type": "winged:wingrecipe",
-  "pattern": [
-    "FCF",
-    "FGF",
-    "F F"
-  ],
-  "key": {
-    "C": {
-      "item": "winged:heart_of_the_sky"
-    },
-    "G": {
-      "item": "minecraft:gold_ingot"
-    },
-    "F": {
-      "item": "winged:angel_feather"
-    }
+  "type":"winged:wingcrafting",
+  "top":{
+    "item":"winged:heart_of_the_sky"
   },
-  "result": {
-    "item": "winged:wing_angel_creative_flight"
+  "center":{
+    "item":"minecraft:gold_ingot"
+  },
+  "wing_top":{
+    "item":"winged:angel_feather"
+  },
+  "wing_mid":{
+    "item":"winged:angel_feather"
+  },
+  "wing_low":{
+    "item":"winged:angel_feather"
+  },
+  "result":{
+    "item":"winged:wing_angel_creative_flight"
   }
 }

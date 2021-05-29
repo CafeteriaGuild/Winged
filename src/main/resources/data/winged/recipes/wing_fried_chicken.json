@@ -1,22 +1,21 @@
 {
-  "type": "winged:wingrecipe",
-  "pattern": [
-    "FCF",
-    "FIF",
-    "F F"
-  ],
-  "key": {
-    "C": {
-      "item": "winged:core_of_flight"
-    },
-    "F": {
-      "item": "winged:fried_chicken"
-    },
-    "I": {
-      "item": "minecraft:iron_ingot"
-    }
+  "type":"winged:wingcrafting",
+  "top":{
+    "item":"winged:core_of_flight"
   },
-  "result": {
-    "item": "winged:wing_fried_chicken"
+  "center":{
+    "item":"minecraft:iron_ingot"
+  },
+  "wing_top":{
+    "item":"winged:fried_chicken"
+  },
+  "wing_mid":{
+    "item":"winged:fried_chicken"
+  },
+  "wing_low":{
+    "item":"winged:fried_chicken"
+  },
+  "result":{
+    "item":"winged:wing_fried_chicken"
   }
 }

@@ -1,28 +1,21 @@
 {
-  "type": "winged:wingrecipe",
-  "pattern": [
-    "BCB",
-    "WAW",
-    "F F"
-  ],
-  "key": {
-    "C": {
-      "item": "winged:heart_of_the_sky"
-    },
-    "B": {
-      "item": "minecraft:black_wool"
-    },
-    "W": {
-      "item": "minecraft:brown_wool"
-    },
-    "A": {
-      "tag": "minecraft:golden_apples"
-    },
-    "F": {
-      "item": "minecraft:fire_charge"
-    }
+  "type":"winged:wingcrafting",
+  "top":{
+    "item":"winged:heart_of_the_sky"
   },
-  "result": {
-    "item": "winged:wing_mojira_mod_cape_creative_flight"
+  "center":{
+    "tag":"minecraft:golden_apples"
+  },
+  "wing_top":{
+    "item":"minecraft:black_wool"
+  },
+  "wing_mid":{
+    "item":"minecraft:brown_wool"
+  },
+  "wing_low":{
+    "item":"minecraft:fire_charge"
+  },
+  "result":{
+    "item":"winged:wing_mojira_mod_cape_creative_flight"
   }
 }

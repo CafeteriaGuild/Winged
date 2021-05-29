@@ -1,22 +1,21 @@
 {
-  "type": "winged:wingrecipe",
-  "pattern": [
-    "BCB",
-    "BIB",
-    "B B"
-  ],
-  "key": {
-    "C": {
-      "item": "winged:heart_of_the_sky"
-    },
-    "I": {
-      "item": "minecraft:iron_ingot"
-    },
-    "B": {
-      "item": "winged:bat_wing"
-    }
+  "type":"winged:wingcrafting",
+  "top":{
+    "item":"winged:heart_of_the_sky"
   },
-  "result": {
-    "item": "winged:wing_bat_creative_flight"
+  "center":{
+    "item":"minecraft:iron_ingot"
+  },
+  "wing_top":{
+    "item":"winged:bat_wing"
+  },
+  "wing_mid":{
+    "item":"winged:bat_wing"
+  },
+  "wing_low":{
+    "item":"winged:bat_wing"
+  },
+  "result":{
+    "item":"winged:wing_bat_creative_flight"
   }
 }

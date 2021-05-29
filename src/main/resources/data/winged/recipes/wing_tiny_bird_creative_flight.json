@@ -1,21 +1,15 @@
 {
-  "type": "winged:wingrecipe",
-  "pattern": [
-    " C ",
-    "FIF"
-  ],
-  "key": {
-    "C": {
-      "item": "winged:heart_of_the_sky"
-    },
-    "I": {
-      "item": "minecraft:iron_ingot"
-    },
-    "F": {
-      "item": "minecraft:feather"
-    }
+  "type":"winged:wingcrafting",
+  "top":{
+    "item":"winged:heart_of_the_sky"
   },
-  "result": {
-    "item": "winged:wing_tiny_bird_creative_flight"
+  "center":{
+    "item":"minecraft:iron_ingot"
+  },
+  "wing_mid":{
+    "item":"minecraft:feather"
+  },
+  "result":{
+    "item":"winged:wing_tiny_bird_creative_flight"
   }
 }

@@ -1,25 +1,21 @@
 {
-  "type": "winged:wingrecipe",
-  "pattern": [
-    "SCS",
-    "PDP",
-    "P P"
-  ],
-  "key": {
-    "C": {
-      "item": "winged:heart_of_the_sky"
-    },
-    "S": {
-      "item": "minecraft:shulker_shell"
-    },
-    "D": {
-      "item": "minecraft:diamond"
-    },
-    "P": {
-      "item": "minecraft:popped_chorus_fruit"
-    }
+  "type":"winged:wingcrafting",
+  "top":{
+    "item":"winged:heart_of_the_sky"
   },
-  "result": {
-    "item": "winged:wing_shulker_creative_flight"
+  "center":{
+    "item":"minecraft:diamond"
+  },
+  "wing_top":{
+    "item":"minecraft:shulker_shell"
+  },
+  "wing_mid":{
+    "item":"minecraft:popped_chorus_fruit"
+  },
+  "wing_low":{
+    "item":"minecraft:popped_chorus_fruit"
+  },
+  "result":{
+    "item":"winged:wing_shulker_creative_flight"
   }
 }

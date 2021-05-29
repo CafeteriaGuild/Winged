@@ -1,25 +1,21 @@
 {
-  "type": "winged:wingrecipe",
-  "pattern": [
-    "LEL",
-    "WRW",
-    "RWR"
-  ],
-  "key": {
-    "E": {
-      "item": "winged:wing_eagle"
-    },
-    "L": {
-      "item": "minecraft:lapis_lazuli"
-    },
-    "R": {
-      "item": "minecraft:red_dye"
-    },
-    "W": {
-      "item": "minecraft:white_dye"
-    }
+  "type":"winged:wingcrafting",
+  "top":{
+    "item":"winged:wing_eagle_creative_flight"
   },
-  "result": {
-    "item": "winged:wing_usa"
+  "center":{
+    "item":"minecraft:red_dye"
+  },
+  "wing_top":{
+    "item":"minecraft:lapis_lazuli"
+  },
+  "wing_mid":{
+    "item":"minecraft:white_dye"
+  },
+  "wing_low":{
+    "item":"minecraft:red_dye"
+  },
+  "result":{
+    "item":"winged:wing_usa_creative_flight"
   }
 }

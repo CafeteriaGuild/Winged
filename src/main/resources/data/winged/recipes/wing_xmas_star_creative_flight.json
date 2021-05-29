@@ -1,25 +1,21 @@
 {
-  "type": "winged:wingrecipe",
-  "pattern": [
-    "WRW",
-    "WIW",
-    "N N"
-  ],
-  "key": {
-    "R": {
-      "item": "winged:wing_elytra_red"
-    },
-    "W": {
-      "item": "minecraft:white_dye"
-    },
-    "I": {
-      "item": "minecraft:iron_ingot"
-    },
-    "N": {
-      "item": "minecraft:gold_nugget"
-    }
+  "type":"winged:wingcrafting",
+  "top":{
+    "item":"winged:wing_elytra_red_creative_flight"
   },
-  "result": {
-    "item": "winged:wing_xmas_star_creative_flight"
+  "center":{
+    "item":"minecraft:iron_ingot"
+  },
+  "wing_top":{
+    "item":"minecraft:white_dye"
+  },
+  "wing_mid":{
+    "item":"minecraft:white_dye"
+  },
+  "wing_low":{
+    "item":"minecraft:gold_nugget"
+  },
+  "result":{
+    "item":"winged:wing_xmas_star_creative_flight"
   }
 }

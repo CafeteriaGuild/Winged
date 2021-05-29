@@ -1,22 +1,21 @@
 {
-  "type": "winged:wingrecipe",
-  "pattern": [
-    "WCW",
-    "WAW",
-    "W W"
-  ],
-  "key": {
-    "C": {
-      "item": "winged:heart_of_the_sky"
-    },
-    "W": {
-      "item": "minecraft:orange_wool"
-    },
-    "A": {
-      "item": "winged:attendee_ticket"
-    }
+  "type":"winged:wingcrafting",
+  "top":{
+    "item":"winged:heart_of_the_sky"
   },
-  "result": {
-    "item": "winged:wing_minecon_2019_cape_creative_flight"
+  "center":{
+    "item":"winged:attendee_ticket"
+  },
+  "wing_top":{
+    "item":"minecraft:orange_wool"
+  },
+  "wing_mid":{
+    "item":"minecraft:orange_wool"
+  },
+  "wing_low":{
+    "item":"minecraft:orange_wool"
+  },
+  "result":{
+    "item":"winged:wing_minecon_2019_cape_creative_flight"
   }
 }

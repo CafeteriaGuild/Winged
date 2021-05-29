@@ -1,22 +1,21 @@
 {
-  "type": "winged:wingrecipe",
-  "pattern": [
-    "WCW",
-    "WEW",
-    "W W"
-  ],
-  "key": {
-    "C": {
-      "item": "winged:core_of_flight"
-    },
-    "W": {
-      "item": "minecraft:orange_wool"
-    },
-    "E": {
-      "item": "minecraft:elytra"
-    }
+  "type":"winged:wingcrafting",
+  "top":{
+    "item":"winged:core_of_flight"
   },
-  "result": {
-    "item": "winged:wing_elytra_orange"
+  "center":{
+    "item":"minecraft:elytra"
+  },
+  "wing_top":{
+    "item":"minecraft:orange_wool"
+  },
+  "wing_mid":{
+    "item":"minecraft:orange_wool"
+  },
+  "wing_low":{
+    "item":"minecraft:orange_wool"
+  },
+  "result":{
+    "item":"winged:wing_elytra_orange"
   }
 }

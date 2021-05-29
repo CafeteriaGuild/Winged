@@ -75,6 +75,7 @@ object Wings {
     val xmasStar = Wing(wingTexture("xmas_star_wing"), "Ontvlambaar")
     val glider = Wing(wingTexture("glider_wing"), "dbrighthd")
     val spooky = Wing(wingTexture("spooky_wing"), "xshot_99")
+    val spookyAlt = Wing(wingTexture("spooky_wing_alt"), "xshot_99")
     val irreality = Wing(wingTexture("irreality_wing"), null)
     val glass = Wing(wingTexture("glass_wing"), "Cael")
 

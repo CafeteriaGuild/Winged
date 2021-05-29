@@ -1,25 +1,21 @@
 {
-  "type": "winged:wingrecipe",
-  "pattern": [
-    "YCY",
-    "WAW",
-    "W W"
-  ],
-  "key": {
-    "C": {
-      "item": "winged:core_of_flight"
-    },
-    "W": {
-      "item": "minecraft:light_blue_wool"
-    },
-    "Y": {
-      "item": "minecraft:yellow_wool"
-    },
-    "A": {
-      "tag": "minecraft:golden_apples"
-    }
+  "type":"winged:wingcrafting",
+  "top":{
+    "item":"winged:core_of_flight"
   },
-  "result": {
-    "item": "winged:wing_mapmaker_cape"
+  "center":{
+    "tag":"minecraft:golden_apples"
+  },
+  "wing_top":{
+    "item":"minecraft:yellow_wool"
+  },
+  "wing_mid":{
+    "item":"minecraft:light_blue_wool"
+  },
+  "wing_low":{
+    "item":"minecraft:light_blue_wool"
+  },
+  "result":{
+    "item":"winged:wing_mapmaker_cape"
   }
 }

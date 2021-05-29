@@ -1,25 +1,21 @@
 {
-  "type": "winged:wingrecipe",
-  "pattern": [
-    "GCG",
-    "ISI",
-    "I I"
-  ],
-  "key": {
-    "C": {
-      "item": "winged:heart_of_the_sky"
-    },
-    "G": {
-      "item": "minecraft:gold_ingot"
-    },
-    "S": {
-      "item": "minecraft:spider_eye"
-    },
-    "I": {
-      "item": "winged:irreality_crystal"
-    }
+  "type":"winged:wingcrafting",
+  "top":{
+    "item":"winged:heart_of_the_sky"
   },
-  "result": {
-    "item": "winged:wing_golden_beetle_creative_flight"
+  "center":{
+    "item":"minecraft:spider_eye"
+  },
+  "wing_top":{
+    "item":"minecraft:gold_ingot"
+  },
+  "wing_mid":{
+    "item":"winged:irreality_crystal"
+  },
+  "wing_low":{
+    "item":"winged:irreality_crystal"
+  },
+  "result":{
+    "item":"winged:wing_golden_beetle_creative_flight"
   }
 }

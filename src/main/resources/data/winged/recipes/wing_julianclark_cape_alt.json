@@ -1,28 +1,21 @@
 {
-  "type": "winged:wingrecipe",
-  "pattern": [
-    "PCP",
-    "SIS",
-    "SFS"
-  ],
-  "key": {
-    "C": {
-      "item": "winged:core_of_flight"
-    },
-    "I": {
-      "item": "minecraft:iron_ingot"
-    },
-    "S": {
-      "item": "minecraft:snow_block"
-    },
-    "P": {
-      "item": "minecraft:carved_pumpkin"
-    },
-    "F": {
-      "item": "minecraft:feather"
-    }
+  "type":"winged:wingcrafting",
+  "top":{
+    "item":"winged:core_of_flight"
   },
-  "result": {
-    "item": "winged:wing_julianclark_cape_alt"
+  "center":{
+    "item":"minecraft:feather"
+  },
+  "wing_top":{
+    "item":"minecraft:carved_pumpkin"
+  },
+  "wing_mid":{
+    "item":"minecraft:iron_ingot"
+  },
+  "wing_low":{
+    "item":"minecraft:snow_block"
+  },
+  "result":{
+    "item":"winged:wing_julianclark_cape_alt"
   }
 }

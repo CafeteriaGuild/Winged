@@ -1,5 +1,5 @@
 {
-  "type": "winged:wingrecipe",
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "ISI",
     "WCW",
@@ -7,7 +7,7 @@
   ],
   "key": {
     "C": {
-      "item": "winged:wing_irreality"
+      "item": "winged:wing_irreality_creative_flight"
     },
     "I": {
       "item": "winged:irreality_crystal"
@@ -20,6 +20,6 @@
     }
   },
   "result": {
-    "item": "winged:wing_random"
+    "item": "winged:wing_random_creative_flight"
   }
 }

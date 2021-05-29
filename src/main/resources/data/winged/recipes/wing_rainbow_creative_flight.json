@@ -1,25 +1,21 @@
 {
-  "type": "winged:wingrecipe",
-  "pattern": [
-    "BCB",
-    "WIW",
-    "W W"
-  ],
-  "key": {
-    "C": {
-      "item": "winged:heart_of_the_sky"
-    },
-    "I": {
-      "item": "minecraft:iron_ingot"
-    },
-    "B": {
-      "item": "winged:bowl_of_dyes"
-    },
-    "W": {
-      "tag": "minecraft:wool"
-    }
+  "type":"winged:wingcrafting",
+  "top":{
+    "item":"winged:heart_of_the_sky"
   },
-  "result": {
-    "item": "winged:wing_rainbow_creative_flight"
+  "center":{
+    "item":"minecraft:iron_ingot"
+  },
+  "wing_top":{
+    "item":"winged:bowl_of_dyes"
+  },
+  "wing_mid":{
+    "tag":"minecraft:wool"
+  },
+  "wing_low":{
+    "tag":"minecraft:wool"
+  },
+  "result":{
+    "item":"winged:wing_rainbow_creative_flight"
   }
 }

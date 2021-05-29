@@ -1,25 +1,21 @@
 {
-  "type": "winged:wingrecipe",
-  "pattern": [
-    "BCB",
-    "PGP",
-    "P P"
-  ],
-  "key": {
-    "C": {
-      "item": "winged:core_of_flight"
-    },
-    "B": {
-      "item": "minecraft:book"
-    },
-    "P": {
-      "item": "minecraft:paper"
-    },
-    "G": {
-      "item": "minecraft:gold_ingot"
-    }
+  "type":"winged:wingcrafting",
+  "top":{
+    "item":"winged:core_of_flight"
   },
-  "result": {
-    "item": "winged:wing_crowdin_cape"
+  "center":{
+    "item":"minecraft:gold_ingot"
+  },
+  "wing_top":{
+    "item":"minecraft:book"
+  },
+  "wing_mid":{
+    "item":"minecraft:paper"
+  },
+  "wing_low":{
+    "item":"minecraft:paper"
+  },
+  "result":{
+    "item":"winged:wing_crowdin_cape"
   }
 }

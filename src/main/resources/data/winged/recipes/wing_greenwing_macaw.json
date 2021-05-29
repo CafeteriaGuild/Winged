@@ -1,25 +1,21 @@
 {
-  "type": "winged:wingrecipe",
-  "pattern": [
-    "BCB",
-    "FIF",
-    "F F"
-  ],
-  "key": {
-    "C": {
-      "item": "winged:core_of_flight"
-    },
-    "I": {
-      "item": "minecraft:iron_ingot"
-    },
-    "B": {
-      "item": "winged:bowl_of_dyes"
-    },
-    "F": {
-      "item": "minecraft:feather"
-    }
+  "type":"winged:wingcrafting",
+  "top":{
+    "item":"winged:core_of_flight"
   },
-  "result": {
-    "item": "winged:wing_greenwing_macaw"
+  "center":{
+    "item":"minecraft:iron_ingot"
+  },
+  "wing_top":{
+    "item":"winged:bowl_of_dyes"
+  },
+  "wing_mid":{
+    "item":"minecraft:feather"
+  },
+  "wing_low":{
+    "item":"minecraft:feather"
+  },
+  "result":{
+    "item":"winged:wing_greenwing_macaw"
   }
 }

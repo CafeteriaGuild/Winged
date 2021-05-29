@@ -2,7 +2,7 @@ package net.adriantodt.winged.screen
 
 import net.adriantodt.winged.Winged
 import net.adriantodt.winged.identifier
-import net.adriantodt.winged.recipe.WingRecipe
+import net.adriantodt.winged.recipe.WingcraftingRecipe
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.inventory.CraftingResultInventory
@@ -23,8 +23,8 @@ class WingBenchScreenHandler(syncId: Int, private val playerInventory: PlayerInv
         addSlot(WingBenchCraftingResultSlot(playerInventory.player, input, result, 0, 80, 105))
         addSlot(Slot(input, 0, 55, 26))
         addSlot(Slot(input, 1, 80, 19))
-        addSlot(Slot(input, 2, 42, 62))
-        addSlot(Slot(input, 3, 105, 26))
+        addSlot(Slot(input, 2, 105, 26))
+        addSlot(Slot(input, 3, 42, 62))
         addSlot(Slot(input, 4, 80, 43))
         addSlot(Slot(input, 5, 119, 62))
         addSlot(Slot(input, 6, 26, 98))
@@ -38,7 +38,7 @@ class WingBenchScreenHandler(syncId: Int, private val playerInventory: PlayerInv
         if (!world.isClient) {
             val serverPlayerEntity = player as ServerPlayerEntity
             var itemStack = ItemStack.EMPTY
-            val optional = world.server!!.recipeManager.getFirstMatch(WingRecipe.TYPE, craftingInventory, world)
+            val optional = world.server!!.recipeManager.getFirstMatch(WingcraftingRecipe.TYPE, craftingInventory, world)
             if (optional.isPresent) {
                 val craftingRecipe = optional.get()
                 if (resultInventory.shouldCraftRecipe(world, serverPlayerEntity, craftingRecipe)) {

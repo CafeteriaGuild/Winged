@@ -4,6 +4,7 @@ import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonObject
 import com.google.gson.JsonSerializationContext
 import net.adriantodt.winged.WingItems.spooky
+import net.adriantodt.winged.WingItems.spookyAlt
 import net.adriantodt.winged.WingItems.xmasStar
 import net.adriantodt.winged.WingItems.xmasTree
 import net.adriantodt.winged.WingedLoreItems.batWing
@@ -151,7 +152,7 @@ object WingedLootTables {
                     isChristmasCondition()
                 }
             }
-            for (variations in listOf(spooky)) {
+            for (variations in listOf(spooky, spookyAlt)) {
                 standardPool(variations.standard, pool.requirePlayer) {
                     randomChanceWithLootingCondition(
                         pool.standardChance,

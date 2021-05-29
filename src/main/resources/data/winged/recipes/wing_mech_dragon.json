@@ -1,28 +1,21 @@
 {
-  "type": "winged:wingrecipe",
-  "pattern": [
-    "RCR",
-    "SPS",
-    "I I"
-  ],
-  "key": {
-    "C": {
-      "item": "winged:core_of_flight"
-    },
-    "I": {
-      "item": "minecraft:iron_ingot"
-    },
-    "R": {
-      "item": "minecraft:redstone"
-    },
-    "P": {
-      "item": "minecraft:piston"
-    },
-    "S": {
-      "item": "winged:dragon_scale"
-    }
+  "type":"winged:wingcrafting",
+  "top":{
+    "item":"winged:core_of_flight"
   },
-  "result": {
-    "item": "winged:wing_mech_dragon"
+  "center":{
+    "item":"minecraft:piston"
+  },
+  "wing_top":{
+    "item":"minecraft:redstone"
+  },
+  "wing_mid":{
+    "item":"winged:dragon_scale"
+  },
+  "wing_low":{
+    "item":"minecraft:iron_ingot"
+  },
+  "result":{
+    "item":"winged:wing_mech_dragon"
   }
 }

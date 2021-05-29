@@ -1,25 +1,21 @@
 {
-  "type": "winged:wingrecipe",
-  "pattern": [
-    "DCD",
-    "SIS",
-    "S S"
-  ],
-  "key": {
-    "C": {
-      "item": "winged:core_of_flight"
-    },
-    "I": {
-      "item": "minecraft:iron_ingot"
-    },
-    "D": {
-      "item": "minecraft:red_dye"
-    },
-    "S": {
-      "item": "winged:dragon_scale"
-    }
+  "type":"winged:wingcrafting",
+  "top":{
+    "item":"winged:core_of_flight"
   },
-  "result": {
-    "item": "winged:wing_red_dragon"
+  "center":{
+    "item":"minecraft:iron_ingot"
+  },
+  "wing_top":{
+    "item":"minecraft:red_dye"
+  },
+  "wing_mid":{
+    "item":"winged:dragon_scale"
+  },
+  "wing_low":{
+    "item":"winged:dragon_scale"
+  },
+  "result":{
+    "item":"winged:wing_red_dragon"
   }
 }

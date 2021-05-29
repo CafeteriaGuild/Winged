@@ -1,22 +1,21 @@
 {
-  "type": "winged:wingrecipe",
-  "pattern": [
-    "ICI",
-    "IEI",
-    "I I"
-  ],
-  "key": {
-    "C": {
-      "item": "winged:core_of_flight"
-    },
-    "I": {
-      "item": "minecraft:iron_ingot"
-    },
-    "E": {
-      "item": "minecraft:elytra"
-    }
+  "type":"winged:wingcrafting",
+  "top":{
+    "item":"winged:core_of_flight"
   },
-  "result": {
-    "item": "winged:wing_elytra"
+  "center":{
+    "item":"minecraft:elytra"
+  },
+  "wing_top":{
+    "item":"minecraft:iron_ingot"
+  },
+  "wing_mid":{
+    "item":"minecraft:iron_ingot"
+  },
+  "wing_low":{
+    "item":"minecraft:iron_ingot"
+  },
+  "result":{
+    "item":"winged:wing_elytra"
   }
 }

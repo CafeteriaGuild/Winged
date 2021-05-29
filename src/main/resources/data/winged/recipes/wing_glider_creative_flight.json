@@ -1,22 +1,21 @@
 {
-  "type": "winged:wingrecipe",
-  "pattern": [
-    "IWI",
-    "INI",
-    "N N"
-  ],
-  "key": {
-    "W": {
-      "item": "winged:wing_elytra_white"
-    },
-    "I": {
-      "item": "minecraft:iron_ingot"
-    },
-    "N": {
-      "item": "minecraft:iron_nugget"
-    }
+  "type":"winged:wingcrafting",
+  "top":{
+    "item":"winged:wing_elytra_white_creative_flight"
   },
-  "result": {
-    "item": "winged:wing_glider_creative_flight"
+  "center":{
+    "item":"minecraft:iron_nugget"
+  },
+  "wing_top":{
+    "item":"minecraft:iron_ingot"
+  },
+  "wing_mid":{
+    "item":"minecraft:iron_ingot"
+  },
+  "wing_low":{
+    "item":"minecraft:iron_nugget"
+  },
+  "result":{
+    "item":"winged:wing_glider_creative_flight"
   }
 }

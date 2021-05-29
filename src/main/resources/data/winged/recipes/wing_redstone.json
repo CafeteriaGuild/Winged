@@ -1,22 +1,21 @@
 {
-  "type": "winged:wingrecipe",
-  "pattern": [
-    "RCR",
-    "RPR",
-    "R R"
-  ],
-  "key": {
-    "C": {
-      "item": "winged:core_of_flight"
-    },
-    "P": {
-      "item": "minecraft:piston"
-    },
-    "R": {
-      "item": "minecraft:redstone_block"
-    }
+  "type":"winged:wingcrafting",
+  "top":{
+    "item":"winged:core_of_flight"
   },
-  "result": {
-    "item": "winged:wing_redstone"
+  "center":{
+    "item":"minecraft:piston"
+  },
+  "wing_top":{
+    "item":"minecraft:redstone_block"
+  },
+  "wing_mid":{
+    "item":"minecraft:redstone_block"
+  },
+  "wing_low":{
+    "item":"minecraft:redstone_block"
+  },
+  "result":{
+    "item":"winged:wing_redstone"
   }
 }

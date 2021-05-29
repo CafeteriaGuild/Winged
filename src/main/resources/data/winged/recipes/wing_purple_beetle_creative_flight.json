@@ -1,25 +1,21 @@
 {
-  "type": "winged:wingrecipe",
-  "pattern": [
-    "PCP",
-    "ISI",
-    "I I"
-  ],
-  "key": {
-    "C": {
-      "item": "winged:heart_of_the_sky"
-    },
-    "P": {
-      "item": "minecraft:purple_dye"
-    },
-    "S": {
-      "item": "minecraft:spider_eye"
-    },
-    "I": {
-      "item": "winged:irreality_crystal"
-    }
+  "type":"winged:wingcrafting",
+  "top":{
+    "item":"winged:heart_of_the_sky"
   },
-  "result": {
-    "item": "winged:wing_purple_beetle_creative_flight"
+  "center":{
+    "item":"minecraft:spider_eye"
+  },
+  "wing_top":{
+    "item":"minecraft:purple_dye"
+  },
+  "wing_mid":{
+    "item":"winged:irreality_crystal"
+  },
+  "wing_low":{
+    "item":"winged:irreality_crystal"
+  },
+  "result":{
+    "item":"winged:wing_purple_beetle_creative_flight"
   }
 }

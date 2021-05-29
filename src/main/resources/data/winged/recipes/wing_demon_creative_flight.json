@@ -1,25 +1,21 @@
 {
-  "type": "winged:wingrecipe",
-  "pattern": [
-    "LCL",
-    "FGF",
-    "F F"
-  ],
-  "key": {
-    "C": {
-      "item": "winged:heart_of_the_sky"
-    },
-    "G": {
-      "item": "minecraft:gold_ingot"
-    },
-    "L": {
-      "item": "minecraft:leather"
-    },
-    "F": {
-      "item": "winged:demonic_flesh"
-    }
+  "type":"winged:wingcrafting",
+  "top":{
+    "item":"winged:heart_of_the_sky"
   },
-  "result": {
-    "item": "winged:wing_demon_creative_flight"
+  "center":{
+    "item":"minecraft:gold_ingot"
+  },
+  "wing_top":{
+    "item":"minecraft:leather"
+  },
+  "wing_mid":{
+    "item":"winged:demonic_flesh"
+  },
+  "wing_low":{
+    "item":"winged:demonic_flesh"
+  },
+  "result":{
+    "item":"winged:wing_demon_creative_flight"
   }
 }

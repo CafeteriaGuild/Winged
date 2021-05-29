@@ -1,22 +1,21 @@
 {
-  "type": "winged:wingrecipe",
-  "pattern": [
-    "WCW",
-    "WEW",
-    "W W"
-  ],
-  "key": {
-    "C": {
-      "item": "winged:heart_of_the_sky"
-    },
-    "W": {
-      "item": "minecraft:gray_wool"
-    },
-    "E": {
-      "item": "minecraft:elytra"
-    }
+  "type":"winged:wingcrafting",
+  "top":{
+    "item":"winged:heart_of_the_sky"
   },
-  "result": {
-    "item": "winged:wing_elytra_gray_creative_flight"
+  "center":{
+    "item":"minecraft:elytra"
+  },
+  "wing_top":{
+    "item":"minecraft:gray_wool"
+  },
+  "wing_mid":{
+    "item":"minecraft:gray_wool"
+  },
+  "wing_low":{
+    "item":"minecraft:gray_wool"
+  },
+  "result":{
+    "item":"winged:wing_elytra_gray_creative_flight"
   }
 }

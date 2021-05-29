@@ -6,7 +6,6 @@ import net.minecraft.item.Item
 import net.minecraft.util.Identifier
 import net.minecraft.util.Rarity
 import net.minecraft.util.registry.Registry
-import java.util.*
 
 @Suppress("MemberVisibilityCanBePrivate")
 object WingItems {
@@ -81,6 +80,7 @@ object WingItems {
     val xmasStar = wingItem(identifier("xmas_star").wing(Wings.xmasStar))
     val glider = wingItem(identifier("glider").wing(Wings.glider))
     val spooky = wingItem(identifier("spooky").wing(Wings.spooky))
+    val spookyAlt = wingItem(identifier("spooky_alt").wing(Wings.spookyAlt))
     val irreality = wingItem(identifier("irreality").wing(Wings.irreality))
     val glass = wingItem(identifier("glass").wing(Wings.glass))
 
@@ -159,6 +159,7 @@ object WingItems {
         registerWings("wing_xmas_star", xmasStar)
         registerWings("wing_glider", glider)
         registerWings("wing_spooky", spooky)
+        registerWings("wing_spooky_alt", spookyAlt)
         registerWings("wing_irreality", irreality)
         registerWings("wing_glass", glass)
 

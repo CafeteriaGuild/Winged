@@ -5,7 +5,6 @@
     "mixins": [
         "EnderDragonEntityMixin",
         "PlayerEntityMixin",
-        "ShapedRecipeAccessor"
     ],
     "injectors": {
         "defaultRequire": 1

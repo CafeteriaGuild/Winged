@@ -1,6 +1,6 @@
 package net.adriantodt.winged.screen
 
-import net.adriantodt.winged.recipe.WingRecipe
+import net.adriantodt.winged.recipe.WingcraftingRecipe
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.inventory.Inventory
 import net.minecraft.item.ItemStack
@@ -46,7 +46,7 @@ class WingBenchCraftingResultSlot(
 
     override fun onTakeItem(player: PlayerEntity, stack: ItemStack): ItemStack {
         this.onCrafted(stack)
-        val remainders = player.world.recipeManager.getRemainingStacks(WingRecipe.TYPE, input, player.world)
+        val remainders = player.world.recipeManager.getRemainingStacks(WingcraftingRecipe.TYPE, input, player.world)
         for (slot in remainders.indices) {
             var itemStack = input.getStack(slot)!!
             val itemStack2 = remainders[slot]

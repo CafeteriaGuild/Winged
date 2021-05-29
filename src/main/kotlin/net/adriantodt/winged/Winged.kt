@@ -20,7 +20,7 @@ import net.adriantodt.winged.data.Wing
 import net.adriantodt.winged.data.WingedConfig
 import net.adriantodt.winged.data.components.PlayerComponent
 import net.adriantodt.winged.data.components.impl.DefaultPlayerComponent
-import net.adriantodt.winged.recipe.WingRecipe
+import net.adriantodt.winged.recipe.WingcraftingRecipe
 import net.adriantodt.winged.screen.WingBenchScreenHandler
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
@@ -77,8 +77,8 @@ object Winged : ModInitializer, EntityComponentInitializer {
         WingedLootTables.register(configHolder.config)
         WingedCommand.init()
 
-        Registry.register(Registry.RECIPE_TYPE, WingRecipe.ID, WingRecipe.TYPE)
-        Registry.register(Registry.RECIPE_SERIALIZER, WingRecipe.ID, WingRecipe.SERIALIZER)
+        Registry.register(Registry.RECIPE_TYPE, WingcraftingRecipe.ID, WingcraftingRecipe.TYPE)
+        Registry.register(Registry.RECIPE_SERIALIZER, WingcraftingRecipe.ID, WingcraftingRecipe.SERIALIZER)
 
         Registry.register(Registry.BLOCK, identifier("wingbench"), wingBenchBlock)
         Registry.register(Registry.ITEM, identifier("wingbench"), BlockItem(wingBenchBlock, itemSettings()))

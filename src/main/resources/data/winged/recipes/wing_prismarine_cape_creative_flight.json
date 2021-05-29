@@ -1,22 +1,21 @@
 {
-  "type": "winged:wingrecipe",
-  "pattern": [
-    "SCS",
-    "SPS",
-    "S S"
-  ],
-  "key": {
-    "C": {
-      "item": "winged:heart_of_the_sky"
-    },
-    "S": {
-      "item": "minecraft:prismarine_shard"
-    },
-    "P": {
-      "item": "minecraft:prismarine_crystals"
-    }
+  "type":"winged:wingcrafting",
+  "top":{
+    "item":"winged:heart_of_the_sky"
   },
-  "result": {
-    "item": "winged:wing_prismarine_cape_creative_flight"
+  "center":{
+    "item":"minecraft:prismarine_crystals"
+  },
+  "wing_top":{
+    "item":"minecraft:prismarine_shard"
+  },
+  "wing_mid":{
+    "item":"minecraft:prismarine_shard"
+  },
+  "wing_low":{
+    "item":"minecraft:prismarine_shard"
+  },
+  "result":{
+    "item":"winged:wing_prismarine_cape_creative_flight"
   }
 }

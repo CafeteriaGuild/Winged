@@ -1,25 +1,21 @@
 {
-  "type": "winged:wingrecipe",
-  "pattern": [
-    "GWG",
-    "LNL",
-    "N N"
-  ],
-  "key": {
-    "W": {
-      "item": "winged:wing_elytra_green"
-    },
-    "G": {
-      "item": "minecraft:gold_ingot"
-    },
-    "N": {
-      "item": "minecraft:gold_nugget"
-    },
-    "L": {
-      "item": "minecraft:lapis_lazuli"
-    }
+  "type":"winged:wingcrafting",
+  "top":{
+    "item":"winged:wing_elytra_green_creative_flight"
   },
-  "result": {
-    "item": "winged:wing_brazil_creative_flight"
+  "center":{
+    "item":"minecraft:gold_nugget"
+  },
+  "wing_top":{
+    "item":"minecraft:gold_ingot"
+  },
+  "wing_mid":{
+    "item":"minecraft:lapis_lazuli"
+  },
+  "wing_low":{
+    "item":"minecraft:gold_nugget"
+  },
+  "result":{
+    "item":"winged:wing_brazil_creative_flight"
   }
 }

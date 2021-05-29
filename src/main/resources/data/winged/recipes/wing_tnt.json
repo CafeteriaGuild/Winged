@@ -1,28 +1,21 @@
 {
-  "type": "winged:wingrecipe",
-  "pattern": [
-    "GCG",
-    "TIT",
-    "P P"
-  ],
-  "key": {
-    "C": {
-      "item": "winged:core_of_flight"
-    },
-    "G": {
-      "item": "minecraft:gunpowder"
-    },
-    "I": {
-      "item": "minecraft:iron_ingot"
-    },
-    "T": {
-      "item": "minecraft:tnt"
-    },
-    "P": {
-      "item": "minecraft:paper"
-    }
+  "type":"winged:wingcrafting",
+  "top":{
+    "item":"winged:core_of_flight"
   },
-  "result": {
-    "item": "winged:wing_tnt"
+  "center":{
+    "item":"minecraft:iron_ingot"
+  },
+  "wing_top":{
+    "item":"minecraft:gunpowder"
+  },
+  "wing_mid":{
+    "item":"minecraft:tnt"
+  },
+  "wing_low":{
+    "item":"minecraft:paper"
+  },
+  "result":{
+    "item":"winged:wing_tnt"
   }
 }

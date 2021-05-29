@@ -1,28 +1,21 @@
 {
-  "type": "winged:wingrecipe",
-  "pattern": [
-    "ACA",
-    "WIW",
-    "N N"
-  ],
-  "key": {
-    "C": {
-      "item": "winged:heart_of_the_sky"
-    },
-    "W": {
-      "item": "minecraft:purple_wool"
-    },
-    "A": {
-      "tag": "minecraft:golden_apples"
-    },
-    "N": {
-      "item": "minecraft:nether_star"
-    },
-    "I": {
-      "item": "winged:irreality_crystal"
-    }
+  "type":"winged:wingcrafting",
+  "top":{
+    "item":"winged:heart_of_the_sky"
   },
-  "result": {
-    "item": "winged:wing_millionth_cape_creative_flight"
+  "center":{
+    "item":"winged:irreality_crystal"
+  },
+  "wing_top":{
+    "tag":"minecraft:golden_apples"
+  },
+  "wing_mid":{
+    "item":"minecraft:purple_wool"
+  },
+  "wing_low":{
+    "item":"minecraft:nether_star"
+  },
+  "result":{
+    "item":"winged:wing_millionth_cape_creative_flight"
   }
 }

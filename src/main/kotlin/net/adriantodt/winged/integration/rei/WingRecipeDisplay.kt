@@ -3,22 +3,24 @@ package net.adriantodt.winged.integration.rei
 import me.shedaniel.rei.api.EntryStack
 import me.shedaniel.rei.api.TransferRecipeDisplay
 import me.shedaniel.rei.server.ContainerInfo
-import net.adriantodt.winged.recipe.WingRecipe
+import net.adriantodt.winged.recipe.WingcraftingRecipe
 import net.minecraft.item.ItemStack
 import net.minecraft.screen.ScreenHandler
 import net.minecraft.util.Identifier
 import java.util.*
 
-class WingRecipeDisplay(val recipe: WingRecipe, private val category: Identifier) : TransferRecipeDisplay {
+class WingRecipeDisplay(val recipe: WingcraftingRecipe, private val category: Identifier) : TransferRecipeDisplay {
 
     private val outputPreview: MutableList<EntryStack> = mutableListOf()
     private val output: MutableList<EntryStack> = mutableListOf()
     private val input: MutableList<MutableList<EntryStack>> = mutableListOf()
 
     init {
-        input.addAll(recipe.inputs.map { ingredient ->
-            ingredient.matchingStacksClient.map { stack -> EntryStack.create(ItemStack(stack.item, 1)) }.toMutableList()
-        })
+        input += recipe.ingredients.map {
+            it.matchingStacksClient.mapTo(mutableListOf()) { stack ->
+                EntryStack.create(ItemStack(stack.item, 1))
+            }
+        }
         outputPreview.add(EntryStack.create(recipe.output))
         output.addAll(outputPreview)
     }
@@ -37,7 +39,8 @@ class WingRecipeDisplay(val recipe: WingRecipe, private val category: Identifier
 
     override fun getInputEntries(): MutableList<MutableList<EntryStack>> = input
 
-    override fun getResultingEntries(): MutableList<MutableList<EntryStack>> = output.map { mutableListOf(it) }.toMutableList()
+    override fun getResultingEntries(): MutableList<MutableList<EntryStack>> =
+        output.map { mutableListOf(it) }.toMutableList()
 
     override fun getWidth(): Int = 3
 

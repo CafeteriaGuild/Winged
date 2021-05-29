@@ -1,22 +1,21 @@
 {
-  "type": "winged:wingrecipe",
-  "pattern": [
-    "PCP",
-    "PIP",
-    "P P"
-  ],
-  "key": {
-    "C": {
-      "item": "winged:core_of_flight"
-    },
-    "I": {
-      "item": "minecraft:iron_ingot"
-    },
-    "P": {
-      "item": "minecraft:phantom_membrane"
-    }
+  "type":"winged:wingcrafting",
+  "top":{
+    "item":"winged:core_of_flight"
   },
-  "result": {
-    "item": "winged:wing_phantom_membrane"
+  "center":{
+    "item":"minecraft:iron_ingot"
+  },
+  "wing_top":{
+    "item":"minecraft:phantom_membrane"
+  },
+  "wing_mid":{
+    "item":"minecraft:phantom_membrane"
+  },
+  "wing_low":{
+    "item":"minecraft:phantom_membrane"
+  },
+  "result":{
+    "item":"winged:wing_phantom_membrane"
   }
 }

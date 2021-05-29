@@ -1,25 +1,21 @@
 {
-  "type": "winged:wingrecipe",
-  "pattern": [
-    "MCM",
-    "FGF",
-    "F F"
-  ],
-  "key": {
-    "C": {
-      "item": "winged:heart_of_the_sky"
-    },
-    "G": {
-      "item": "minecraft:gold_ingot"
-    },
-    "F": {
-      "item": "winged:angel_feather"
-    },
-    "M": {
-      "item": "minecraft:milk_bucket"
-    }
+  "type":"winged:wingcrafting",
+  "top":{
+    "item":"winged:heart_of_the_sky"
   },
-  "result": {
-    "item": "winged:wing_creamy_white_creative_flight"
+  "center":{
+    "item":"minecraft:gold_ingot"
+  },
+  "wing_top":{
+    "item":"minecraft:milk_bucket"
+  },
+  "wing_mid":{
+    "item":"winged:angel_feather"
+  },
+  "wing_low":{
+    "item":"winged:angel_feather"
+  },
+  "result":{
+    "item":"winged:wing_creamy_white_creative_flight"
   }
 }

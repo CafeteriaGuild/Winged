@@ -1,22 +1,21 @@
 {
-  "type": "winged:wingrecipe",
-  "pattern": [
-    "VCV",
-    "VIV",
-    "V V"
-  ],
-  "key": {
-    "C": {
-      "item": "winged:heart_of_the_sky"
-    },
-    "I": {
-      "item": "minecraft:iron_ingot"
-    },
-    "V": {
-      "item": "winged:vex_essence"
-    }
+  "type":"winged:wingcrafting",
+  "top":{
+    "item":"winged:heart_of_the_sky"
   },
-  "result": {
-    "item": "winged:wing_vex_creative_flight"
+  "center":{
+    "item":"minecraft:iron_ingot"
+  },
+  "wing_top":{
+    "item":"winged:vex_essence"
+  },
+  "wing_mid":{
+    "item":"winged:vex_essence"
+  },
+  "wing_low":{
+    "item":"winged:vex_essence"
+  },
+  "result":{
+    "item":"winged:wing_vex_creative_flight"
   }
 }

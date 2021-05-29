@@ -1,5 +1,5 @@
 {
-  "type": "winged:wingrecipe",
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "IWI",
     "SCS",

@@ -7,7 +7,7 @@
     "item":"minecraft:jack_o_lantern"
   },
   "wing_top":{
-    "item":"minecraft:torch"
+    "item":"minecraft:soul_torch"
   },
   "wing_mid":{
     "item":"minecraft:glowstone_dust"
@@ -16,6 +16,6 @@
     "item":"minecraft:glowstone_dust"
   },
   "result":{
-    "item":"winged:wing_spooky"
+    "item":"winged:wing_spooky_alt"
   }
 }

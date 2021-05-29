@@ -1,25 +1,21 @@
 {
-  "type": "winged:wingrecipe",
-  "pattern": [
-    "LCL",
-    "PIP",
-    "P P"
-  ],
-  "key": {
-    "C": {
-      "item": "winged:heart_of_the_sky"
-    },
-    "I": {
-      "item": "minecraft:iron_ingot"
-    },
-    "L": {
-      "item": "minecraft:lapis_lazuli"
-    },
-    "P": {
-      "item": "minecraft:phantom_membrane"
-    }
+  "type":"winged:wingcrafting",
+  "top":{
+    "item":"winged:heart_of_the_sky"
   },
-  "result": {
-    "item": "winged:wing_phantom_creative_flight"
+  "center":{
+    "item":"minecraft:iron_ingot"
+  },
+  "wing_top":{
+    "item":"minecraft:lapis_lazuli"
+  },
+  "wing_mid":{
+    "item":"minecraft:phantom_membrane"
+  },
+  "wing_low":{
+    "item":"minecraft:phantom_membrane"
+  },
+  "result":{
+    "item":"winged:wing_phantom_creative_flight"
   }
 }

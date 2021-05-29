@@ -1,25 +1,21 @@
 {
-  "type": "winged:wingrecipe",
-  "pattern": [
-    "MCM",
-    "IDI",
-    "M M"
-  ],
-  "key": {
-    "C": {
-      "item": "winged:heart_of_the_sky"
-    },
-    "D": {
-      "item": "minecraft:diamond"
-    },
-    "I": {
-      "item": "winged:irreality_crystal"
-    },
-    "M": {
-      "item": "minecraft:magenta_wool"
-    }
+  "type":"winged:wingcrafting",
+  "top":{
+    "item":"winged:heart_of_the_sky"
   },
-  "result": {
-    "item": "winged:wing_cobalt_cape_creative_flight"
+  "center":{
+    "item":"minecraft:diamond"
+  },
+  "wing_top":{
+    "item":"minecraft:magenta_wool"
+  },
+  "wing_mid":{
+    "item":"winged:irreality_crystal"
+  },
+  "wing_low":{
+    "item":"minecraft:magenta_wool"
+  },
+  "result":{
+    "item":"winged:wing_cobalt_cape_creative_flight"
   }
 }

@@ -1,19 +1,21 @@
 {
-  "type": "winged:wingrecipe",
-  "pattern": [
-    "ICI",
-    "III",
-    "I I"
-  ],
-  "key": {
-    "C": {
-      "item": "winged:heart_of_the_sky"
-    },
-    "I": {
-      "item": "winged:irreality_crystal"
-    }
+  "type":"winged:wingcrafting",
+  "top":{
+    "item":"winged:heart_of_the_sky"
   },
-  "result": {
-    "item": "winged:wing_irreality_creative_flight"
+  "center":{
+    "item":"winged:irreality_crystal"
+  },
+  "wing_top":{
+    "item":"winged:irreality_crystal"
+  },
+  "wing_mid":{
+    "item":"winged:irreality_crystal"
+  },
+  "wing_low":{
+    "item":"winged:irreality_crystal"
+  },
+  "result":{
+    "item":"winged:wing_irreality_creative_flight"
   }
 }

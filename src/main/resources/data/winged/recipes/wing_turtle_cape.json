@@ -1,22 +1,21 @@
 {
-  "type": "winged:wingrecipe",
-  "pattern": [
-    "SCS",
-    "SIS",
-    "S S"
-  ],
-  "key": {
-    "C": {
-      "item": "winged:core_of_flight"
-    },
-    "S": {
-      "item": "minecraft:scute"
-    },
-    "I": {
-      "item": "minecraft:iron_ingot"
-    }
+  "type":"winged:wingcrafting",
+  "top":{
+    "item":"winged:core_of_flight"
   },
-  "result": {
-    "item": "winged:wing_turtle_cape"
+  "center":{
+    "item":"minecraft:iron_ingot"
+  },
+  "wing_top":{
+    "item":"minecraft:scute"
+  },
+  "wing_mid":{
+    "item":"minecraft:scute"
+  },
+  "wing_low":{
+    "item":"minecraft:scute"
+  },
+  "result":{
+    "item":"winged:wing_turtle_cape"
   }
 }

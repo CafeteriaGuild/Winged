@@ -1,22 +1,21 @@
 {
-  "type": "winged:wingrecipe",
-  "pattern": [
-    "WCW",
-    "WAW",
-    "W W"
-  ],
-  "key": {
-    "C": {
-      "item": "winged:core_of_flight"
-    },
-    "W": {
-      "item": "minecraft:cyan_wool"
-    },
-    "A": {
-      "item": "winged:attendee_ticket"
-    }
+  "type":"winged:wingcrafting",
+  "top":{
+    "item":"winged:core_of_flight"
   },
-  "result": {
-    "item": "winged:wing_minecon_2015_cape"
+  "center":{
+    "item":"winged:attendee_ticket"
+  },
+  "wing_top":{
+    "item":"minecraft:cyan_wool"
+  },
+  "wing_mid":{
+    "item":"minecraft:cyan_wool"
+  },
+  "wing_low":{
+    "item":"minecraft:cyan_wool"
+  },
+  "result":{
+    "item":"winged:wing_minecon_2015_cape"
   }
 }

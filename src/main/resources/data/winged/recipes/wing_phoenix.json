@@ -1,22 +1,21 @@
 {
-  "type": "winged:wingrecipe",
-  "pattern": [
-    "FCF",
-    "FGF",
-    "F F"
-  ],
-  "key": {
-    "C": {
-      "item": "winged:core_of_flight"
-    },
-    "G": {
-      "item": "minecraft:gold_ingot"
-    },
-    "F": {
-      "item": "winged:phoenix_feather"
-    }
+  "type":"winged:wingcrafting",
+  "top":{
+    "item":"winged:core_of_flight"
   },
-  "result": {
-    "item": "winged:wing_phoenix"
+  "center":{
+    "item":"minecraft:gold_ingot"
+  },
+  "wing_top":{
+    "item":"winged:phoenix_feather"
+  },
+  "wing_mid":{
+    "item":"winged:phoenix_feather"
+  },
+  "wing_low":{
+    "item":"winged:phoenix_feather"
+  },
+  "result":{
+    "item":"winged:wing_phoenix"
   }
 }

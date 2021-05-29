@@ -1,19 +1,18 @@
 {
-  "type": "winged:wingrecipe",
-  "pattern": [
-    "BCB",
-    "B B",
-    "B B"
-  ],
-  "key": {
-    "C": {
-      "item": "winged:core_of_flight"
-    },
-    "B": {
-      "item": "winged:bat_wing"
-    }
+  "type":"winged:wingcrafting",
+  "top":{
+    "item":"winged:core_of_flight"
   },
-  "result": {
-    "item": "winged:wing_bat"
+  "wing_top":{
+    "item":"winged:bat_wing"
+  },
+  "wing_mid":{
+    "item":"winged:bat_wing"
+  },
+  "wing_low":{
+    "item":"winged:bat_wing"
+  },
+  "result":{
+    "item":"winged:wing_bat"
   }
 }
