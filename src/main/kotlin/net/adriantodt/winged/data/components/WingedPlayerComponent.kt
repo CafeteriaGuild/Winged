@@ -5,7 +5,7 @@ import dev.onyxstudios.cca.api.v3.component.CopyableComponent
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent
 import net.adriantodt.winged.data.Wing
 
-interface PlayerComponent : ComponentV3, AutoSyncedComponent, CopyableComponent<PlayerComponent> {
+interface WingedPlayerComponent : ComponentV3, AutoSyncedComponent, CopyableComponent<WingedPlayerComponent> {
     var wing: Wing?
     var creativeFlight: Boolean
 }

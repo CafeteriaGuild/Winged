@@ -18,7 +18,7 @@ import net.adriantodt.winged.block.WingBenchBlock
 import net.adriantodt.winged.command.WingedCommand
 import net.adriantodt.winged.data.Wing
 import net.adriantodt.winged.data.WingedConfig
-import net.adriantodt.winged.data.components.PlayerComponent
+import net.adriantodt.winged.data.components.WingedPlayerComponent
 import net.adriantodt.winged.data.components.impl.DefaultPlayerComponent
 import net.adriantodt.winged.recipe.WingcraftingRecipe
 import net.adriantodt.winged.screen.WingBenchScreenHandler
@@ -50,8 +50,8 @@ object Winged : ModInitializer, EntityComponentInitializer {
         Lifecycle.stable()
     )
 
-    val playerComponentType: ComponentKey<PlayerComponent> =
-        ComponentRegistryV3.INSTANCE.getOrCreate(identifier("player_data"), PlayerComponent::class.java)
+    val playerComponentType: ComponentKey<WingedPlayerComponent> =
+        ComponentRegistryV3.INSTANCE.getOrCreate(identifier("player_data"), WingedPlayerComponent::class.java)
 
     val wingSource: AbilitySource = Pal.getAbilitySource(identifier("wing"))
 
@@ -87,7 +87,7 @@ object Winged : ModInitializer, EntityComponentInitializer {
     override fun registerEntityComponentFactories(registry: EntityComponentFactoryRegistry) {
         registry.registerForPlayers(
             playerComponentType,
-            { DefaultPlayerComponent(it, false) },
+            ::DefaultPlayerComponent,
             if (configHolder.config.keepWingsAfterDeath) RespawnCopyStrategy.ALWAYS_COPY
             else RespawnCopyStrategy.INVENTORY
         )
@@ -95,7 +95,11 @@ object Winged : ModInitializer, EntityComponentInitializer {
 
     private fun handleWingsAndCreativeFlight(player: PlayerEntity) {
         if (player.world.isClient) return
-        val component = playerComponentType.getNullable(player) ?: return
+        updatePalAndFfl(player, playerComponentType.getNullable(player) ?: return)
+    }
+
+    fun updatePalAndFfl(player: PlayerEntity, component: WingedPlayerComponent) {
+        if (player.world.isClient) return
         val wing = component.wing
 
         val fallFlyingTracker = FallFlyingLib.ABILITY.getTracker(player)

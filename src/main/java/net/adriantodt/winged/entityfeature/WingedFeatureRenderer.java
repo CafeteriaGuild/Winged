@@ -1,7 +1,7 @@
 package net.adriantodt.winged.entityfeature;
 
 import net.adriantodt.winged.Winged;
-import net.adriantodt.winged.data.components.PlayerComponent;
+import net.adriantodt.winged.data.components.WingedPlayerComponent;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.OverlayTexture;
@@ -25,7 +25,7 @@ public class WingedFeatureRenderer<T extends LivingEntity, M extends EntityModel
 
     public void render(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, T entity, float f, float g, float h, float j, float k, float l) {
         if (entity.isInvisible()) return;
-        Winged.INSTANCE.getPlayerComponentType().maybeGet(entity).map(PlayerComponent::getWing).ifPresent(wing -> {
+        Winged.INSTANCE.getPlayerComponentType().maybeGet(entity).map(WingedPlayerComponent::getWing).ifPresent(wing -> {
             matrixStack.push();
             matrixStack.translate(0.0D, 0.0D, 0.125D);
             this.getContextModel().copyStateTo(this.elytra);

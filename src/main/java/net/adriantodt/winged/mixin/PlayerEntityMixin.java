@@ -3,7 +3,7 @@ package net.adriantodt.winged.mixin;
 import net.adriantodt.winged.Winged;
 import net.adriantodt.winged.data.Wing;
 import net.adriantodt.winged.data.WingedConfig;
-import net.adriantodt.winged.data.components.PlayerComponent;
+import net.adriantodt.winged.data.components.WingedPlayerComponent;
 import net.adriantodt.winged.item.RemovalKnifeItem;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
@@ -33,7 +33,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
             return;
         }
 
-        PlayerComponent component = Winged.INSTANCE.getPlayerComponentType().getNullable(this);
+        WingedPlayerComponent component = Winged.INSTANCE.getPlayerComponentType().getNullable(this);
         if (component == null) {
             return;
         }
