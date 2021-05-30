@@ -44,7 +44,7 @@ class WingBenchCraftingResultSlot(
         amount = 0
     }
 
-    override fun onTakeItem(player: PlayerEntity, stack: ItemStack): ItemStack {
+    override fun onTakeItem(player: PlayerEntity, stack: ItemStack): Unit {
         this.onCrafted(stack)
         val remainders = player.world.recipeManager.getRemainingStacks(WingcraftingRecipe.TYPE, input, player.world)
         for (slot in remainders.indices) {
@@ -65,6 +65,5 @@ class WingBenchCraftingResultSlot(
                 }
             }
         }
-        return stack
     }
 }

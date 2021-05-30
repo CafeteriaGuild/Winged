@@ -61,7 +61,7 @@ class WingBenchScreenHandler(syncId: Int, private val playerInventory: PlayerInv
                 if (!insertItem(slotStack, 8, 44, true)) {
                     return ItemStack.EMPTY
                 }
-                slot.onStackChanged(slotStack, resultStack)
+                slot.onQuickTransfer(slotStack, resultStack)
             } else if (index in 8..43) {
                 if (!insertItem(slotStack, 1, 8, false)) {
                     if (index < 35) {
@@ -83,9 +83,9 @@ class WingBenchScreenHandler(syncId: Int, private val playerInventory: PlayerInv
             if (slotStack.count == resultStack.count) {
                 return ItemStack.EMPTY
             }
-            val itemStack3 = slot.onTakeItem(player, slotStack)
+            slot.onTakeItem(player, slotStack)
             if (index == 0) {
-                player.dropItem(itemStack3, false)
+                player.dropItem(slotStack, false)
             }
         }
         return resultStack
@@ -97,13 +97,13 @@ class WingBenchScreenHandler(syncId: Int, private val playerInventory: PlayerInv
 
     override fun close(player: PlayerEntity) {
         super.close(player)
-        dropInventory(player, player.world, input)
+        dropInventory(player, input)
     }
 
     private fun addPlayerSlots() {
         for (x in 0 until 9) {
             for (y in 0 until 3) {
-                addSlot(Slot(playerInventory, x + y * 9 + 9, 8 + x * 18, 84 + y * 76))
+                addSlot(Slot(playerInventory, x + y * 9 + 9, 8 + x * 18, 142 + y * 18))
             }
         }
 

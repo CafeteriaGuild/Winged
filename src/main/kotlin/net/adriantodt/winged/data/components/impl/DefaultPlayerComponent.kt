@@ -4,7 +4,7 @@ import net.adriantodt.winged.Winged
 import net.adriantodt.winged.data.Wing
 import net.adriantodt.winged.data.components.WingedPlayerComponent
 import net.minecraft.entity.player.PlayerEntity
-import net.minecraft.nbt.CompoundTag
+import net.minecraft.nbt.NbtCompound
 import net.minecraft.util.Identifier
 
 class DefaultPlayerComponent(private val owner: PlayerEntity) : WingedPlayerComponent {
@@ -20,11 +20,11 @@ class DefaultPlayerComponent(private val owner: PlayerEntity) : WingedPlayerComp
             Winged.playerComponentType.sync(owner)
         }
 
-    override fun writeToNbt(tag: CompoundTag) {
+    override fun writeToNbt(tag: NbtCompound) {
         wing?.let { tag.putString(WING_TAG, Winged.wingRegistry.getId(it).toString()) }
         tag.putBoolean("creativeFlight", creativeFlight)
     }
-    override fun readFromNbt(tag: CompoundTag) {
+    override fun readFromNbt(tag: NbtCompound) {
         wing = if (tag.contains(WING_TAG)) Winged.wingRegistry[Identifier(tag.getString(WING_TAG))] else null
         creativeFlight = tag.getBoolean("creativeFlight")
     }

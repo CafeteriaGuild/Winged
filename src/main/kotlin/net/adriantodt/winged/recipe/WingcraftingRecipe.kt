@@ -58,7 +58,7 @@ class WingcraftingRecipe(
                 val wingMidInput = readOptionalIngredient(json, "wing_mid")
                 val wingLowInput = readOptionalIngredient(json, "wing_low")
 
-                val output = ShapedRecipe.getItemStack(JsonHelper.getObject(json, "result"))
+                val output = ItemStack(ShapedRecipe.getItem(JsonHelper.getObject(json, "result")))
                 return WingcraftingRecipe(
                     identifier, topInput, centerInput, wingTopInput, wingMidInput, wingLowInput, output
                 )

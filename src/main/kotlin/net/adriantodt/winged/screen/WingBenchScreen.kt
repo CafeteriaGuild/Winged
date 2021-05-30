@@ -29,8 +29,8 @@ class WingBenchScreen(handler: WingBenchScreenHandler, playerInventory: PlayerIn
     }
 
     override fun drawBackground(matrices: MatrixStack, delta: Float, mouseX: Int, mouseY: Int) {
-        RenderSystem.color4f(1f, 1f, 1f, 1f)
-        client!!.textureManager.bindTexture(texture)
+//        RenderSystem.color4f(1f, 1f, 1f, 1f)
+        RenderSystem.setShaderTexture(0, texture)
         this.drawTexture(matrices, x, (height - backgroundHeight) / 2, 0, 0, backgroundWidth, backgroundHeight)
     }
 }

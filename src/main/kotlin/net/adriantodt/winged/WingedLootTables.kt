@@ -21,11 +21,11 @@ import net.fabricmc.fabric.api.loot.v1.FabricLootPoolBuilder
 import net.fabricmc.fabric.api.loot.v1.FabricLootSupplierBuilder
 import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback
 import net.minecraft.item.Item
-import net.minecraft.loot.ConstantLootTableRange
 import net.minecraft.loot.LootManager
 import net.minecraft.loot.condition.*
 import net.minecraft.loot.context.LootContext
 import net.minecraft.loot.entry.ItemEntry
+import net.minecraft.loot.provider.number.ConstantLootNumberProvider
 import net.minecraft.predicate.entity.EntityFlagsPredicate
 import net.minecraft.predicate.entity.EntityPredicate
 import net.minecraft.resource.ResourceManager
@@ -184,7 +184,7 @@ object WingedLootTables {
 
         fun standardPool(item: Item, requirePlayer: Boolean = false, block: FabricLootPoolBuilder.() -> Unit) {
             addPool {
-                rolls(ConstantLootTableRange.create(1))
+                rolls(ConstantLootNumberProvider.create(1f))
                 with(ItemEntry.builder(item))
                 block()
                 if (requirePlayer) killedByPlayerCondition()
