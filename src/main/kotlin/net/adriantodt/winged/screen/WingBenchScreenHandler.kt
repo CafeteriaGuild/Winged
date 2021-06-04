@@ -103,7 +103,7 @@ class WingBenchScreenHandler(syncId: Int, private val playerInventory: PlayerInv
     private fun addPlayerSlots() {
         for (x in 0 until 9) {
             for (y in 0 until 3) {
-                addSlot(Slot(playerInventory, x + y * 9 + 9, 8 + x * 18, 84 + y * 76))
+                addSlot(Slot(playerInventory, x + y * 9 + 9, 8 + x * 18, 142 + y * 18))
             }
         }
 
