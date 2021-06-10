@@ -57,10 +57,10 @@ class RemovalKnifeItem(settings: Settings) : Item(settings) {
         @JvmStatic
         fun getCoreItem(creativeFlight: Boolean, dropBroken: Boolean): Item {
             return when {
-                creativeFlight && dropBroken -> WingedLoreItems.brokenCoreOfFlight75
-                creativeFlight && !dropBroken -> WingedLoreItems.coreOfFlight
-                !creativeFlight && dropBroken -> WingedUtilityItems.heartOfTheSky75
-                else -> WingedUtilityItems.heartOfTheSky
+                creativeFlight && dropBroken -> WingedUtilityItems.heartOfTheSky75
+                creativeFlight && !dropBroken -> WingedUtilityItems.heartOfTheSky
+                !creativeFlight && dropBroken -> WingedLoreItems.brokenCoreOfFlight75
+                else -> WingedLoreItems.coreOfFlight
             }
         }
     }
