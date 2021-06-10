@@ -5,29 +5,38 @@ import com.mojang.blaze3d.systems.RenderSystem
 import it.unimi.dsi.fastutil.ints.IntList
 import me.shedaniel.math.Point
 import me.shedaniel.math.Rectangle
-import me.shedaniel.rei.api.EntryStack
-import me.shedaniel.rei.api.TransferRecipeCategory
-import me.shedaniel.rei.api.widgets.Widgets
-import me.shedaniel.rei.gui.widget.Widget
+import me.shedaniel.rei.api.client.gui.Renderer
+import me.shedaniel.rei.api.client.gui.widgets.Widget
+import me.shedaniel.rei.api.client.gui.widgets.Widgets
+import me.shedaniel.rei.api.client.registry.display.TransferDisplayCategory
+import me.shedaniel.rei.api.common.category.CategoryIdentifier
+import me.shedaniel.rei.api.common.entry.EntryStack
+import me.shedaniel.rei.api.common.util.EntryStacks
 import net.adriantodt.winged.identifier
-import net.minecraft.client.MinecraftClient
+import net.minecraft.client.render.GameRenderer
 import net.minecraft.client.render.Tessellator
 import net.minecraft.client.render.VertexFormat
 import net.minecraft.client.render.VertexFormats
-import net.minecraft.client.resource.language.I18n
 import net.minecraft.client.util.math.MatrixStack
+import net.minecraft.text.Text
+import net.minecraft.text.TranslatableText
 import net.minecraft.util.Identifier
 
-class WingRecipeCategory(private val identifier: Identifier, private val logo: EntryStack, private val categoryName: String) : TransferRecipeCategory<WingRecipeDisplay> {
+class WingRecipeCategory(private val identifier: Identifier, private val logo: EntryStack<*>, private val categoryName: String)
+    : TransferDisplayCategory<WingRecipeDisplay> {
     override fun getIdentifier(): Identifier = identifier
 
-    override fun getCategoryName(): String = I18n.translate(categoryName)
+    override fun getCategoryIdentifier(): CategoryIdentifier<out WingRecipeDisplay> {
+        return CategoryIdentifier.of(identifier("wingcrafting"))
+    }
 
     override fun renderRedSlots(matrices: MatrixStack?, widgets: MutableList<Widget>?, bounds: Rectangle?, display: WingRecipeDisplay?, redSlots: IntList?) {
 
     }
 
-    override fun getLogo(): EntryStack = logo
+    override fun getIcon(): Renderer {
+        return logo
+    }
 
     override fun setupDisplay(recipeDisplay: WingRecipeDisplay?, bounds: Rectangle): MutableList<Widget> {
         val list = mutableListOf<Widget>(Widgets.createCategoryBase(bounds))
@@ -37,7 +46,7 @@ class WingRecipeCategory(private val identifier: Identifier, private val logo: E
 
         val input = recipeDisplay!!.inputEntries
         val recipe = recipeDisplay.recipe
-        val outputs = EntryStack.create(recipe.output)
+        val outputs = EntryStacks.of(recipe.output)
         list.add(Widgets.createSlot(Point(bounds.x + 42, bounds.y + 17)).entries(input[0]).disableBackground())
         list.add(Widgets.createSlot(Point(bounds.x + 67, bounds.y + 10)).entries(input[1]).disableBackground())
         list.add(Widgets.createSlot(Point(bounds.x + 92, bounds.y + 17)).entries(input[2]).disableBackground())
@@ -58,12 +67,13 @@ class WingRecipeCategory(private val identifier: Identifier, private val logo: E
     private fun drawBg(matrices: MatrixStack, x: Int, y: Int) {
         val width = 140
         val height = 110
-        MinecraftClient.getInstance().textureManager.bindTexture(identifier("textures/gui/rei_integration.png"))
+        RenderSystem.setShaderTexture(0, identifier("textures/gui/rei_integration.png"))
 
         val tessellator = Tessellator.getInstance()
         val buffer = tessellator.buffer
         val model = matrices.peek().model
         RenderSystem.enableBlend()
+        RenderSystem.setShader { GameRenderer.getPositionColorTexShader() }
         RenderSystem.blendFuncSeparate(GlStateManager.SrcFactor.SRC_ALPHA, GlStateManager.DstFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SrcFactor.ONE, GlStateManager.DstFactor.ZERO)
         buffer.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_COLOR_TEXTURE) //I thought GL_QUADS was deprecated but okay, sure.
         buffer.vertex(model, x.toFloat(), (y + height).toFloat(), 0f).color(1f, 1f, 1f, 1f).texture(0f, 1f).next()
@@ -73,4 +83,6 @@ class WingRecipeCategory(private val identifier: Identifier, private val logo: E
         tessellator.draw()
         RenderSystem.disableBlend()
     }
+
+    override fun getTitle(): Text = TranslatableText(categoryName)
 }

@@ -1,32 +1,29 @@
 package net.adriantodt.winged.integration.rei
 
-import me.shedaniel.rei.api.EntryStack
-import me.shedaniel.rei.api.RecipeHelper
-import me.shedaniel.rei.api.plugins.REIPluginV0
+import me.shedaniel.rei.api.client.plugins.REIClientPlugin
+import me.shedaniel.rei.api.client.registry.category.CategoryRegistry
+import me.shedaniel.rei.api.client.registry.display.DisplayRegistry
+import me.shedaniel.rei.api.common.util.EntryStacks
 import net.adriantodt.winged.Winged
 import net.adriantodt.winged.identifier
 import net.adriantodt.winged.recipe.WingcraftingRecipe
-import net.minecraft.util.Identifier
 
-object REIPlugin : REIPluginV0 {
+object REIPlugin : REIClientPlugin {
 
     private val WINGCRAFTING_RECIPE = identifier("wingcrafting")
 
-    override fun getPluginIdentifier(): Identifier = identifier("winged_rei")
-
-    override fun registerPluginCategories(recipeHelper: RecipeHelper) {
-        recipeHelper.registerCategory(
+    override fun registerCategories(registry: CategoryRegistry) {
+        registry.add(
             WingRecipeCategory(
                 WINGCRAFTING_RECIPE,
-                EntryStack.create(Winged.wingBenchBlock),
+                EntryStacks.of(Winged.wingBenchBlock),
                 "winged.category.rei.wingcrafting"
-            )
-        )
+            ))
     }
 
-    override fun registerRecipeDisplays(recipeHelper: RecipeHelper?) {
-        recipeHelper?.registerRecipes(WINGCRAFTING_RECIPE, WingcraftingRecipe::class.java) {
-            WingRecipeDisplay(it, WINGCRAFTING_RECIPE)
+    override fun registerDisplays(registry: DisplayRegistry) {
+        registry.recipeManager.listAllOfType(WingcraftingRecipe.TYPE).forEach { recipe ->
+                registry.registerFiller(WingcraftingRecipe::class.java, { r -> recipe is WingcraftingRecipe && recipe.type == r.type }, ::WingRecipeDisplay)
         }
     }
 }
