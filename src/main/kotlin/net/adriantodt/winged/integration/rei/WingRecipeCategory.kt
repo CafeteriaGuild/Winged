@@ -10,6 +10,7 @@ import me.shedaniel.rei.api.client.gui.widgets.Widget
 import me.shedaniel.rei.api.client.gui.widgets.Widgets
 import me.shedaniel.rei.api.client.registry.display.TransferDisplayCategory
 import me.shedaniel.rei.api.common.category.CategoryIdentifier
+import me.shedaniel.rei.api.common.entry.EntryIngredient
 import me.shedaniel.rei.api.common.entry.EntryStack
 import me.shedaniel.rei.api.common.util.EntryStacks
 import net.adriantodt.winged.identifier
@@ -47,17 +48,22 @@ class WingRecipeCategory(private val identifier: Identifier, private val logo: E
         val input = recipeDisplay!!.inputEntries
         val recipe = recipeDisplay.recipe
         val outputs = EntryStacks.of(recipe.output)
-        list.add(Widgets.createSlot(Point(bounds.x + 42, bounds.y + 17)).entries(input[0]).disableBackground())
-        list.add(Widgets.createSlot(Point(bounds.x + 67, bounds.y + 10)).entries(input[1]).disableBackground())
-        list.add(Widgets.createSlot(Point(bounds.x + 92, bounds.y + 17)).entries(input[2]).disableBackground())
-        list.add(Widgets.createSlot(Point(bounds.x + 29, bounds.y + 53)).entries(input[3]).disableBackground())
-        list.add(Widgets.createSlot(Point(bounds.x + 67, bounds.y + 34)).entries(input[4]).disableBackground())
-        list.add(Widgets.createSlot(Point(bounds.x + 106, bounds.y + 53)).entries(input[5]).disableBackground())
-        list.add(Widgets.createSlot(Point(bounds.x + 13, bounds.y + 89)).entries(input[6]).disableBackground())
-        list.add(Widgets.createSlot(Point(bounds.x + 121, bounds.y + 89)).entries(input[7]).disableBackground())
+        addSlot(list, Point(bounds.x + 42, bounds.y + 17), input, 0)
+        addSlot(list, Point(bounds.x + 67, bounds.y + 10), input, 1)
+        addSlot(list, Point(bounds.x + 92, bounds.y + 17), input, 2)
+        addSlot(list, Point(bounds.x + 29, bounds.y + 53), input, 3)
+        addSlot(list, Point(bounds.x + 67, bounds.y + 34), input, 4)
+        addSlot(list, Point(bounds.x + 106, bounds.y + 53), input, 5)
+        addSlot(list, Point(bounds.x + 13, bounds.y + 89), input, 6)
+        addSlot(list, Point(bounds.x + 121, bounds.y + 89), input, 7)
         list.add(Widgets.createSlot(Point(bounds.x + 67, bounds.y + 96)).entry(outputs).disableBackground().markOutput())
 
         return list
+    }
+    
+    private fun addSlot(list: MutableList<Widget>, point: Point, input: List<EntryIngredient>, index: Int) {
+        if (input.size > index && !input[index].isEmpty())
+            list.add(Widgets.createSlot(point).entries(input[index]).disableBackground())
     }
 
     override fun getDisplayHeight(): Int {
