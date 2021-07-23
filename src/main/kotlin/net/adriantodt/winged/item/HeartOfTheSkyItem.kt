@@ -16,6 +16,5 @@ class HeartOfTheSkyItem(settings: Settings) : Item(settings) {
     @Environment(EnvType.CLIENT)
     override fun appendTooltip(stack: ItemStack, world: World?, tooltip: MutableList<Text>, ctx: TooltipContext) {
         tooltip += TranslatableText("$translationKey.description")
-        tooltip += TranslatableText("tooltip.winged.heart_of_the_sky")
     }
 }
