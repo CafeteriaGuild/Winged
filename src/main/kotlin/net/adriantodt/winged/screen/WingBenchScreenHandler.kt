@@ -46,7 +46,7 @@ class WingBenchScreenHandler(syncId: Int, private val playerInventory: PlayerInv
                 }
             }
             resultInventory.setStack(0, itemStack)
-            serverPlayerEntity.networkHandler.sendPacket(ScreenHandlerSlotUpdateS2CPacket(syncId, 0, itemStack))
+            serverPlayerEntity.networkHandler.sendPacket(ScreenHandlerSlotUpdateS2CPacket(syncId, 0, nextRevision(), itemStack))
         }
     }
 
