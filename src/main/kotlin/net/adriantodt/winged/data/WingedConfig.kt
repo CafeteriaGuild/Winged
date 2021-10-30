@@ -106,9 +106,9 @@ class WingedConfig : ConfigData {
         @ConfigEntry.Gui.RequiresRestart
         var requirePlayer: Boolean = true,
         @ConfigEntry.Gui.RequiresRestart
-        var standardChance: Float = 0.05f,
+        var standardChance: Float = 0.001f,
         @ConfigEntry.Gui.RequiresRestart
-        var creativeFlightChance: Float = 0.025f,
+        var creativeFlightChance: Float = 0.0005f,
         @ConfigEntry.Gui.RequiresRestart
         var lootingMultiplier: Float = 0.02f
     )
