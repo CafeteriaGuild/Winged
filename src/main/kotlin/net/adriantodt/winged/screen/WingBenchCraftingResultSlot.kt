@@ -57,7 +57,7 @@ class WingBenchCraftingResultSlot(
             if (!itemStack2.isEmpty) {
                 if (itemStack.isEmpty) {
                     input.setStack(slot, itemStack2)
-                } else if (ItemStack.areItemsEqualIgnoreDamage(itemStack, itemStack2) && ItemStack.areTagsEqual(itemStack, itemStack2)) {
+                } else if (ItemStack.areItemsEqualIgnoreDamage(itemStack, itemStack2) && ItemStack.areNbtEqual(itemStack, itemStack2)) {
                     itemStack2.increment(itemStack.count)
                     input.setStack(slot, itemStack2)
                 } else if (!this.player.inventory.insertStack(itemStack2)) {

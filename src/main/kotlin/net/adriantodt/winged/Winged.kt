@@ -12,8 +12,6 @@ import io.github.ladysnake.pal.VanillaAbilities
 import me.shedaniel.autoconfig.AutoConfig
 import me.shedaniel.autoconfig.ConfigHolder
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer
-import net.adriantodt.fallflyinglib.FallFlyingLib
-import net.adriantodt.fallflyinglib.event.PreFallFlyingCallback
 import net.adriantodt.winged.block.WingBenchBlock
 import net.adriantodt.winged.command.WingedCommand
 import net.adriantodt.winged.data.Wing
@@ -25,6 +23,8 @@ import net.adriantodt.winged.screen.WingBenchScreenHandler
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder
+import net.fabricmc.fabric.api.entity.event.v1.EntityElytraEvents
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents
 import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry
 import net.minecraft.block.Blocks
 import net.minecraft.entity.player.PlayerEntity
@@ -70,12 +70,22 @@ object Winged : ModInitializer, EntityComponentInitializer {
     val wingBenchBlock = WingBenchBlock(FabricBlockSettings.copyOf(Blocks.END_STONE))
 
     override fun onInitialize() {
-        PreFallFlyingCallback.EVENT.register(this::handleWingsAndCreativeFlight)
+        EntityElytraEvents.CUSTOM.register { entity, _ ->
+
+            val component = playerComponentType.getNullable(entity)
+            return@register component?.wing != null
+        }
         WingedLoreItems.register()
         WingedUtilityItems.register()
         WingItems.register()
         WingedLootTables.register(configHolder.config)
         WingedCommand.init()
+
+        ServerTickEvents.START_WORLD_TICK.register { world ->
+            world.players.forEach { player ->
+                updatePalAndFfl(player, playerComponentType.getNullable(player) ?: return@forEach)
+            }
+        }
 
         Registry.register(Registry.RECIPE_TYPE, WingcraftingRecipe.ID, WingcraftingRecipe.TYPE)
         Registry.register(Registry.RECIPE_SERIALIZER, WingcraftingRecipe.ID, WingcraftingRecipe.SERIALIZER)
@@ -93,24 +103,15 @@ object Winged : ModInitializer, EntityComponentInitializer {
         )
     }
 
-    private fun handleWingsAndCreativeFlight(player: PlayerEntity) {
-        if (player.world.isClient) return
-        updatePalAndFfl(player, playerComponentType.getNullable(player) ?: return)
-    }
-
     fun updatePalAndFfl(player: PlayerEntity, component: WingedPlayerComponent) {
         if (player.world.isClient) return
         val wing = component.wing
 
-        val fallFlyingTracker = FallFlyingLib.ABILITY.getTracker(player)
         val allowFlyingTracker = VanillaAbilities.ALLOW_FLYING.getTracker(player)
 
         if (wing == null) {
-            fallFlyingTracker.removeSource(wingSource)
             allowFlyingTracker.removeSource(wingSource)
         } else {
-            fallFlyingTracker.addSource(wingSource)
-
             if (component.creativeFlight) {
                 allowFlyingTracker.addSource(wingSource)
             } else {

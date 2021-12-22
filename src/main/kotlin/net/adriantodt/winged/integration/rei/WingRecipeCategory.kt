@@ -2,13 +2,12 @@ package net.adriantodt.winged.integration.rei
 
 import com.mojang.blaze3d.platform.GlStateManager
 import com.mojang.blaze3d.systems.RenderSystem
-import it.unimi.dsi.fastutil.ints.IntList
 import me.shedaniel.math.Point
 import me.shedaniel.math.Rectangle
 import me.shedaniel.rei.api.client.gui.Renderer
 import me.shedaniel.rei.api.client.gui.widgets.Widget
 import me.shedaniel.rei.api.client.gui.widgets.Widgets
-import me.shedaniel.rei.api.client.registry.display.TransferDisplayCategory
+import me.shedaniel.rei.api.client.registry.display.DisplayCategory
 import me.shedaniel.rei.api.common.category.CategoryIdentifier
 import me.shedaniel.rei.api.common.entry.EntryIngredient
 import me.shedaniel.rei.api.common.entry.EntryStack
@@ -24,15 +23,11 @@ import net.minecraft.text.TranslatableText
 import net.minecraft.util.Identifier
 
 class WingRecipeCategory(private val identifier: Identifier, private val logo: EntryStack<*>, private val categoryName: String)
-    : TransferDisplayCategory<WingRecipeDisplay> {
+    : DisplayCategory<WingRecipeDisplay> {
     override fun getIdentifier(): Identifier = identifier
 
     override fun getCategoryIdentifier(): CategoryIdentifier<out WingRecipeDisplay> {
         return CategoryIdentifier.of(identifier("wingcrafting"))
-    }
-
-    override fun renderRedSlots(matrices: MatrixStack?, widgets: MutableList<Widget>?, bounds: Rectangle?, display: WingRecipeDisplay?, redSlots: IntList?) {
-
     }
 
     override fun getIcon(): Renderer {
@@ -77,7 +72,7 @@ class WingRecipeCategory(private val identifier: Identifier, private val logo: E
 
         val tessellator = Tessellator.getInstance()
         val buffer = tessellator.buffer
-        val model = matrices.peek().model
+        val model = matrices.peek().positionMatrix
         RenderSystem.enableBlend()
         RenderSystem.setShader { GameRenderer.getPositionColorTexShader() }
         RenderSystem.blendFuncSeparate(GlStateManager.SrcFactor.SRC_ALPHA, GlStateManager.DstFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SrcFactor.ONE, GlStateManager.DstFactor.ZERO)
