@@ -47,7 +47,8 @@ object Winged : ModInitializer, EntityComponentInitializer {
     val wingRegistry = DefaultedRegistry<Wing>(
         "minecraft:elytra",
         RegistryKey.ofRegistry(identifier("wing")),
-        Lifecycle.stable()
+        Lifecycle.stable(),
+        null
     )
 
     val playerComponentType: ComponentKey<WingedPlayerComponent> =
