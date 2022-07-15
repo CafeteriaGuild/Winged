@@ -42,7 +42,7 @@
     "modmenu": [
       "net.adriantodt.winged.integration.ModMenuIntegration"
     ],
-    "rei": [
+    "rei_client": [
       {
         "adapter": "kotlin",
         "value": "net.adriantodt.winged.integration.rei.REIPlugin"
@@ -63,6 +63,6 @@
     "fabric-language-kotlin": "*",
     "cardinal-components-base": "*",
     "cardinal-components-entity": "*",
-    "minecraft": "1.18.x"
+    "minecraft": "1.19.x"
   }
 }

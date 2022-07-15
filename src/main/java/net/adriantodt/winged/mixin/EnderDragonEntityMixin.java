@@ -11,7 +11,7 @@ import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.collection.DefaultedList;
@@ -53,7 +53,7 @@ public abstract class EnderDragonEntityMixin extends MobEntity {
             if (player != null) {
                 taggedPlayer = null;
                 ItemScatterer.spawn(world, getBlockPos(), DefaultedList.ofSize(1, new ItemStack(WingedUtilityItems.INSTANCE.getHeartOfTheSky75())));
-                player.sendMessage(new TranslatableText("misc.winged.dragonKill")
+                player.sendMessage(Text.translatable("misc.winged.dragonKill")
                         .formatted(Formatting.DARK_PURPLE, Formatting.ITALIC), false);
             }
         }

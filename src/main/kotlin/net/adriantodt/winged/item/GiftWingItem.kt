@@ -1,6 +1,7 @@
 package net.adriantodt.winged.item
 
 import net.adriantodt.winged.WingItems
+import net.adriantodt.winged.random
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
 import net.minecraft.client.item.TooltipContext
@@ -9,7 +10,6 @@ import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
 import net.minecraft.sound.SoundEvents
 import net.minecraft.text.Text
-import net.minecraft.text.TranslatableText
 import net.minecraft.util.Hand
 import net.minecraft.util.TypedActionResult
 import net.minecraft.world.World
@@ -28,16 +28,16 @@ class GiftWingItem(settings: Settings, private val creativeFlight: Boolean = fal
     }
 
     private fun wingVariations(user: PlayerEntity): WingItem {
-        val variation = WingItems.giftableWings.random(user.random.asKotlinRandom())
+        val variation = WingItems.giftableWings.random(user.random)
         return if (creativeFlight) variation.creativeFlight else variation.standard
     }
 
     @Environment(EnvType.CLIENT)
     override fun appendTooltip(stack: ItemStack?, world: World?, tooltip: MutableList<Text?>, ctx: TooltipContext?) {
         if (creativeFlight) {
-            tooltip += TranslatableText("text.winged.creativeFlight")
+            tooltip += Text.translatable("text.winged.creativeFlight")
         }
-        tooltip += TranslatableText("$translationKey.description")
-        tooltip += TranslatableText("tooltip.winged.gift_wing_item")
+        tooltip += Text.translatable("$translationKey.description")
+        tooltip += Text.translatable("tooltip.winged.gift_wing_item")
     }
 }

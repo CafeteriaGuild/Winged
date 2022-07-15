@@ -15,7 +15,6 @@ import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
 import net.minecraft.sound.SoundEvents
 import net.minecraft.text.Text
-import net.minecraft.text.TranslatableText
 import net.minecraft.util.Hand
 import net.minecraft.util.TypedActionResult
 import net.minecraft.world.World
@@ -49,8 +48,8 @@ class RemovalKnifeItem(settings: Settings) : Item(settings) {
 
     @Environment(EnvType.CLIENT)
     override fun appendTooltip(stack: ItemStack, world: World?, tooltip: MutableList<Text>, ctx: TooltipContext) {
-        tooltip += TranslatableText("$translationKey.lore1")
-        tooltip += TranslatableText("tooltip.winged.remove_wing_item")
+        tooltip += Text.translatable("$translationKey.lore1")
+        tooltip += Text.translatable("tooltip.winged.remove_wing_item")
     }
 
     companion object {

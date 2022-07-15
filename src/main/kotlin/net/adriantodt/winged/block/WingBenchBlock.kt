@@ -8,7 +8,7 @@ import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.ItemPlacementContext
 import net.minecraft.screen.SimpleNamedScreenHandlerFactory
 import net.minecraft.state.StateManager
-import net.minecraft.text.TranslatableText
+import net.minecraft.text.Text
 import net.minecraft.util.ActionResult
 import net.minecraft.util.Hand
 import net.minecraft.util.hit.BlockHitResult
@@ -17,7 +17,7 @@ import net.minecraft.util.math.Direction
 import net.minecraft.world.World
 
 class WingBenchBlock(settings: Settings) : HorizontalFacingBlock(settings) {
-    private val title = TranslatableText("container.winged.wingbench")
+    private val title = Text.translatable("container.winged.wingbench")
 
     init {
         this.defaultState = stateManager.defaultState.with(FACING, Direction.NORTH)

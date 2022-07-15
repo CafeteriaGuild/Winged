@@ -13,19 +13,10 @@ archivesBaseName = project.archives_base_name
 version = project.minecraft_version + '-' + project.mod_version
 group = project.maven_group
 
-minecraft {
-}
-
 repositories {
-    maven { url = "https://maven.fabricmc.net/" }
     maven {
-        name = "Ladysnake Libs"
+        name = 'Ladysnake Mods'
         url = 'https://ladysnake.jfrog.io/artifactory/mods'
-        content {
-            includeGroup "io.github.onyxstudios.Cardinal-Components-API"
-            includeGroup 'io.github.ladysnake'
-            includeGroupByRegex 'io\\.github\\.onyxstudios.*'
-        }
     }
     maven {
         url = 'https://maven.cafeteria.dev'
@@ -54,11 +45,11 @@ dependencies {
     modImplementation "net.fabricmc:fabric-language-kotlin:${project.fabric_kotlin_version}"
 
     //DEPENDENCY: Cardinal Components
-    modApi "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-base:${project.cardinal_components_version}"
-    modImplementation "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-entity:${project.cardinal_components_version}"
+    modApi "dev.onyxstudios.cardinal-components-api:cardinal-components-base:${project.cardinal_components_version}"
+    modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${project.cardinal_components_version}"
 
-    include "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-base:${project.cardinal_components_version}"
-    include "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-entity:${project.cardinal_components_version}"
+    include "dev.onyxstudios.cardinal-components-api:cardinal-components-base:${project.cardinal_components_version}"
+    include "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${project.cardinal_components_version}"
 
     //DEPENDENCY: Player Ability Lib
     modImplementation "io.github.ladysnake:PlayerAbilityLib:${project.pal_version}"

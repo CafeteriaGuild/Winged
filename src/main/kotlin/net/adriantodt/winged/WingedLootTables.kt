@@ -17,11 +17,12 @@ import net.adriantodt.winged.WingedLoreItems.irrealityCrystal
 import net.adriantodt.winged.WingedLoreItems.shardOfZephyr
 import net.adriantodt.winged.WingedLoreItems.vexEssence
 import net.adriantodt.winged.data.WingedConfig
-import net.fabricmc.fabric.api.loot.v1.FabricLootPoolBuilder
-import net.fabricmc.fabric.api.loot.v1.FabricLootSupplierBuilder
-import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback
+import net.fabricmc.fabric.api.loot.v2.FabricLootPoolBuilder
+import net.fabricmc.fabric.api.loot.v2.LootTableEvents
 import net.minecraft.item.Item
 import net.minecraft.loot.LootManager
+import net.minecraft.loot.LootPool
+import net.minecraft.loot.LootTable
 import net.minecraft.loot.condition.*
 import net.minecraft.loot.context.LootContext
 import net.minecraft.loot.entry.ItemEntry
@@ -87,9 +88,9 @@ object WingedLootTables {
         )
         registerHolidayDrops(config.lootTables.holidayDrops)
 
-        LootTableLoadingCallback.EVENT.register(
-            LootTableLoadingCallback { resourceManager, lootManager, id, supplier, setter ->
-                val ctx by lazy { Context(resourceManager, lootManager, id, supplier, setter) }
+        LootTableEvents.MODIFY.register(
+            LootTableEvents.Modify { resourceManager, lootManager, id, tableBuilder, source ->
+                val ctx by lazy { Context(resourceManager, lootManager, id, tableBuilder) }
                 configurators[id]?.forEach { ctx.it() }
             }
         )
@@ -175,17 +176,16 @@ object WingedLootTables {
         val resourceManager: ResourceManager,
         val lootManager: LootManager,
         val id: Identifier,
-        val supplier: FabricLootSupplierBuilder,
-        val setter: LootTableLoadingCallback.LootTableSetter
+        val supplier: LootTable.Builder
     ) {
         fun addPool(block: FabricLootPoolBuilder.() -> Unit) {
-            supplier.pool(FabricLootPoolBuilder.builder().also(block))
+            supplier.pool(LootPool.builder().also(block).build())
         }
 
         fun standardPool(item: Item, requirePlayer: Boolean = false, block: FabricLootPoolBuilder.() -> Unit) {
             addPool {
-                rolls(ConstantLootNumberProvider.create(1f))
-                with(ItemEntry.builder(item))
+                (this as LootPool.Builder).rolls(ConstantLootNumberProvider.create(1f))
+                with(ItemEntry.builder(item).build())
                 block()
                 if (requirePlayer) killedByPlayerCondition()
             }
@@ -243,16 +243,16 @@ object WingedLootTables {
     }
 
     private fun FabricLootPoolBuilder.killedByPlayerCondition() {
-        conditionally(KilledByPlayerLootCondition.builder())
+        conditionally(KilledByPlayerLootCondition.builder().build())
     }
 
     private fun FabricLootPoolBuilder.randomChanceCondition(chance: Float) {
-        conditionally(RandomChanceLootCondition.builder(chance.coerceIn(0f, 1f)))
+        conditionally(RandomChanceLootCondition.builder(chance.coerceIn(0f, 1f)).build())
     }
 
     private fun FabricLootPoolBuilder.randomChanceWithLootingCondition(chance: Float, lootingMultiplier: Float) {
         conditionally(
-            RandomChanceWithLootingLootCondition.builder(chance.coerceIn(0f, 1f), lootingMultiplier.coerceIn(0f, 1f))
+            RandomChanceWithLootingLootCondition.builder(chance.coerceIn(0f, 1f), lootingMultiplier.coerceIn(0f, 1f)).build()
         )
     }
 
@@ -261,15 +261,15 @@ object WingedLootTables {
             EntityPropertiesLootCondition.builder(
                 LootContext.EntityTarget.THIS,
                 EntityPredicate.Builder.create().flags(EntityFlagsPredicate.Builder.create().onFire(true).build())
-            )
+            ).build()
         )
     }
 
     private fun FabricLootPoolBuilder.isChristmasCondition() {
-        conditionally(IsChristmas.builder())
+        conditionally(IsChristmas.builder().build())
     }
 
     private fun FabricLootPoolBuilder.isHalloweenCondition() {
-        conditionally(IsHalloween.builder())
+        conditionally(IsHalloween.builder().build())
     }
 }

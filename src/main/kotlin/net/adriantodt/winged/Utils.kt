@@ -8,6 +8,7 @@ import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
 import net.minecraft.util.Identifier
 import net.minecraft.util.math.Vec3d
+import net.minecraft.util.math.random.Random
 import net.minecraft.util.registry.Registry
 
 fun mcIdentifier(path: String) = Identifier("minecraft", path)
@@ -35,3 +36,9 @@ fun Item.Settings.loreItem(amount: Int = 2, glint: Boolean = false) = LoreItem(t
 operator fun Vec3d.times(other: Double): Vec3d = multiply(other)
 
 operator fun Vec3d.plus(other: Vec3d): Vec3d = add(other)
+
+public fun <T> Collection<T>.random(random: Random): T {
+    if (isEmpty())
+        throw NoSuchElementException("Collection is empty.")
+    return elementAt(random.nextInt(size))
+}

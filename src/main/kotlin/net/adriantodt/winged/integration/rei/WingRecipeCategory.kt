@@ -19,7 +19,6 @@ import net.minecraft.client.render.VertexFormat
 import net.minecraft.client.render.VertexFormats
 import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.text.Text
-import net.minecraft.text.TranslatableText
 import net.minecraft.util.Identifier
 
 class WingRecipeCategory(private val identifier: Identifier, private val logo: EntryStack<*>, private val categoryName: String)
@@ -85,5 +84,5 @@ class WingRecipeCategory(private val identifier: Identifier, private val logo: E
         RenderSystem.disableBlend()
     }
 
-    override fun getTitle(): Text = TranslatableText(categoryName)
+    override fun getTitle(): Text = Text.translatable(categoryName)
 }

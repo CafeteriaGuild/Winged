@@ -6,16 +6,18 @@ import net.adriantodt.winged.Winged.playerComponentType
 import net.adriantodt.winged.Winged.wingRegistry
 import net.adriantodt.winged.data.Wing
 import net.adriantodt.winged.identifier
-import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback
+import net.minecraft.command.CommandRegistryAccess
 import net.minecraft.command.CommandSource
 import net.minecraft.command.argument.EntityArgumentType.getPlayer
 import net.minecraft.command.argument.EntityArgumentType.player
 import net.minecraft.command.argument.IdentifierArgumentType.getIdentifier
 import net.minecraft.command.argument.IdentifierArgumentType.identifier
 import net.minecraft.command.suggestion.SuggestionProviders
+import net.minecraft.server.command.CommandManager
 import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.server.network.ServerPlayerEntity
-import net.minecraft.text.TranslatableText
+import net.minecraft.text.Text
 import net.minecraft.util.Util
 
 object WingedCommand : CommandRegistrationCallback {
@@ -27,7 +29,7 @@ object WingedCommand : CommandRegistrationCallback {
         CommandRegistrationCallback.EVENT.register(this)
     }
 
-    override fun register(dispatcher: CommandDispatcher<ServerCommandSource>, dedicated: Boolean) {
+    override fun register(dispatcher: CommandDispatcher<ServerCommandSource>, registryAccess: CommandRegistryAccess, env: CommandManager.RegistrationEnvironment) {
         dispatcher.withDSL("winged") {
             then("player") {
                 thenArgument("player", player()) {
@@ -54,7 +56,7 @@ object WingedCommand : CommandRegistrationCallback {
             // self
             then("clear") {
                 requires { hasPermissionLevel(2) }
-                executes { clearWing(source.player) }
+                executes { clearWing(source.player!!) }
             }
             then("set") {
                 requires { hasPermissionLevel(2) }
@@ -62,13 +64,13 @@ object WingedCommand : CommandRegistrationCallback {
                     suggests(allWings)
                     executes {
                         setWing(
-                            source.player,
+                            source.player!!,
                             wingRegistry[getIdentifier(this, "wing")]
                         )
                     }
                 }
             }
-            executes { getWing(source.player) }
+            executes { getWing(source.player!!) }
         }
     }
 
@@ -76,17 +78,17 @@ object WingedCommand : CommandRegistrationCallback {
         val wing = playerComponentType[player].wing
         if (wing != null) {
             source.sendFeedback(
-                TranslatableText(
+                Text.translatable(
                     "commands.winged.get",
                     player.name,
-                    TranslatableText(
+                    Text.translatable(
                         Util.createTranslationKey("wing", wingRegistry.getId(wing))
                     )
                 ),
                 false
             )
         } else {
-            source.sendFeedback(TranslatableText("commands.winged.get_no_wing", player.name), false)
+            source.sendFeedback(Text.translatable("commands.winged.get_no_wing", player.name), false)
         }
         return 1
     }
@@ -95,10 +97,10 @@ object WingedCommand : CommandRegistrationCallback {
         playerComponentType[player].wing = wing
 
         source.sendFeedback(
-            TranslatableText(
+            Text.translatable(
                 "commands.winged.set",
                 player.name,
-                TranslatableText(
+                Text.translatable(
                     Util.createTranslationKey("wing", wingRegistry.getId(playerComponentType[player].wing))
                 )
             ),
@@ -111,7 +113,7 @@ object WingedCommand : CommandRegistrationCallback {
         playerComponentType[player].wing = null
 
         source.sendFeedback(
-            TranslatableText(
+            Text.translatable(
                 "commands.winged.clear",
                 player.name
             ),

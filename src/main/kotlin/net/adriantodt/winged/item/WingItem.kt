@@ -13,7 +13,6 @@ import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
 import net.minecraft.sound.SoundEvents.ITEM_ARMOR_EQUIP_ELYTRA
 import net.minecraft.text.Text
-import net.minecraft.text.TranslatableText
 import net.minecraft.util.Hand
 import net.minecraft.util.Identifier
 import net.minecraft.util.TypedActionResult
@@ -46,10 +45,10 @@ class WingItem(settings: Settings, val wingId: Identifier, val creativeFlight: B
     @Environment(EnvType.CLIENT)
     override fun appendTooltip(stack: ItemStack?, world: World?, tooltip: MutableList<Text?>, ctx: TooltipContext?) {
         if (creativeFlight) {
-            tooltip += TranslatableText("text.winged.creativeFlight")
+            tooltip += Text.translatable("text.winged.creativeFlight")
         }
-        tooltip += TranslatableText("$wingTranslationKey.description")
-        tooltip += TranslatableText("tooltip.winged.any_wing_item")
-        wing.authors?.let { tooltip += TranslatableText("tooltip.winged.wing_author", it) }
+        tooltip += Text.translatable("$wingTranslationKey.description")
+        tooltip += Text.translatable("tooltip.winged.any_wing_item")
+        wing.authors?.let { tooltip += Text.translatable("tooltip.winged.wing_author", it) }
     }
 }
