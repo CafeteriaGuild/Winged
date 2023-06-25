@@ -6,9 +6,10 @@ import net.adriantodt.winged.Winged
 import net.adriantodt.winged.WingedLoreItems
 import net.adriantodt.winged.WingedUtilityItems
 import net.adriantodt.winged.WingedUtilityItems.ceremonialKnife
-import net.adriantodt.winged.damagesource.RemoveWingsDamageSource
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents.ModifyEntries
 import net.minecraft.client.item.TooltipContext
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.Item
@@ -20,6 +21,9 @@ import net.minecraft.util.TypedActionResult
 import net.minecraft.world.World
 
 class RemovalKnifeItem(settings: Settings) : Item(settings) {
+    init {
+        ItemGroupEvents.modifyEntriesEvent(Winged.mainGroupKey).register(ModifyEntries { content -> content.add(this) })
+    }
     override fun use(world: World, user: PlayerEntity, hand: Hand): TypedActionResult<ItemStack> {
         val itemStack = user.getStackInHand(hand)
         val playerComponent = Winged.playerComponentType[user]
@@ -38,7 +42,7 @@ class RemovalKnifeItem(settings: Settings) : Item(settings) {
         if (!user.isCreative) user.giveItemStack(ItemStack(getCoreItem(wasFlight, config.wingRemovalBrokenCore)))
         val dmg = config.removeWingsDamage
         if (dmg > 0 && !world.isClient) {
-            user.damage(RemoveWingsDamageSource, dmg)
+            user.damage(world.damageSources.create(Winged.removeWingsDamageType), dmg)
         }
         user.playSound(SoundEvents.ENTITY_ITEM_BREAK, 1.0f, 1.0f)
         return TypedActionResult.success(if (user.isCreative) itemStack else ItemStack(ceremonialKnife))
@@ -48,8 +52,8 @@ class RemovalKnifeItem(settings: Settings) : Item(settings) {
 
     @Environment(EnvType.CLIENT)
     override fun appendTooltip(stack: ItemStack, world: World?, tooltip: MutableList<Text>, ctx: TooltipContext) {
-        tooltip += Text.translatable("$translationKey.lore1")
-        tooltip += Text.translatable("tooltip.winged.remove_wing_item")
+        tooltip.add(Text.translatable("$translationKey.lore1"))
+        tooltip.add(Text.translatable("tooltip.winged.remove_wing_item"))
     }
 
     companion object {

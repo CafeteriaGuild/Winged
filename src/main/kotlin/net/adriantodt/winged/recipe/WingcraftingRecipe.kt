@@ -6,6 +6,7 @@ import net.adriantodt.winged.screen.WingBenchCraftingInventory
 import net.minecraft.item.ItemStack
 import net.minecraft.network.PacketByteBuf
 import net.minecraft.recipe.*
+import net.minecraft.registry.DynamicRegistryManager
 import net.minecraft.util.Identifier
 import net.minecraft.util.JsonHelper
 import net.minecraft.world.World
@@ -17,7 +18,7 @@ class WingcraftingRecipe(
     val wingTopInput: Ingredient,
     val wingMidInput: Ingredient,
     val wingLowInput: Ingredient,
-    private val output: ItemStack
+    val output: ItemStack
 ) : Recipe<WingBenchCraftingInventory> {
 
     val ingredients by lazy {
@@ -32,11 +33,11 @@ class WingcraftingRecipe(
         return ingredients.withIndex().all { (index, value) -> value.test(inv.getStack(index)) }
     }
 
-    override fun craft(inv: WingBenchCraftingInventory?): ItemStack = output.copy()
+    override fun craft(inventory: WingBenchCraftingInventory?, registryManager: DynamicRegistryManager?): ItemStack = output.copy()
 
     override fun fits(width: Int, height: Int): Boolean = true
 
-    override fun getOutput(): ItemStack = output
+    override fun getOutput(registryManager: DynamicRegistryManager?): ItemStack = output
 
     override fun getId(): Identifier = id
 

@@ -29,7 +29,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     @Inject(method = "dropInventory", at = @At(value = "TAIL"))
     private void winged_maybeDropWings(CallbackInfo info) {
         WingedConfig config = Winged.INSTANCE.getConfigHolder().getConfig();
-        if (config.getKeepWingsAfterDeath() || this.world.getGameRules().getBoolean(GameRules.KEEP_INVENTORY)) {
+        if (config.getKeepWingsAfterDeath() || this.getWorld().getGameRules().getBoolean(GameRules.KEEP_INVENTORY)) {
             return;
         }
 

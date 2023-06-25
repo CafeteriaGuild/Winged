@@ -359,7 +359,7 @@
   "tooltip.winged.activate_speedometer": "§e使用以激活§r",
   "tooltip.winged.deactivate_speedometer": "§e使用以取消激活§r",
   "tooltip.winged.configure_speedometer": "§9可在选项内配置§r",																		   
-  "death.attack.removeWings": "%1$s断掉了自己的翅膀却无法忍受断翼之痛",
+  "death.attack.remove_wings": "%1$s断掉了自己的翅膀却无法忍受断翼之痛",
   "commands.winged.get": "玩家%1$s使用的翅膀：%2$s",
   "commands.winged.get_no_wing": "%1$s没有使用翅膀",
   "commands.winged.set": "%1$s使用的翅膀已设置为%2$s",

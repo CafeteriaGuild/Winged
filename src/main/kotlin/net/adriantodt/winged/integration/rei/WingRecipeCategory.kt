@@ -35,8 +35,8 @@ class WingRecipeCategory(private val identifier: Identifier, private val logo: E
 
     override fun setupDisplay(recipeDisplay: WingRecipeDisplay?, bounds: Rectangle): MutableList<Widget> {
         val list = mutableListOf<Widget>(Widgets.createCategoryBase(bounds))
-        list.add(Widgets.createDrawableWidget { _, matrices, _, _, _ ->
-            drawBg(matrices, bounds.x + 5, bounds.y + 7)
+        list.add(Widgets.createDrawableWidget { ctx, _, _, _->
+            drawBg(ctx.matrices, bounds.x + 5, bounds.y + 7)
         })
 
         val input = recipeDisplay!!.inputEntries
@@ -73,7 +73,7 @@ class WingRecipeCategory(private val identifier: Identifier, private val logo: E
         val buffer = tessellator.buffer
         val model = matrices.peek().positionMatrix
         RenderSystem.enableBlend()
-        RenderSystem.setShader { GameRenderer.getPositionColorTexShader() }
+        RenderSystem.setShader { GameRenderer.getPositionColorTexProgram() }
         RenderSystem.blendFuncSeparate(GlStateManager.SrcFactor.SRC_ALPHA, GlStateManager.DstFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SrcFactor.ONE, GlStateManager.DstFactor.ZERO)
         buffer.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_COLOR_TEXTURE) //I thought GL_QUADS was deprecated but okay, sure.
         buffer.vertex(model, x.toFloat(), (y + height).toFloat(), 0f).color(1f, 1f, 1f, 1f).texture(0f, 1f).next()

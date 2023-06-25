@@ -317,7 +317,7 @@
   "tooltip.winged.wing_author": "§7§oWing by %1$s§r",
   "tooltip.winged.remove_wing_item": "§cUse to remove your own wing§r",
   "tooltip.winged.gift_wing_item": "§9Use to get a random wing§r",
-  "death.attack.removeWings": "%1$s removed their wings but couldn't withstand the pain",
+  "death.attack.remove_wings": "%1$s removed their wings but couldn't withstand the pain",
   "commands.winged.get": "Wing used by player %1$s: %2$s",
   "commands.winged.get_no_wing": "%1$s isn't using a Wing",
   "commands.winged.set": "Wing used by %1$s set to %2$s",

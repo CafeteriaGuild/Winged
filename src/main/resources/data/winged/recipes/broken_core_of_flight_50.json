@@ -1,11 +1,13 @@
 {
-  "type": "minecraft:smithing",
-  "base": {
-    "item": "winged:broken_core_of_flight_75"
-  },
-  "addition": {
-    "item": "winged:shard_of_zephyr"
-  },
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "winged:broken_core_of_flight_75"
+    },
+    {
+      "item": "winged:shard_of_zephyr"
+    }
+  ],
   "result": {
     "item": "winged:broken_core_of_flight_50"
   }

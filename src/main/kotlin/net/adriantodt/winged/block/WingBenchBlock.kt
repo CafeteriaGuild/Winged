@@ -28,7 +28,7 @@ class WingBenchBlock(settings: Settings) : HorizontalFacingBlock(settings) {
     }
 
     override fun getPlacementState(ctx: ItemPlacementContext): BlockState? {
-        return defaultState.with(FACING, ctx.playerFacing.opposite)
+        return defaultState.with(FACING, ctx.horizontalPlayerFacing.opposite)
     }
 
     override fun onUse(state: BlockState?, world: World, pos: BlockPos, player: PlayerEntity?, hand: Hand?, hit: BlockHitResult?): ActionResult {

@@ -7,9 +7,14 @@ import net.adriantodt.winged.Winged.playerComponentType
 import net.adriantodt.winged.Winged.wingRegistry
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
+import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents.ModifyEntries
+import net.minecraft.block.Blocks
 import net.minecraft.client.item.TooltipContext
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.Item
+import net.minecraft.item.ItemGroups
 import net.minecraft.item.ItemStack
 import net.minecraft.sound.SoundEvents.ITEM_ARMOR_EQUIP_ELYTRA
 import net.minecraft.text.Text
@@ -19,10 +24,14 @@ import net.minecraft.util.TypedActionResult
 import net.minecraft.util.Util
 import net.minecraft.world.World
 
+
 class WingItem(settings: Settings, val wingId: Identifier, val creativeFlight: Boolean = false) : Item(settings) {
     private val wing by lazy { wingRegistry[wingId] }
     private val wingTranslationKey: String = Util.createTranslationKey("wing", wingId)
 
+    init {
+        ItemGroupEvents.modifyEntriesEvent(Winged.showcaseGroupKey).register(ModifyEntries { content -> content.add(this) })
+    }
     override fun use(world: World, user: PlayerEntity, hand: Hand): TypedActionResult<ItemStack> {
         val itemStack = user.getStackInHand(hand)
         val wingedComponent =

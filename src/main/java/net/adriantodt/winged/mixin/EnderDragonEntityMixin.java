@@ -48,11 +48,11 @@ public abstract class EnderDragonEntityMixin extends MobEntity {
 
     @Inject(method = "updatePostDeath", at = @At("TAIL"))
     private void winged_dropHeartOfTheSky(CallbackInfo ci) {
-        if (!world.isClient && this.ticksSinceDeath == 200 && Winged.INSTANCE.getConfigHolder().getConfig().getLootTables().getEnderdragonDropsHeartOfTheSky() && taggedPlayer != null) {
+        if (!getWorld().isClient && this.ticksSinceDeath == 200 && Winged.INSTANCE.getConfigHolder().getConfig().getLootTables().getEnderdragonDropsHeartOfTheSky() && taggedPlayer != null) {
             ServerPlayerEntity player = getServer().getPlayerManager().getPlayer(taggedPlayer);
             if (player != null) {
                 taggedPlayer = null;
-                ItemScatterer.spawn(world, getBlockPos(), DefaultedList.ofSize(1, new ItemStack(WingedUtilityItems.INSTANCE.getHeartOfTheSky75())));
+                ItemScatterer.spawn(getWorld(), getBlockPos(), DefaultedList.ofSize(1, new ItemStack(WingedUtilityItems.INSTANCE.getHeartOfTheSky75())));
                 player.sendMessage(Text.translatable("misc.winged.dragonKill")
                         .formatted(Formatting.DARK_PURPLE, Formatting.ITALIC), false);
             }

@@ -359,7 +359,7 @@
   "tooltip.winged.activate_speedometer": "§eUse para ativar§r",
   "tooltip.winged.deactivate_speedometer": "§eUse para desativar§r",
   "tooltip.winged.configure_speedometer": "§9Configurável§r",
-  "death.attack.removeWings": "%1$s removeu suas asa mas não aguentou a dor",
+  "death.attack.remove_wings": "%1$s removeu suas asa mas não aguentou a dor",
   "commands.winged.get": "Asa usada por %1$s: %2$s",
   "commands.winged.get_no_wing": "%1$s isn't using a Wing",
   "commands.winged.set": "Asa usada por %1$s definida como %2$s",

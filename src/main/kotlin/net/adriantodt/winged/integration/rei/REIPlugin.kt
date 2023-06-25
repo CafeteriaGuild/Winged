@@ -23,7 +23,7 @@ object REIPlugin : REIClientPlugin {
 
     override fun registerDisplays(registry: DisplayRegistry) {
         registry.recipeManager.listAllOfType(WingcraftingRecipe.TYPE).forEach { recipe ->
-                registry.registerFiller(WingcraftingRecipe::class.java, { r -> recipe is WingcraftingRecipe && recipe.type == r.type }, ::WingRecipeDisplay)
+                registry.registerFiller(WingcraftingRecipe::class.java, { r: WingcraftingRecipe -> recipe is WingcraftingRecipe && recipe.type == r.type }, ::WingRecipeDisplay)
         }
     }
 }

@@ -39,7 +39,7 @@ class WingBenchCraftingResultSlot(
             stack.onCraft(player.world, player, amount)
         }
         if (inventory is RecipeUnlocker) {
-            (inventory as RecipeUnlocker).unlockLastRecipe(player)
+            (inventory as RecipeUnlocker).unlockLastRecipe(player, emptyList())
         }
         amount = 0
     }
@@ -57,7 +57,7 @@ class WingBenchCraftingResultSlot(
             if (!itemStack2.isEmpty) {
                 if (itemStack.isEmpty) {
                     input.setStack(slot, itemStack2)
-                } else if (ItemStack.areItemsEqualIgnoreDamage(itemStack, itemStack2) && ItemStack.areNbtEqual(itemStack, itemStack2)) {
+                } else if (ItemStack.areItemsEqual(itemStack, itemStack2) && ItemStack.areEqual(itemStack, itemStack2)) {
                     itemStack2.increment(itemStack.count)
                     input.setStack(slot, itemStack2)
                 } else if (!this.player.inventory.insertStack(itemStack2)) {

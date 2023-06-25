@@ -29,10 +29,11 @@ import net.minecraft.loot.entry.ItemEntry
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider
 import net.minecraft.predicate.entity.EntityFlagsPredicate
 import net.minecraft.predicate.entity.EntityPredicate
+import net.minecraft.registry.Registries
+import net.minecraft.registry.Registry
 import net.minecraft.resource.ResourceManager
 import net.minecraft.util.Identifier
 import net.minecraft.util.JsonSerializer
-import net.minecraft.util.registry.Registry
 import java.util.Calendar.DAY_OF_MONTH
 import java.util.Calendar.MONTH
 import java.util.Calendar.getInstance as calendarNow
@@ -133,8 +134,8 @@ object WingedLootTables {
     }
 
     private fun registerHolidayDrops(pool: WingedConfig.WingDropLootTable) {
-        Registry.register(Registry.LOOT_CONDITION_TYPE, identifier("is_christmas"), IsChristmas.type)
-        Registry.register(Registry.LOOT_CONDITION_TYPE, identifier("is_halloween"), IsHalloween.type)
+        Registry.register(Registries.LOOT_CONDITION_TYPE, identifier("is_christmas"), IsChristmas.type)
+        Registry.register(Registries.LOOT_CONDITION_TYPE, identifier("is_halloween"), IsHalloween.type)
 
         if (pool.drop) for (identifier in holidayDropMobs) lootTable(identifier) {
             for (variations in listOf(xmasStar, xmasTree)) {

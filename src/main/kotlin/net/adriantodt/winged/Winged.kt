@@ -21,21 +21,23 @@ import net.adriantodt.winged.data.components.impl.DefaultPlayerComponent
 import net.adriantodt.winged.recipe.WingcraftingRecipe
 import net.adriantodt.winged.screen.WingBenchScreenHandler
 import net.fabricmc.api.ModInitializer
-import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
-import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder
 import net.fabricmc.fabric.api.entity.event.v1.EntityElytraEvents
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents
+import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup
+import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry
 import net.minecraft.block.Blocks
+import net.minecraft.entity.damage.DamageTypes
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.BlockItem
 import net.minecraft.item.ItemGroup
 import net.minecraft.item.ItemStack
-import net.minecraft.util.registry.DefaultedRegistry
-import net.minecraft.util.registry.Registry
-import net.minecraft.util.registry.RegistryKey
+import net.minecraft.registry.*
+import net.minecraft.text.Text
+import net.minecraft.util.Identifier
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
+
 
 @Suppress("MemberVisibilityCanBePrivate")
 object Winged : ModInitializer, EntityComponentInitializer {
@@ -44,11 +46,11 @@ object Winged : ModInitializer, EntityComponentInitializer {
     val configHolder: ConfigHolder<WingedConfig> =
         AutoConfig.register(WingedConfig::class.java, ::JanksonConfigSerializer)
 
-    val wingRegistry = DefaultedRegistry<Wing>(
+    val wingRegistry = SimpleDefaultedRegistry<Wing>(
         "minecraft:elytra",
         RegistryKey.ofRegistry(identifier("wing")),
         Lifecycle.stable(),
-        null
+        false
     )
 
     val playerComponentType: ComponentKey<WingedPlayerComponent> =
@@ -60,15 +62,21 @@ object Winged : ModInitializer, EntityComponentInitializer {
         WingBenchScreenHandler(syncId, inv)
     }!!
 
-    val mainGroup: ItemGroup = FabricItemGroupBuilder.create(identifier("main"))
+    val mainGroupKey = RegistryKey.of(RegistryKeys.ITEM_GROUP, identifier( "main"))
+    val mainGroup: ItemGroup = FabricItemGroup.builder()
+        .displayName(Text.translatable("winged.main"))
         .icon { ItemStack(WingedLoreItems.coreOfFlight) }
         .build()
 
-    val showcaseGroup: ItemGroup = FabricItemGroupBuilder.create(identifier("showcase"))
+    val showcaseGroupKey = RegistryKey.of(RegistryKeys.ITEM_GROUP, identifier( "showcase"))
+    val showcaseGroup: ItemGroup = FabricItemGroup.builder()
+        .displayName(Text.translatable("winged.showcase"))
         .icon { ItemStack(WingItems.elytra.standard) }
         .build()
 
     val wingBenchBlock = WingBenchBlock(FabricBlockSettings.copyOf(Blocks.END_STONE))
+
+    val removeWingsDamageType = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, identifier("remove_wings"))
 
     override fun onInitialize() {
         EntityElytraEvents.CUSTOM.register { entity, _ ->
@@ -88,11 +96,15 @@ object Winged : ModInitializer, EntityComponentInitializer {
             }
         }
 
-        Registry.register(Registry.RECIPE_TYPE, WingcraftingRecipe.ID, WingcraftingRecipe.TYPE)
-        Registry.register(Registry.RECIPE_SERIALIZER, WingcraftingRecipe.ID, WingcraftingRecipe.SERIALIZER)
+        Registry.register(Registries.RECIPE_TYPE, WingcraftingRecipe.ID, WingcraftingRecipe.TYPE)
+        Registry.register(Registries.RECIPE_SERIALIZER, WingcraftingRecipe.ID, WingcraftingRecipe.SERIALIZER)
 
-        Registry.register(Registry.BLOCK, identifier("wingbench"), wingBenchBlock)
-        Registry.register(Registry.ITEM, identifier("wingbench"), BlockItem(wingBenchBlock, itemSettings()))
+        Registry.register(Registries.BLOCK, identifier("wingbench"), wingBenchBlock)
+        Registry.register(Registries.ITEM, identifier("wingbench"), BlockItem(wingBenchBlock, itemSettings()))
+
+        Registry.register(Registries.ITEM_GROUP, mainGroupKey, mainGroup)
+        Registry.register(Registries.ITEM_GROUP, showcaseGroupKey, showcaseGroup)
+
     }
 
     override fun registerEntityComponentFactories(registry: EntityComponentFactoryRegistry) {

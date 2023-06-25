@@ -2,6 +2,7 @@ package net.adriantodt.winged.screen
 
 import com.mojang.blaze3d.systems.RenderSystem
 import net.adriantodt.winged.identifier
+import net.minecraft.client.gui.DrawContext
 import net.minecraft.client.gui.screen.ingame.HandledScreen
 import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.entity.player.PlayerInventory
@@ -22,15 +23,13 @@ class WingBenchScreen(handler: WingBenchScreenHandler, playerInventory: PlayerIn
         titleX = (backgroundWidth - textRenderer.getWidth(title as StringVisitable)) / 2
     }
 
-    override fun render(matrices: MatrixStack, mouseX: Int, mouseY: Int, delta: Float) {
-        this.renderBackground(matrices)
-        super.render(matrices, mouseX, mouseY, delta)
-        this.drawMouseoverTooltip(matrices, mouseX, mouseY)
+    override fun render(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
+        this.renderBackground(context)
+        super.render(context, mouseX, mouseY, delta)
+        this.drawMouseoverTooltip(context, mouseX, mouseY)
     }
 
-    override fun drawBackground(matrices: MatrixStack, delta: Float, mouseX: Int, mouseY: Int) {
-//        RenderSystem.color4f(1f, 1f, 1f, 1f)
-        RenderSystem.setShaderTexture(0, texture)
-        this.drawTexture(matrices, x, (height - backgroundHeight) / 2, 0, 0, backgroundWidth, backgroundHeight)
+    override fun drawBackground(context: DrawContext?, delta: Float, mouseX: Int, mouseY: Int) {
+        context?.drawTexture(texture, x, (height - backgroundHeight) / 2, 0, 0, backgroundWidth, backgroundHeight)
     }
 }

@@ -42,7 +42,7 @@ class WingBenchScreenHandler(syncId: Int, private val playerInventory: PlayerInv
             if (optional.isPresent) {
                 val craftingRecipe = optional.get()
                 if (resultInventory.shouldCraftRecipe(world, serverPlayerEntity, craftingRecipe)) {
-                    itemStack = craftingRecipe.craft(craftingInventory)
+                    itemStack = craftingRecipe.craft(craftingInventory, world.registryManager)
                 }
             }
             resultInventory.setStack(0, itemStack)
@@ -51,7 +51,7 @@ class WingBenchScreenHandler(syncId: Int, private val playerInventory: PlayerInv
         }
     }
 
-    override fun transferSlot(player: PlayerEntity, index: Int): ItemStack? {
+    override fun quickMove(player: PlayerEntity, index: Int): ItemStack {
         var resultStack = ItemStack.EMPTY
         val slot = slots[index]
         if (slot != null && slot.hasStack()) {
@@ -96,8 +96,9 @@ class WingBenchScreenHandler(syncId: Int, private val playerInventory: PlayerInv
         updateResult(syncId, playerInventory.player.world, playerInventory.player, input, result)
     }
 
-    override fun close(player: PlayerEntity) {
-        super.close(player)
+    override fun onClosed(player: PlayerEntity?) {
+        super.onClosed(player)
+
         dropInventory(player, input)
     }
 

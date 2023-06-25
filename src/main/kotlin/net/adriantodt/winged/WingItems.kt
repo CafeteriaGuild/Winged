@@ -3,9 +3,9 @@ package net.adriantodt.winged
 import net.adriantodt.winged.data.Wing
 import net.adriantodt.winged.item.WingItem
 import net.minecraft.item.Item
+import net.minecraft.registry.Registry
 import net.minecraft.util.Identifier
 import net.minecraft.util.Rarity
-import net.minecraft.util.registry.Registry
 
 @Suppress("MemberVisibilityCanBePrivate")
 object WingItems {
@@ -178,11 +178,11 @@ object WingItems {
     private fun wingItem(identifier: Identifier): WingVariations {
         return WingVariations(
             standard = WingItem(
-                Item.Settings().group(Winged.showcaseGroup).rarity(Rarity.RARE).maxCount(1),
+                Item.Settings().rarity(Rarity.RARE).maxCount(1),
                 identifier
             ),
             creativeFlight = WingItem(
-                Item.Settings().group(Winged.showcaseGroup).rarity(Rarity.EPIC).maxCount(1),
+                Item.Settings().rarity(Rarity.EPIC).maxCount(1),
                 identifier,
                 true
             )

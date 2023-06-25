@@ -6,10 +6,11 @@ import net.minecraft.item.BlockItem
 import net.minecraft.item.FoodComponent
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
+import net.minecraft.registry.Registries
+import net.minecraft.registry.Registry
 import net.minecraft.util.Identifier
 import net.minecraft.util.math.Vec3d
 import net.minecraft.util.math.random.Random
-import net.minecraft.util.registry.Registry
 
 fun mcIdentifier(path: String) = Identifier("minecraft", path)
 
@@ -18,14 +19,14 @@ fun identifier(path: String) = Identifier("winged", path)
 inline fun identifier(path: String, block: Identifier.() -> Unit) = identifier(path).run(block)
 
 fun Identifier.item(item: Item) = apply {
-    Registry.register(Registry.ITEM, this, item)
+    Registry.register(Registries.ITEM, this, item)
 }
 
 fun Identifier.item(block: Block) = apply {
-    Registry.register(Registry.ITEM, this, BlockItem(block, Item.Settings().group(Winged.mainGroup)))
+    Registry.register(Registries.ITEM, this, BlockItem(block, Item.Settings()))
 }
 
-fun itemSettings(): Item.Settings = Item.Settings().group(Winged.mainGroup)
+fun itemSettings(): Item.Settings = Item.Settings()
 
 fun Item.Settings.food(block: FoodComponent.Builder.() -> Unit) = apply {
     food(FoodComponent.Builder().also(block).build())
